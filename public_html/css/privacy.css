@@ -1,0 +1,25 @@
+.privacy-policy {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    line-height: 1.6;
+    
+}
+
+.privacy-policy h1, .privacy-policy h2, .privacy-policy h3 {
+    text-align: center;
+    color: #ac2a21; /* Kolor przewodni strony */
+}
+
+.privacy-policy p, .privacy-policy ul {
+    margin-bottom: 20px;
+}
+
+.privacy-policy a {
+    color: #ac2a21;
+    text-decoration: none;
+}
+
+.privacy-policy a:hover {
+    text-decoration: underline;
+}

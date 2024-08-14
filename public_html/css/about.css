@@ -1,0 +1,172 @@
+/* about.css */
+
+.about-hero {
+    background: linear-gradient(to right, #ac2a21, #333);
+    color: #fff;
+    padding: 60px 0;
+    text-align: center;
+    border-radius: 15px; /* Rounded corners */
+    margin: 20px;
+}
+
+.about-hero .about-container {
+    max-width: 900px;
+    margin: auto;
+}
+
+.about-hero h1 {
+    font-size: 2.8em;
+    margin-bottom: 20px;
+    color: #ffffffa6;
+}
+
+.about-hero p {
+    font-size: 1.8em;
+}
+
+.about-team {
+    padding: 80px 0;
+}
+
+.about-team .about-container {
+    max-width: 1200px;
+    margin: auto;
+}
+
+.about-team h2 {
+    text-align: center;
+    margin-bottom: 40px;
+    font-size: 2.5em;
+    color: #333;
+}
+
+.about-content {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px;
+}
+
+.about-item {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.about-item img {
+    border-radius: 50%;
+    width: 150px;
+    height: 150px;
+    margin-bottom: -60px; /* Negative margin to overlap */
+    transition: transform 0.3s ease;
+    border: 1px solid #fff;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+}
+
+.about-item:hover img {
+    transform: translateY(-10px);
+}
+
+.about-text {
+    background: #fff;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    flex: 1;
+    width: 100%;
+}
+
+.about-text h3 {
+    margin: 20px 0 10px;
+    font-size: 1.5em;
+    color: #333;
+}
+
+.about-text p {
+    font-size: 1.1em;
+    color: #666;
+}
+
+/* Counter Section */
+.space-ptb {
+    padding-top: 80px;
+    padding-bottom: 80px;
+}
+
+.overflow-hidden {
+    overflow: hidden;
+}
+
+.bg-primary-gradient {
+    position: relative;
+    border-radius: 15px;
+    padding: 20px; /* Dodanie paddingu, aby tekst nie przylegał do krawędzi */
+    color: #999; /* Ustawienie koloru tekstu na czarny */
+    overflow: hidden; /* Ukrycie nadmiaru zawartości */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 0 6px 20px rgba(0, 0, 0, 0.1); /* Dodanie cienia */
+}
+
+.bg-primary-gradient::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, #c73333 0%, #ac2a21 50%, #333 100%);
+    filter: blur(5px) brightness(150%); /* Efekt rozmycia i jasności */
+    z-index: 0; /* Ustawienie pseudo-elementu za tekstem */
+}
+
+.bg-primary-gradient h2, .bg-primary-gradient h3, .bg-primary-gradient h4, .bg-primary-gradient p {
+    position: relative; /* Aby tekst był nad pseudo-elementem */
+    color: #333;
+    text-shadow: 1px 1px 2px #555; /* Dodanie cienia do tekstu */
+    z-index: 1;
+}
+
+.bg-primary-gradient label {
+    position: relative; /* Aby tekst był nad pseudo-elementem */
+    color: #333; /* Ustawienie koloru etykiet na czarny */
+    font-weight: bold; /* Wyróżnienie etykiet pogrubieniem */
+    text-shadow: 1px 1px 2px #999; /* Dodanie cienia do tekstu */
+    z-index: 1;
+}
+
+
+.counter {
+    position: relative; /* Utrzymuje liczniki ponad tłem */
+    text-align: center;
+    padding: 30px 0;
+}
+
+.counter-icon {
+    font-size: 3em;
+    color: #fff;
+    margin-bottom: 10px;
+}
+
+.counter-content {
+    font-size: 1.5em;
+    color: #fff;
+}
+
+.counter-content .timer {
+    display: block;
+    font-size: 2em;
+    font-weight: bold;
+}
+
+.counter-content label {
+    display: block;
+    margin-top: 10px;
+}
+
+@media (max-width: 767.98px) {
+    .counter {
+        margin-bottom: 20px;
+    }
+}

@@ -1,0 +1,305 @@
+body {
+    font-family: 'Raleway', Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    line-height: 1.6;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    line-height: 1.2;
+}
+
+header {
+    background: linear-gradient(135deg, white 0%, #f0f0f0 15%, #d3d3d3 30%, #a6a6a6 45%, #808080 60%, #333 75%, #333 100%);
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding: 10px 20px;
+    position: relative;
+    z-index: 1000; /* Ensure header is above other elements */
+    margin-bottom: auto;
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    justify-content: flex-start;
+}
+
+.header-left .logo {
+    width: 150px;
+    height: auto;
+    margin-right: 10px;
+}
+
+.header-left h1 {
+    color: #ac2a21; /* Blood red color */
+    font-family: 'Raleway', 'Trebuchet MS', sans-serif; /* Font stack */
+}
+
+.menu-icon, .close-icon {
+    width: 24px; /* Size of the icons */
+    height: 24px;
+    cursor: pointer;
+    display: none; /* Hide icons by default */
+    margin-left: 10px; /* Space between icons */
+}
+
+nav.menu {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 10px;
+    width: 100%;
+    position: relative;
+    z-index: 999;
+}
+
+nav.menu ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+}
+
+nav.menu ul li {
+    margin: 0 10px;
+}
+
+nav.menu ul li a {
+    color: #fff;
+    text-decoration: none;
+}
+
+nav.menu ul li.active a {
+    color: #ac2a21; /* Highlight color for the active page */
+    font-weight: bold;
+}
+
+nav.menu ul li a:focus,
+nav.menu ul li a:hover {
+    background-color: #ac2a21; /* Red background for better visibility */
+    color: #fff; /* White text color */
+    outline: none; /* Remove default outline */
+    border-radius: 5px; /* Optional: rounded corners */
+    padding: 5px;
+}
+
+.breadcrumb {
+    background-color: transparent;
+    padding: 5px 0 0 0; /* Adjusted to reduce space */
+    margin: 5px 0 0 0; /* Adjusted to reduce space */
+    list-style: none;
+    display: flex;
+    align-items: center;
+    font-size: 0.85em;
+
+}
+
+.breadcrumb a {
+    color: #ac2a21;
+    text-decoration: none;
+}
+
+.breadcrumb a:hover {
+    text-decoration: underline;
+}
+
+/* Style dla sticky menu i nagłówka */
+header.sticky,
+nav.menu.sticky {
+    position: fixed;
+    width: 100%;
+    z-index: 1000;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* Dodaje cień pod nagłówkiem i menu */
+}
+
+header.sticky {
+    top: 0;
+}
+
+
+
+/* Mobile accesibility */
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .header-left {
+        margin-bottom: 10px;
+    }
+
+    .header-left .logo {
+        width: 120px;
+    }
+
+    .header-left h1 {
+        font-size: 24px;
+    }
+
+    .menu-icon, .close-icon {
+        display: block; /* Show icons only on mobile */
+        align-self: flex-end; /* Align icons to the right */
+        margin-right: 20px; /* Adjust spacing as needed */
+        cursor: pointer;
+    }
+
+    nav.menu {
+        width: 100%; /* Ensure nav takes full width */
+        display: flex;
+        justify-content: flex-end; /* Align menu to the right */
+    }
+
+    nav.menu ul {
+        display: none;
+        flex-direction: column;
+        align-items: center;
+        position: absolute; /* Position relative to nav.menu */
+        top: 40px; /* Position menu below the icon */
+        right: 0; /* Align menu to the right */
+        background-color: #333;
+        padding: 10px 20px;
+        border-radius: 5px;
+        border: 1px solid #555;
+        width: auto;
+        transition: max-height 0.5s ease-out; /* Smooth animation */
+        overflow: hidden;
+        max-height: 0; /* Start with hidden menu */
+        z-index: 1000; /* Ensure the menu is above other content */
+    }
+
+    nav.menu ul.active {
+        display: flex;
+        max-height: 500px; /* Adjust as needed */
+    }
+
+    nav.menu ul li {
+        margin: 5px 0;
+    }
+
+    nav.menu ul li a {
+        width: 100%;
+        padding: 10px;
+        background-color: #333;
+        color: #fff;
+        text-align: left;
+        text-decoration: none;
+    }
+}
+
+main {
+    padding: 0 20px 20px 20px;
+    min-height: calc(100vh - 140px); /* Adjust height to ensure footer is at the bottom */
+    margin-top: 10px; /* Adjusted to reduce space below breadcrumbs */
+}
+
+footer {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 10px 0;
+    position: relative; /* Make footer relative to content */
+    bottom: 0;
+    width: 100%;
+}
+
+footer .privacy a {
+    color: #fff;
+    text-decoration: none;
+    font-size: smaller;
+}
+
+.privacy .fa-minus {
+    padding: 0 2px;
+    font-size: 1.5em;
+    vertical-align: top;
+}
+
+.privacy a:hover {
+    color: #ac2a21;
+    text-decoration: underline;
+}
+
+.pb-3 a {
+    color: #f0f0f0;
+    padding: 0.5em;
+}
+
+.pb-3 a:hover {
+    color: #ac2a21;
+}
+
+#scrollToTopBtn {
+    display: block; /* Ensure the button is part of the layout */
+    opacity: 0; /* Start with the button hidden */
+    position: fixed; /* Fixed/sticky position */
+    bottom: 20px; /* Place the button at the bottom of the page */
+    right: 30px; /* Place the button 30px from the right */
+    z-index: 99; /* Make sure it does not overlap */
+    border: none; /* Remove borders */
+    outline: none; /* Remove outline */
+    background-color: #ac2a217d; /* Set a background color */
+    color: white; /* Text color */
+    cursor: pointer; /* Add a mouse pointer on hover */
+    padding: 10px; /* Some padding */
+    border-radius: 100%; /* Rounded corners */
+    font-size: 12px; /* Increase font size */
+    transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out; /* Smooth zoom transition */
+}
+
+#scrollToTopBtn.show {
+    opacity: 1; /* Make the button visible */
+}
+
+#scrollToTopBtn #long {
+    opacity: 0;
+    transition: opacity 0.15s ease-in-out;
+}
+
+#scrollToTopBtn:hover {
+    background-color: #555; /* Add a dark-grey background on hover */
+    transform: scale(1.2); /* Zoom in on hover */
+}
+
+#scrollToTopBtn:hover #short {
+    opacity: 0;
+    transition: opacity 0.15s ease-in-out;
+}
+
+#scrollToTopBtn:hover #long {
+    opacity: 1;
+    transition: opacity 0.15s ease-in-out;
+}
+
+#scrollToTopBtn svg {
+    width: 24px;
+    height: 24px;
+}
+
+button {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease-in-out;
+}
+
+button:hover {
+    box-shadow: 0 8px 10px rgba(0, 0, 0, 0.2);
+    background-color: #555; /* Darken background color on hover */
+}
+
+.fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.fade-in.visible {
+    opacity: 1;
+    transform: translate(0);
+}
