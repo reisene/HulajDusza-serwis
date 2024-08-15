@@ -14,19 +14,20 @@ header {
     background: linear-gradient(135deg, white 0%, #f0f0f0 15%, #d3d3d3 30%, #a6a6a6 45%, #808080 60%, #333 75%, #333 100%);
     color: #fff;
     display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: flex-start;
+    flex-direction: row;
+    justify-content: space-between; /* Zmiana na space-between */
+    align-items: center;  /* Wyrównanie elementów pionowo */
     padding: 10px 20px;
     position: relative;
     z-index: 1000; /* Ensure header is above other elements */
     margin-bottom: auto;
+    transition: padding 0.3s ease-in-out;
 }
 
 .header-left {
     display: flex;
     align-items: center;
-    width: 100%;
+    width: auto;
     justify-content: flex-start;
 }
 
@@ -34,11 +35,13 @@ header {
     width: 150px;
     height: auto;
     margin-right: 10px;
+    transition: width 0.3s ease-in-out;
 }
 
 .header-left h1 {
     color: #ac2a21; /* Blood red color */
     font-family: 'Raleway', 'Trebuchet MS', sans-serif; /* Font stack */
+    margin: 0; /* Dodano margin 0 dla wyrównania */
 }
 
 .menu-icon, .close-icon {
@@ -49,12 +52,15 @@ header {
     margin-left: 10px; /* Space between icons */
 }
 
+/* Stylizacja menu */
 nav.menu {
-    background-color: #333;
+    display: flex;
+    justify-content: flex-end; /* Wyrównanie menu do prawej */
+    align-items: center; /* Wyrównanie pionowe */
     color: #fff;
     text-align: center;
     padding: 10px;
-    width: 100%;
+    width: auto;
     position: relative;
     z-index: 999;
 }
@@ -90,6 +96,12 @@ nav.menu ul li a:hover {
     padding: 5px;
 }
 
+/* Stylizacja ikony menu (hamburger) */
+.menu-icon, .close-icon {
+    display: none; /* Ukrycie ikony hamburgera na desktopie */
+}
+
+/* Stylizacja breadcrumbs */
 .breadcrumb {
     background-color: transparent;
     padding: 5px 0 0 0; /* Adjusted to reduce space */
@@ -111,19 +123,22 @@ nav.menu ul li a:hover {
 }
 
 /* Style dla sticky menu i nagłówka */
-header.sticky,
-nav.menu.sticky {
+header.sticky {
     position: fixed;
     width: 100%;
     z-index: 1000;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* Dodaje cień pod nagłówkiem i menu */
+    
 }
 
 header.sticky {
     top: 0;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* Dodaje cień pod nagłówkiem i menu */
 }
 
-
+header.sticky .header-left,
+nav.menu.sticky ul {
+    align-items: center;
+}
 
 /* Mobile accesibility */
 @media (max-width: 768px) {
@@ -138,6 +153,10 @@ header.sticky {
 
     .header-left .logo {
         width: 120px;
+    }
+
+    header.sticky .header-left .logo {
+        width: 80px;
     }
 
     .header-left h1 {
@@ -191,6 +210,13 @@ header.sticky {
         color: #fff;
         text-align: left;
         text-decoration: none;
+    }
+
+    .menu-icon, .close-icon {
+        display: block; /* Pokaż ikony hamburgera na urządzeniach mobilnych */
+        align-self: flex-end;
+        margin-right: 20px;
+        cursor: pointer;
     }
 }
 

@@ -45,18 +45,36 @@ $(document).ready(function () {
     const stickyHeader = $('header');
     const stickyMenu = $('nav.menu');
     const sticky = stickyHeader.offset().top;
+    const logo = $('.header-left img'); // Select your logo image
 
     function makeSticky() {
-        if ($(window).scrollTop() > sticky) {
+        const scrollTop = $(window).scrollTop();
+    
+        // Sticky header and menu
+        if (scrollTop > sticky) {
             stickyHeader.addClass('sticky');
             stickyMenu.addClass('sticky');
-            stickyMenu.css('top', stickyHeader.outerHeight() + 'px'); // Ustawiamy menu poniżej nagłówka
         } else {
             stickyHeader.removeClass('sticky');
             stickyMenu.removeClass('sticky');
-            stickyMenu.css('top', '0px'); // Resetujemy pozycję menu
         }
-    }
+        
+        // Logo and header scaling
+        const maxLogoScale = 150; // Original width
+        const minLogoScale = 100; // Reduced width in sticky state
+        const maxScroll = 300; // Adjust this value to set when the scaling stops
+
+        let logoWidth = maxLogoScale - (scrollTop / maxScroll) * (maxLogoScale - minLogoScale);
+        if (logoWidth < minLogoScale) logoWidth = minLogoScale;
+        logo.css('width', logoWidth + 'px');
+
+        const maxPadding = 10; // Original padding top/bottom
+        const minPadding = 5;  // Reduced padding in sticky state
+
+        let headerPadding = maxPadding - (scrollTop / maxScroll) * (maxPadding - minPadding);
+        if (headerPadding < minPadding) headerPadding = minPadding;
+        stickyHeader.css('padding', headerPadding + 'px 20px');
+    }    
 
     $(window).scroll(makeSticky);
 
