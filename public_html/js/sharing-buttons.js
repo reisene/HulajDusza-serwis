@@ -35,11 +35,11 @@ document.addEventListener('DOMContentLoaded', function() {
             shareButtons.style.display = 'none';
         }
     });
-if ('ontouchstart' in window || navigator.maxTouchPoints) { // Sprawdza, czy urządzenie ma możliwość dotyku (czyli prawdopodobnie mobilne)
-    if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) { // Sprawdza, czy to urządzenie mobilne
-        document.querySelector('.a2a_button_sms').style.display = 'block';
-    }
-} else {
-    document.querySelector('.a2a_button_sms').style.display = 'none';
-}
+    if ('ontouchstart' in window || navigator.maxTouchPoints) { // Sprawdza, czy urządzenie ma możliwość dotyku (czyli prawdopodobnie mobilne)
+        if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) { // Sprawdza, czy to urządzenie mobilne
+            document.querySelector('.a2a_button_sms').style.display = 'block';
+        }
+    } else {
+        document.querySelector('.a2a_button_sms').style.display = 'none';
+    };
 });
