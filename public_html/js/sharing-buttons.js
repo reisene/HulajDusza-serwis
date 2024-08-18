@@ -24,5 +24,15 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // Dodajemy obsługę kliknięcia na przycisk
-    toggleButton.addEventListener('click', toggleShareButtons);
+    toggleButton.addEventListener('click', toggleShareButtons); 
+
+    // Dodajemy obsługę kliknięcia poza panelem, aby go ukryć
+    document.addEventListener('click', function (event) {
+        var isClickInsidePanel = shareButtons.contains(event.target);
+        var isClickOnToggleButton = toggleButton.contains(event.target);
+
+        if (!isClickInsidePanel && ! isClickOnToggleButton) {
+            shareButtons.style.display = 'none';
+        }
+    });
 });
