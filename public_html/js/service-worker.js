@@ -5,16 +5,24 @@ const urlsToCache = [
   '/about.html',
   '/services.html',
   '/contact.html',
+  '/content/cookies.html',
+  '/content/pricing.html',
+  '/content/privacy.html',
   '/css/style.css',
   '/css/index.css',
   '/css/services.css',
   '/css/about.css',
   '/css/contact.css',
+  '/css/pricing.css',
+  '/css/privacy.css',
   '/js/script.js',
   '/js/send_email.js',
   '/js/phone_format.js',
+  '/js/sharing-buttons.js',
+  '/js/counters.js',
   '/icons/favicon-32x32.png',
-  '/icons/apple-icon-57x57.png'
+  '/icons/apple-icon-57x57.png',
+  '/img/Logo/HulajDusza_logo.png'
 ];
 
 self.addEventListener('install', (event) => {
