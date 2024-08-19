@@ -143,8 +143,8 @@ nav.menu.sticky ul {
 /* Mobile accesibility */
 @media (max-width: 768px) {
     header {
-        flex-direction: column;
-        align-items: flex-start;
+        padding: 5px 10px;
+        width: 100%;
     }
 
     .header-left {
@@ -160,18 +160,21 @@ nav.menu.sticky ul {
     }
 
     .header-left h1 {
-        font-size: 24px;
+        display: none;
     }
 
     .menu-icon, .close-icon {
         display: block; /* Show icons only on mobile */
         align-self: flex-end; /* Align icons to the right */
-        margin-right: 20px; /* Adjust spacing as needed */
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%); /* Wycentrowanie w pionie */
+        right: 0;
         cursor: pointer;
     }
 
     nav.menu {
-        width: 100%; /* Ensure nav takes full width */
+        width: 100%;
         display: flex;
         justify-content: flex-end; /* Align menu to the right */
     }
@@ -181,13 +184,13 @@ nav.menu.sticky ul {
         flex-direction: column;
         align-items: center;
         position: absolute; /* Position relative to nav.menu */
-        top: 40px; /* Position menu below the icon */
-        right: 0; /* Align menu to the right */
+        top: 100%; /* Position menu below the icon */
+        right: 0;
         background-color: #333;
         padding: 10px 20px;
         border-radius: 5px;
         border: 1px solid #555;
-        width: auto;
+        width: max-content;
         transition: max-height 0.5s ease-out; /* Smooth animation */
         overflow: hidden;
         max-height: 0; /* Start with hidden menu */
@@ -210,13 +213,6 @@ nav.menu.sticky ul {
         color: #fff;
         text-align: left;
         text-decoration: none;
-    }
-
-    .menu-icon, .close-icon {
-        display: block; /* Pokaż ikony hamburgera na urządzeniach mobilnych */
-        align-self: flex-end;
-        margin-right: 20px;
-        cursor: pointer;
     }
 }
 
