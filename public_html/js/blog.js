@@ -16,26 +16,22 @@ $(document).ready(function() {
                 const title = $(doc).find('h2').prop('outerHTML');
                 const date = $(doc).find('.post-date').prop('outerHTML');
                 const image = $(doc).find('img').prop('outerHTML');
-                const excerpt = $(doc).find('section p').prop('outerHTML');
+                const excerpt = $(doc).find('section p').first().prop('outerHTML');
 
-                const postElement = $('<div>').html(`${title}${date}${image}${excerpt} <button class="read-more">Czytaj więcej <i class="bi bi-file-earmark-post"></i></button>`);
+                // Tworzymy pojedynczy post z odpowiednimi klasami
+                const postElement = $('<article class="post-article">').html(`${title}${date}${image}<div class="post-content">${excerpt}</div><button class="read-more">Czytaj więcej <i class="bi bi-file-earmark-post"></i></button>`);
 
+                // Dodajemy funkcjonalność przycisku "Czytaj więcej"
                 postElement.find('.read-more').on('click', function(e) {
                     e.preventDefault();
-                    postsContainer.html($(doc.body).html()); // Załadowanie całego posta
+                    postsContainer.html($(doc.body).html()); // Załadowanie pełnego posta
                     postsContainer.append('<button class="back-to-blog">Powrót do bloga <i class="fa-solid fa-arrow-rotate-left"></i></button>');
                     $('.back-to-blog').on('click', function() {
-                        location.reload(); // Powrót do strony bloga (odświeżenie)
+                        location.reload(); // Powrót do strony bloga
                     });
                 });
 
                 postsContainer.append(postElement);
-
-                // Zastosowanie stylów po dodaniu elementów
-                postsContainer.find('.post-date').css({
-                    'font-size': '0.7em',
-                    'color': '#777'
-                });
             })
             .catch(error => console.error('Error loading post:', error));
     });
