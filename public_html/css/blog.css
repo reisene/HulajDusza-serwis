@@ -1,0 +1,19 @@
+button.read-more, button.back-to-blog {
+    background-color: #ac2a21;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    margin-top: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+button.read-more:hover, button.back-to-blog:hover {
+    background-color: #800000;
+}
+
+.post-date {
+    font-size: 0.8em; /* Mniejsza czcionka */
+    color: #777; /* Szary kolor */
+}
