@@ -17,7 +17,7 @@ button.read-more:hover, button.back-to-blog:hover {
     background-color: #800000;
 }
 
-p.post-date {
+article p.post-date {
     font-size: 0.7em; /* Mniejsza czcionka */
     color: #333; /* Szary kolor */
 }
