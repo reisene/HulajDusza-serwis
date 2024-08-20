@@ -9,11 +9,15 @@ button.read-more, button.back-to-blog {
     transition: background-color 0.3s ease;
 }
 
+button.read-more i, button.back-to-blog i {
+    margin-left: 5px;
+}
+
 button.read-more:hover, button.back-to-blog:hover {
     background-color: #800000;
 }
 
 p .post-date {
-    font-size: 0.8em; /* Mniejsza czcionka */
+    font-size: 0.7em; /* Mniejsza czcionka */
     color: #333; /* Szary kolor */
 }
