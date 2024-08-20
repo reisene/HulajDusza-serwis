@@ -3,6 +3,7 @@ $(document).ready(function() {
     const postPaths = [
         'posts/post1.html',
         'posts/post2.html',
+        'posts/post3.html',
         // Inne posty
     ];
 
