@@ -33,8 +33,13 @@ article p.post-date {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     box-sizing: content-box;
     display: flex;
+    flex-direction: column;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
     padding: 20px;
     margin: 20px 0;
+}
+
+.post-content {
+    text-justify: justify;
 }
