@@ -85,4 +85,5 @@ article p.post-date {
 .post-content {
     width: 90%;
     text-align: justify;
+    margin: 0 auto;
 }
