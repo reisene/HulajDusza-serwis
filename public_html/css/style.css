@@ -74,12 +74,29 @@ nav.menu ul {
 }
 
 nav.menu ul li {
-    margin: 0 10px;
+    margin: 0 5px;
 }
 
 nav.menu ul li a {
     color: #fff;
     text-decoration: none;
+    padding: 5px;
+    overflow: hidden; /* Ukrywa nadmiar, który wychodzi poza element */
+    position: relative;
+}
+
+nav.menu ul li a::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 100%;
+    background-color: #ac2a21;
+    transition: width 0.4s ease, left 0.4s ease;
+    transform: translate(-50%, -50%);
+    border-radius: 5px; /* Zaokrąglone rogi */
+    z-index: -1; /* Umieszcza tło za tekstem */
 }
 
 nav.menu ul li.active a {
@@ -87,13 +104,17 @@ nav.menu ul li.active a {
     font-weight: bold;
 }
 
+nav.menu ul li a:hover::before,
+nav.menu ul li a:focus::before {
+    width: 100%; /* Rozszerza tło na cały obszar tekstu */
+    left: 50%;;
+}
+
 nav.menu ul li a:focus,
 nav.menu ul li a:hover {
-    background-color: #ac2a21; /* Red background for better visibility */
     color: #fff; /* White text color */
     outline: none; /* Remove default outline */
-    border-radius: 5px; /* Optional: rounded corners */
-    padding: 5px;
+    position: relative;
 }
 
 /* Stylizacja ikony menu (hamburger) */
