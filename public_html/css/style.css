@@ -55,6 +55,7 @@ nav.menu {
     padding: 0 5px;
     width: auto;
     z-index: 999;
+    margin: auto 0;
 }
 
 nav.menu ul {
