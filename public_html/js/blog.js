@@ -39,7 +39,7 @@ $(document).ready(function() {
             })
             .catch(error => {
                 console.error('Error loading post:', error);
-                postsContainer.prepend(`<article class="post-article"><h2>Post nie został załadowany</h2><p>${error.message}</p></article>`);
+                postsContainer.append(`<article class="post-article"><h2>Post nie został załadowany</h2><p>${error.message}</p></article>`);
             });
     });
 });
