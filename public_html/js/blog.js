@@ -2,8 +2,8 @@ $(document).ready(function() {
     const postsContainer = $('#posts-container');
     const postPaths = [
         'posts/post1.html',
-        'posts/post2.html',
         'posts/post3.html',
+        'posts/post2.html',
         // Inne posty
     ];
 
