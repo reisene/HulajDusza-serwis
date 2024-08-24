@@ -32,7 +32,7 @@ $(document).ready(function() {
                     });
                 });
 
-                postsContainer.append(postElement);
+                postsContainer.prepend(postElement);
             })
             .catch(error => console.error('Error loading post:', error));
     });
