@@ -7,7 +7,9 @@ $(document).ready(function() {
         // Inne posty
     ];
 
-    postPaths.forEach(postPath => {
+    const postElements = []; // Tablica do przechowywania elementów
+
+    postPaths.forEach((postPath, index) => {
         fetch(postPath)
             .then(response => {
                 if (!response.ok) {
@@ -35,12 +37,18 @@ $(document).ready(function() {
                     });
                 });
 
-                postsContainer.prepend(postElement); 
+                postElements[index] = postElement; // Zachowujemy element w odpowiednim miejscu w tablicy
             })
             .catch(error => {
                 console.error('Error loading post:', error);
                 const errorElement = $('<article class="post-article">').html(`<h2>Błąd</h2><p>Nie udało się załadować posta: ${postPath}</p>`);
-                postsContainer.prepend(errorElement); 
+                postElements[index] = errorElement; // Zachowujemy błąd w odpowiednim miejscu w tablicy
+            })
+            .finally(() => {
+                // Sprawdzenie, czy wszystkie elementy zostały przetworzone
+                if (postElements.length === postPaths.length) {
+                    postElements.reverse().forEach(element => postsContainer.append(element)); // Wyświetlamy elementy w odpowiedniej kolejności
+                }
             });
     });
 });
