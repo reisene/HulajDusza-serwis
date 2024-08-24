@@ -12,6 +12,7 @@ h1, h2, h3, h4, h5, h6 {
 
 header {
     background: linear-gradient(135deg, white 0%, #f0f0f0 15%, #d3d3d3 30%, #a6a6a6 45%, #808080 60%, #333 75%, #333 100%);
+    backdrop-filter: blur(30px);
     color: #fff;
     display: flex;
     flex-direction: row;
