@@ -7,7 +7,9 @@ $(document).ready(function() {
         // Inne posty
     ];
 
-    const postElements = []; // Tablica do przechowywania elementów
+    const postElements = Array(postPaths.length).fill(null); // Tablica do przechowywania elementów
+
+    let loadedPosts = 0;
 
     postPaths.forEach((postPath, index) => {
         fetch(postPath)
@@ -45,8 +47,8 @@ $(document).ready(function() {
                 postElements[index] = errorElement; // Zachowujemy błąd w odpowiednim miejscu w tablicy
             })
             .finally(() => {
-                // Sprawdzenie, czy wszystkie elementy zostały przetworzone
-                if (postElements.length === postPaths.length) {
+                loadedPosts++;
+                if (loadedPosts === postPaths.length) {
                     postElements.reverse().forEach(element => postsContainer.append(element)); // Wyświetlamy elementy w odpowiedniej kolejności
                 }
             });
