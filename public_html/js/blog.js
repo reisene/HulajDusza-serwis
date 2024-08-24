@@ -3,6 +3,7 @@ $(document).ready(function() {
     const postPaths = [
         'posts/post1.html',
         'posts/post2.html',
+        'posts/post3.html',
         // Inne posty
     ];
 
@@ -25,7 +26,7 @@ $(document).ready(function() {
                 postElement.find('.read-more').on('click', function(e) {
                     e.preventDefault();
                     postsContainer.html($(doc.body).html()); // Załadowanie pełnego posta
-                    postsContainer.append('<button class="back-to-blog">Powrót do bloga <i class="fa-solid fa-arrow-rotate-left"></i></button>');
+                    postsContainer.append('<button class="back-to-blog">Powrót do bloga <i class="bi bi-arrow-counterclockwise"></i></button>');
                     $('.back-to-blog').on('click', function() {
                         location.reload(); // Powrót do strony bloga
                     });

@@ -37,11 +37,37 @@ article p.post-date {
     padding: 20px;
 }
 
+.post-article figure {
+    display: table;
+    margin: 0 auto 20px; /* Usuń marginesy, aby nie wpływały na pozycję */
+}
+
+.post-article figure figcaption {
+    display: table-caption;
+    caption-side: bottom;
+    font-size: 0.75em;
+    color: #777;
+    font-style: italic;
+    text-align: right; /* Wyrównanie tekstu do prawej */
+}
+
+.post-article figure figcaption a {
+    text-decoration: none;
+    color: #ac2a21;
+}
+
+.post-article figure figcaption a:hover {
+    text-decoration: underline;
+}
+
 .post-article img {
     max-width: 100%;
     height: auto;
+    max-height: 500px;
     display: block;
-    margin: 0 auto;
+    margin: 0 auto 5px;
+    border-radius: 20px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
 }
 
 .post-article {
@@ -59,4 +85,5 @@ article p.post-date {
 .post-content {
     width: 90%;
     text-align: justify;
+    margin: 0 auto;
 }
