@@ -20,7 +20,7 @@ header {
     padding: 10px 20px;
     position: relative;
     z-index: 1000; /* Ensure header is above other elements */
-    margin-bottom: auto;
+    
     transition: padding 0.3s ease-in-out;
 }
 
