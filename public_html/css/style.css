@@ -44,14 +44,6 @@ header {
     margin: 0; /* Dodano margin 0 dla wyrównania */
 }
 
-.menu-icon, .close-icon {
-    width: 24px; /* Size of the icons */
-    height: 24px;
-    cursor: pointer;
-    display: none; /* Hide icons by default */
-    margin-left: 10px; /* Space between icons */
-}
-
 /* Stylizacja menu */
 nav.menu {
     display: flex;
@@ -59,16 +51,15 @@ nav.menu {
     align-items: center; /* Wyrównanie pionowe */
     color: #fff;
     text-align: center;
-    padding: 10px;
-    width: auto;
     position: relative;
+    padding: 0 5px;
+    width: auto;
     z-index: 999;
 }
 
 nav.menu ul {
     list-style-type: none;
     padding: 0;
-    margin: 0;
     display: flex;
     justify-content: center;
 }
@@ -118,8 +109,27 @@ nav.menu ul li a:hover {
 }
 
 /* Stylizacja ikony menu (hamburger) */
-.menu-icon, .close-icon {
-    display: none; /* Ukrycie ikony hamburgera na desktopie */
+.menu-toggle {
+    position: relative;
+    z-index: 1010;
+    box-shadow: none;
+    display: none;
+}
+
+.menu-toggle, .menu-toggle i {
+    font-size: 24px;
+    cursor: pointer;
+    color: #ac2a21;
+    background: none;
+    border: none;
+}
+
+.menu-toggle:hover {
+    background: none;
+    border: none;
+    padding: 5px;
+    box-shadow: none;
+    
 }
 
 /* Stylizacja breadcrumbs */
@@ -148,10 +158,6 @@ header.sticky {
     position: fixed;
     width: 100%;
     z-index: 1000;
-    
-}
-
-header.sticky {
     top: 0;
     box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* Dodaje cień pod nagłówkiem i menu */
 }
@@ -184,14 +190,8 @@ nav.menu.sticky ul {
         display: none;
     }
 
-    .menu-icon, .close-icon {
-        display: block; /* Show icons only on mobile */
-        align-self: flex-end; /* Align icons to the right */
-        position: absolute;
-        top: 50%;
-        transform: translateY(-50%); /* Wycentrowanie w pionie */
-        right: 0;
-        cursor: pointer;
+    .menu-toggle {
+        display: block;
     }
 
     nav.menu {
@@ -205,7 +205,7 @@ nav.menu.sticky ul {
         flex-direction: column;
         align-items: center;
         position: absolute; /* Position relative to nav.menu */
-        top: 100%; /* Position menu below the icon */
+        top: 100%;
         right: 0;
         background-color: #333;
         padding: 10px 20px;

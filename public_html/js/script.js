@@ -4,17 +4,38 @@ $(document).ready(function () {
         duration: 1200,
     });
 
-    // Menu toggle script
-    $('.menu-icon').click(function () {
-        $('nav.menu ul').addClass('active');
-        $('.menu-icon').hide();
-        $('.close-icon').show();
+    const menu = $('nav.menu ul');
+    const menuToggle = $('.menu-toggle');
+    const menuIcon = $('.menu-icon');
+    const closeIcon = $('.close-icon');
+
+    // Przełączanie menu
+    menuToggle.click(function () {
+        menu.toggleClass('active');
+        menuIcon.toggle();
+        closeIcon.toggle();
     });
 
-    $('.close-icon').click(function () {
-        $('nav.menu ul').removeClass('active');
-        $('.close-icon').hide();
-        $('.menu-icon').show();
+    // Zamknięcie menu po kliknięciu poza nim
+    $(document).click(function (event) {
+        if (!menu.is(event.target) && menu.has(event.target).length === 0 &&
+            !menuToggle.is(event.target) && menuToggle.has(event.target).length === 0) {
+            menu.removeClass('active');
+            closeIcon.hide();
+            if ($(window).width() <= 768) {
+                menuIcon.show();
+            }
+        }
+    });
+
+    // Dostosowanie ikon menu przy zmianie rozmiaru okna
+    $(window).resize(function () {
+        if ($(window).width() > 768) {
+            menuIcon.hide();
+            closeIcon.hide();
+        } else if (!menu.hasClass('active')) {
+            menuIcon.show();
+        }
     });
 
     // Add 'active' class to the current menu item
@@ -86,21 +107,6 @@ $(document).ready(function () {
 
     // Aktualizacja tytułu strony
     document.title = originalTitle + siteName;
-
-    // Zamknięcie menu po kliknięciu poza menu
-    $(document).click(function (event) {
-        const menu = $('nav.menu ul');
-        const menuIcon = $('.menu-icon');
-        const closeIcon = $('.close-icon');
-
-        if (!menu.is(event.target) && menu.has(event.target).length === 0 && !menuIcon.is(event.target) && menuIcon.has(event.target).length === 0 && !closeIcon.is(event.target) && closeIcon.has(event.target).length === 0) {
-            menu.removeClass('active');
-            closeIcon.hide();
-            if ($(window).width() <= 768) { // Only show the menu icon on mobile view
-                menuIcon.show();
-            }
-        }
-    });
 
     // Hide or show menu icons based on window resize
     $(window).resize(function () {
