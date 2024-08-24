@@ -48,7 +48,7 @@ header {
 nav.menu {
     display: flex;
     justify-content: flex-end; /* Wyrównanie menu do prawej */
-    align-items: center; /* Wyrównanie pionowe */
+    align-self: center; /* Wyrównanie pionowe */
     color: #fff;
     text-align: center;
     position: relative;
