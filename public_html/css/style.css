@@ -20,7 +20,6 @@ header {
     padding: 10px 20px;
     position: relative;
     z-index: 1000; /* Ensure header is above other elements */
-    
     transition: padding 0.3s ease-in-out;
 }
 
@@ -47,28 +46,39 @@ header {
 /* Stylizacja menu */
 nav.menu {
     display: flex;
+    height: 100%;
     justify-content: flex-end; /* Wyrównanie menu do prawej */
-    align-self: center; /* Wyrównanie pionowe */
+    align-items: center;
     color: #fff;
     text-align: center;
     position: relative;
     padding: 0 5px;
     width: auto;
     z-index: 999;
-    margin: auto 0;
+    margin: 0;    
+    /* From https://css.glass */
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(3.9px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 nav.menu ul {
     list-style-type: none;
-    padding: 0;
+    padding: 5px 0;
     display: flex;
     justify-content: center;
     align-items: center;
-    list-style-type: none;
+    align-self: auto;
 }
 
 nav.menu ul li {
     margin: 0 5px;
+    display: flex;
+    align-items: center;
+    align-self: auto;
 }
 
 nav.menu ul li a {
@@ -77,6 +87,7 @@ nav.menu ul li a {
     padding: 5px;
     overflow: hidden; /* Ukrywa nadmiar, który wychodzi poza element */
     position: relative;
+    align-self: auto;
 }
 
 nav.menu ul li a::before {
