@@ -108,18 +108,6 @@ $(document).ready(function () {
     // Aktualizacja tytułu strony
     document.title = originalTitle + siteName;
 
-    // Hide or show menu icons based on window resize
-    $(window).resize(function () {
-        const menuIcon = $('.menu-icon');
-        const closeIcon = $('.close-icon');
-        if ($(window).width() > 768) {
-            menuIcon.hide();
-            closeIcon.hide();
-        } else if (!$('nav.menu ul').hasClass('active')) {
-            menuIcon.show();
-        }
-    });
-
     // Scroll to top button functionality
     const mybutton = $("#scrollToTopBtn");
 
