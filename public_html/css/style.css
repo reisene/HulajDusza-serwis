@@ -3,7 +3,7 @@ body {
     margin: 0;
     padding: 0;
     background-color: #f4f4f4;
-    line-height: 1.6;
+    line-height: 1.2;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -67,14 +67,17 @@ nav.menu {
 nav.menu ul {
     list-style-type: none;
     padding: 0;
+    margin: 5px;
     display: flex;
     justify-content: center;
     align-items: center;
+    
 }
 
 nav.menu ul li {
     margin: 0 5px;
     display: flex;
+    justify-content: center;
     align-items: center;
     height: 100%;
 }
@@ -83,8 +86,9 @@ nav.menu ul li a {
     color: #fff;
     text-decoration: none;
     display: flex;
-    padding: 5px;
+    padding: 10px;
     align-items: center;
+    justify-content: center;
     transition: all 0.3s ease; /* Płynna zmiana tła */
 }
 
@@ -99,7 +103,7 @@ nav.menu ul li a:hover {
     outline: none; /* Remove default outline */
     position: relative;
     background-color: #ac2a21;
-    border-radius: 16px;
+    border-radius: 12px;
 }
 
 /* Stylizacja ikony menu (hamburger) */
