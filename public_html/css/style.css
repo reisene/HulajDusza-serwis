@@ -48,8 +48,8 @@ nav.menu {
     display: flex;
     justify-content: flex-end; /* Wyrównanie menu do prawej */
     align-items: center;
-    color: #fff;
     text-align: center;
+    color: #fff;
     position: relative;
     padding: 5px;
     width: auto;
