@@ -46,13 +46,12 @@ header {
 /* Stylizacja menu */
 nav.menu {
     display: flex;
-    height: 100%;
     justify-content: flex-end; /* Wyrównanie menu do prawej */
     align-items: center;
     color: #fff;
     text-align: center;
     position: relative;
-    padding: 0 5px;
+    padding: 5px;
     width: auto;
     z-index: 999;
     margin: 0;    
@@ -67,7 +66,7 @@ nav.menu {
 
 nav.menu ul {
     list-style-type: none;
-    padding: 5px 0;
+    padding: 0;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -77,15 +76,14 @@ nav.menu ul li {
     margin: 0 5px;
     display: flex;
     align-items: center;
+    height: 100%;
 }
 
 nav.menu ul li a {
     color: #fff;
     text-decoration: none;
     display: flex;
-    padding: 5px 10px;
-    overflow: hidden; /* Ukrywa nadmiar, który wychodzi poza element */
-    position: relative;
+    padding: 5px;
     align-items: center;
     transition: all 0.3s ease; /* Płynna zmiana tła */
 }
@@ -101,15 +99,16 @@ nav.menu ul li a:hover {
     outline: none; /* Remove default outline */
     position: relative;
     background-color: #ac2a21;
-    border-radius: 10px;
+    border-radius: 16px;
 }
 
 /* Stylizacja ikony menu (hamburger) */
 .menu-toggle {
     position: relative;
-    z-index: 1010;
     box-shadow: none;
     display: none;
+    align-items: center;
+    justify-content: flex-end;
 }
 
 .menu-toggle, .menu-toggle i {
@@ -123,7 +122,6 @@ nav.menu ul li a:hover {
 .menu-toggle:hover {
     background: none;
     border: none;
-    padding: 5px;
     box-shadow: none;
     
 }
@@ -194,6 +192,12 @@ nav.menu.sticky ul {
         width: 100%;
         display: flex;
         justify-content: flex-end; /* Align menu to the right */
+        background: none;
+        border-radius: none;
+        box-shadow: none;
+        backdrop-filter: none;
+        -webkit-backdrop-filter: none;
+        border: none;
     }
 
     nav.menu ul {
