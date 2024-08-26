@@ -185,7 +185,7 @@ nav.menu.sticky ul {
 }
 
 /* Mobile accesibility */
-@media (max-width: 768px) {
+@media only screen and (max-width: 768px) {
     header {
         padding: 5px 10px;
         width: 100%;
@@ -225,7 +225,6 @@ nav.menu.sticky ul {
     }
 
     nav.menu {
-        
         display: flex;
         justify-content: flex-end; /* Align menu to the right */
         background: none;
@@ -236,6 +235,34 @@ nav.menu.sticky ul {
         border: none;
     }
 
+    @keyframes menu-opacityup {
+        0% {opacity: 0;}
+        10% {opacity: 0.1;}
+        20% {opacity: 0.2;}
+        30% {opacity: 0.3;}
+        40% {opacity: 0.4;}
+        50% {opacity: 0.5;}
+        60% {opacity: 0.6;}
+        70% {opacity: 0.7;}
+        80% {opacity: 0.8;}
+        90% {opacity: 0.9;}
+        100% {opacity: 1;} 
+    }
+
+    @keyframes menu-opacitydown {
+        0% {opacity: 1;}
+        10% {opacity: 0.9;}
+        20% {opacity: 0.8;}
+        30% {opacity: 0.7;}
+        40% {opacity: 0.6;}
+        50% {opacity: 0.5;}
+        60% {opacity: 0.4;}
+        70% {opacity: 0.3;}
+        80% {opacity: 0.2;}
+        90% {opacity: 0.1;}
+        100% {opacity: 0;} 
+    }    
+
     nav.menu ul {
         display: none;
         flex-direction: column;
@@ -243,15 +270,17 @@ nav.menu.sticky ul {
         position: absolute; /* Position relative to nav.menu */
         top: 50%;
         right: 0;
-        background-color: #333;
+        background-color: rgba(51, 51, 51, 0.8);
         padding: 10px 20px;
         border-radius: 5px;
-        border: 0.5px solid #444;
         width: max-content;
-        transition: max-height 0.5s ease-out; /* Smooth animation */
+        transition: max-height 1s ease-out; /* Smooth animation */
         overflow: hidden;
         max-height: 0; /* Start with hidden menu */
         z-index: 1000; /* Ensure the menu is above other content */
+        backdrop-filter: blur(10px); /* Efekt rozmycia tła */
+        -webkit-backdrop-filter: blur(10px); /* Efekt rozmycia dla Safari */
+        box-shadow: 0 0 20px rgba(51, 51, 51, 0.7); /* Rozpływające się krawędzie */
     }
 
     nav.menu ul.active {
@@ -263,14 +292,9 @@ nav.menu.sticky ul {
         margin: 5px 0;
     }
 
-    nav.menu ul li.active a{
-        text-shadow: none;
-    }
-
     nav.menu ul li a {
         width: 100%;
         padding: 10px;
-        background-color: #333;
         color: #fff;
         text-align: left;
         text-decoration: none;

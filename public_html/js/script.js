@@ -11,7 +11,14 @@ $(document).ready(function () {
 
     // Przełączanie menu
     menuToggle.click(function () {
-        menu.toggleClass('active');
+        if (!menu.hasClass('active')) {
+            menu.addClass('active').css('animation', 'menu-opacityup 0.2s ease-in-out forwards');
+        } else {
+            menu.css('animation', 'menu-opacitydown 0.2s ease-in-out forwards');
+            setTimeout(function () {
+                menu.removeClass('active');
+            }, 200); // Dopasuj do czasu trwania animacji
+        }
         menuIcon.toggle();
         closeIcon.toggle();
     });
@@ -19,12 +26,15 @@ $(document).ready(function () {
     // Zamknięcie menu po kliknięciu poza nim
     $(document).click(function (event) {
         if (!menu.is(event.target) && menu.has(event.target).length === 0 &&
-            !menuToggle.is(event.target) && menuToggle.has(event.target).length === 0) {
-            menu.removeClass('active');
-            closeIcon.hide();
-            if ($(window).width() <= 768) {
-                menuIcon.show();
-            }
+            !menuToggle.is(event.target) && menuToggle.has(event.target).length === 0 && menu.hasClass('active')) {
+            menu.css('animation', 'menu-opacitydown 0.2s ease-in-out forwards');
+            setTimeout(function () {
+                menu.removeClass('active');
+                closeIcon.hide();
+                if ($(window).width() <= 768) {
+                    menuIcon.show();
+                }
+            }, 200); // Dopasuj do czasu trwania animacji
         }
     });
 
