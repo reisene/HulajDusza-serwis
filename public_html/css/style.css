@@ -107,6 +107,7 @@ nav.menu ul li a ion-icon {
     border: 2px solid #fff; /* Border wokół ikony */
     padding: 10px;
     margin-bottom: -10px; /* Zapewnia, że tekst jest pod ikoną */
+    z-index: 1001;
 }
 
 nav.menu ul li a span {
