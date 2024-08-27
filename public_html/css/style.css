@@ -46,6 +46,7 @@ header {
 }
 
 /* Stylizacja menu */
+/* Stylizacja menu */
 nav.menu {
     display: flex;
     justify-content: flex-end; /* Wyrównanie menu do prawej */
