@@ -86,6 +86,7 @@ nav.menu ul li {
     height: 100%;
     overflow: hidden;
     position: relative;
+    width: 100px;
 }
 
 nav.menu ul li a {
