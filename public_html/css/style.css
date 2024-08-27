@@ -85,6 +85,7 @@ nav.menu ul li {
     align-items: center;
     height: 100%;
     overflow: hidden;
+    position: relative;
 }
 
 nav.menu ul li a {
@@ -108,6 +109,9 @@ nav.menu ul li a ion-icon {
     padding: 10px;
     margin-bottom: -10px; /* Zapewnia, że tekst jest pod ikoną */
     z-index: 1001;
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
 }
 
 nav.menu ul li a span {
@@ -147,7 +151,7 @@ nav.menu ul li a:hover {
 
 nav.menu ul li a:hover ion-icon,
 nav.menu ul li.active a ion-icon {
-    transform: translateY(-20px); /* Przesunięcie ikony w górę */
+    transform: translate(-50%, -70%); /* Przesunięcie ikony w górę */
     background-color: rgba(51, 51, 51, 0.8); /* Okrągłe tło */
     border-radius: 50%;
     border: none; /* Usunięcie borderu */
