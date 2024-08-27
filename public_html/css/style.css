@@ -86,7 +86,7 @@ nav.menu ul li {
     height: 100%;
     overflow: hidden;
     position: relative;
-    width: 100px;
+    min-width: 50px;
 }
 
 nav.menu ul li a {
@@ -109,7 +109,7 @@ nav.menu ul li a ion-icon {
     border: 2px solid #fff; /* Border wokół ikony */
     padding: 10px;
     margin-bottom: -10px; /* Zapewnia, że tekst jest pod ikoną */
-    z-index: 1001;
+    z-index: 1010;
     position: absolute;
     top: 50%;
     transform: translate(-50%, -50%);
