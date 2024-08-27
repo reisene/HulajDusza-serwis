@@ -55,7 +55,7 @@ nav.menu {
     position: relative;
     padding: 5px;
     width: auto;
-    z-index: 999;
+    z-index: 999; /* Z-index poniżej header.sticky */
     margin: 0;    
     /* From https://css.glass */
     background: rgba(51, 51, 51, 0.2);
@@ -76,6 +76,8 @@ nav.menu ul {
     display: flex;
     justify-content: center;
     align-items: center;
+    position: relative;
+    z-index: 1; /* Z-index dla ul */
 }
 
 nav.menu ul li {
@@ -84,9 +86,8 @@ nav.menu ul li {
     justify-content: center;
     align-items: center;
     height: 100%;
-    overflow: hidden;
-    position: relative;
-    min-width: 50px;
+    overflow: visible; /* Ustawienie overflow na visible */
+    position: relative; /* Ustawienie pozycji względnej dla "pływającej" ikony */
 }
 
 nav.menu ul li a {
@@ -99,20 +100,20 @@ nav.menu ul li a {
     padding: 10px;
     transition: all 0.3s ease;
     position: relative;
+    z-index: 1; /* Z-index dla linku, aby tekst był pod ikoną */
 }
 
-nav.menu ul li a ion-icon {
+nav.menu ul li a i {
     font-size: 24px;
     transition: all 0.3s ease;
     background-color: transparent;
     border-radius: 10px;
     border: 2px solid #fff; /* Border wokół ikony */
     padding: 10px;
-    margin-bottom: -10px; /* Zapewnia, że tekst jest pod ikoną */
-    z-index: 1010;
-    position: absolute;
-    top: 50%;
-    transform: translate(-50%, -50%);
+    position: absolute; /* Pozycjonowanie absolutne dla "pływającej" ikony */
+    z-index: 1001; /* Wyższy z-index niż header.sticky, aby ikona była na wierzchu */
+    top: 50%; /* Umieszczenie ikony na środku */
+    transform: translate(-50%, -50%); /* Wyśrodkowanie ikony */
 }
 
 nav.menu ul li a span {
@@ -120,38 +121,11 @@ nav.menu ul li a span {
     transition: all 0.3s ease;
     position: absolute;
     bottom: 10px; /* Pozycja tekstu pod ikoną */
+    z-index: 1; /* Upewnienie się, że tekst znajduje się poniżej ikony */
 }
 
-nav.menu ul li.active a {
-    color: #ac2a21; /* Highlight color for the active page */
-    text-shadow: 
-        1px 1px 4px rgba(255, 255, 255, 0.1),
-        -1px -1px 4px rgba(255, 255, 255, 0.1),
-        1px -1px 4px rgba(255, 255, 255, 0.1),
-        -1px 1px 4px rgba(255, 255, 255, 0.1),
-        2px 2px 8px rgba(255, 255, 255, 0.2),
-        -2px -2px 8cap rgba(255, 255, 255, 0.2),
-        2px -2px 8px rgba(255, 255, 255, 0.2),
-        -2px 2px 8px rgba(255, 255, 255, 0.2),
-        4px 4px 16px rgba(255, 255, 255, 0.4),
-        -4px -4px 16px rgba(255, 255, 255, 0.4),
-        -4px 4px 16px rgba(255, 255, 255, 0.4),
-        4px -4px 16px rgba(255, 255, 255, 0.4);
-    font-weight: bold;
-}
-
-nav.menu ul li a:focus,
-nav.menu ul li a:hover {
-    color: #fff; /* White text color */
-    outline: none; /* Remove default outline */
-    position: relative;
-    background-color: #ac2a21;
-    text-shadow: none;
-    border-radius: 12px;
-}
-
-nav.menu ul li a:hover ion-icon,
-nav.menu ul li.active a ion-icon {
+nav.menu ul li a:hover i,
+nav.menu ul li.active a i {
     transform: translate(-50%, -70%); /* Przesunięcie ikony w górę */
     background-color: rgba(51, 51, 51, 0.8); /* Okrągłe tło */
     border-radius: 50%;
