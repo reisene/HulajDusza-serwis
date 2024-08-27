@@ -72,29 +72,48 @@ nav.menu {
 nav.menu ul {
     list-style-type: none;
     padding: 0;
-    margin: 5px;
+    margin: 0;
     display: flex;
     justify-content: center;
     align-items: center;
-    
 }
 
 nav.menu ul li {
-    margin: 0 5px;
+    margin: 0 10px;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100%;
+    overflow: hidden;
 }
 
 nav.menu ul li a {
     color: #fff;
     text-decoration: none;
     display: flex;
-    padding: 10px;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
-    transition: all 0.3s ease; /* Płynna zmiana tła */
+    padding: 10px;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+nav.menu ul li a ion-icon {
+    font-size: 24px;
+    transition: all 0.3s ease;
+    background-color: transparent;
+    border-radius: 10px;
+    border: 2px solid #fff; /* Border wokół ikony */
+    padding: 10px;
+    margin-bottom: -10px; /* Zapewnia, że tekst jest pod ikoną */
+}
+
+nav.menu ul li a span {
+    opacity: 0; /* Ukryty tekst */
+    transition: all 0.3s ease;
+    position: absolute;
+    bottom: 10px; /* Pozycja tekstu pod ikoną */
 }
 
 nav.menu ul li.active a {
@@ -123,6 +142,20 @@ nav.menu ul li a:hover {
     background-color: #ac2a21;
     text-shadow: none;
     border-radius: 12px;
+}
+
+nav.menu ul li a:hover ion-icon,
+nav.menu ul li.active a ion-icon {
+    transform: translateY(-20px); /* Przesunięcie ikony w górę */
+    background-color: rgba(51, 51, 51, 0.8); /* Okrągłe tło */
+    border-radius: 50%;
+    border: none; /* Usunięcie borderu */
+}
+
+nav.menu ul li a:hover span,
+nav.menu ul li.active a span {
+    opacity: 1; /* Odsłonięcie tekstu */
+    transform: translateY(-10px); /* Tekst przesuwa się w górę razem z ikoną */
 }
 
 /* Stylizacja ikony menu (hamburger) */
