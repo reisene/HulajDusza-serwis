@@ -356,9 +356,27 @@ nav.menu.sticky ul {
         width: 100%;
         padding: 10px;
         color: #fff;
-        text-align: left;
+        text-align: center;
         text-decoration: none;
     }
+    
+    nav.menu ul li a span {
+        opacity: 1;
+        position: static;
+        transform: translateY(90%);
+    }
+   
+   nav.menu ul li a ion-icon {
+       transform: translateY(-90%);
+   }
+   
+   nav.menu ul li.active a ion-icon{
+       transform: translateY(-90%);
+   }
+   
+   nav.menu ul li.active a span {
+       transform: translateY(90%);
+   }
 }
 
 main {
