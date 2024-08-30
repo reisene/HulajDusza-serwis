@@ -176,3 +176,14 @@ function isElementInView(element) {
         rect.right <= (window.innerWidth || document.documentElement.clientWidth)
     );
 }
+
+// Tawk.to Script
+var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
+(function(){
+    var s1 = document.createElement("script"), s0 = document.getElementsByTagName("script")[0];
+    s1.async = true;
+    s1.src = 'https://embed.tawk.to/66ae13d81601a2195ba058ee/1i4bvr1p7';
+    s1.charset = 'UTF-8'; //charset depreciated, only for compatibility
+    s1.setAttribute('crossorigin', '*');
+    s0.parentNode.insertBefore(s1, s0);
+})();
