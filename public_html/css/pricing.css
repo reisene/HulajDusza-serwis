@@ -86,7 +86,7 @@
     border-bottom-right-radius: 10px;
 }
 
-.cta {
+.cta-price {
     background: linear-gradient(to right, #ac2a21, #333);
     color: #fff;
     padding: 40px 0;
@@ -94,18 +94,18 @@
     border-radius: 15px;
 }
 
-.cta h2 {
+.cta-price h2 {
     margin: 0;
     font-size: 1.8em;
     color: #ffffffa6;
 }
 
-.cta p {
+.cta-price p {
     margin: 10px 0 20px;
     font-size: 18px;
 }
 
-.cta .btn {
+.cta-price .btn {
     padding: 10px 20px;
     background-color: #fff;
     color: #ac2a21;
@@ -117,6 +117,6 @@
     font-size: 16px;
 }
 
-.cta .btn:hover {
+.cta-price .btn:hover {
     background-color: #f4f4f4;
 }
