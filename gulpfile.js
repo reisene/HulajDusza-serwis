@@ -15,7 +15,7 @@ gulp.task('html', function() {
     .pipe(ignore.exclude('partials/**/*')) // Wyklucza folder partials z kopiowania
     .pipe(fileInclude({
       prefix: '@@',
-      basepath: path.join(__dirname, 'src/partials') // Zaktualizowana ścieżka bazowa
+      basepath: path.join(__dirname, paths.partials) // Zaktualizowana ścieżka bazowa
     }))
     .pipe(gulp.dest(paths.dest)); // Zapisuje przetworzone pliki HTML w folderze docelowym
 });
