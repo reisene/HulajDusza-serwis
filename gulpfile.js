@@ -6,21 +6,25 @@ const ignore = require('gulp-ignore');
 
 const paths = {
   src: 'src/',
+  partials: 'src/partials',
   dest: 'public_html/'
 };
 
 gulp.task('html', function() {
   return gulp.src([path.join(paths.src, '*.html')])
-    .pipe(ignore.exclude('head.html'))
+    .pipe(ignore.exclude('partials/**/*')) // Wyklucza folder partials z kopiowania
     .pipe(fileInclude({
       prefix: '@@',
       basepath: '@file'
     }))
-    .pipe(gulp.dest(paths.dest));
+    .pipe(gulp.dest(paths.dest)); // Zapisuje przetworzone pliki HTML w folderze docelowym
 });
 
 gulp.task('watch', function() {
-  gulp.watch([path.join(paths.src, '*.html'), path.join(paths.src, '**/*.html'), '!src/head.html'], gulp.series('html'));
+  gulp.watch([
+    path.join(paths.src, '*.html'), // Monitoruje zmiany w folderze src
+    path.join(paths.partials, '**/*.html'), // Monitoruje zmiany w folderze partials
+    ], gulp.series('html'));
 });
 
 gulp.task('default', gulp.series('html'));
