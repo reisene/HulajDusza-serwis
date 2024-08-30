@@ -6,6 +6,12 @@ body {
     line-height: 1.2;
 }
 
+main {
+    padding: 0 20px 20px 20px;
+    min-height: calc(100vh - 140px); /* Adjust height to ensure footer is at the bottom */
+    margin-top: 10px; /* Adjusted to reduce space below breadcrumbs */
+}
+
 h1, h2, h3, h4, h5, h6 {
     line-height: 1.2;
 }
@@ -244,6 +250,43 @@ nav.menu.sticky ul {
     align-items: center;
 }
 
+/* Footer Style */
+footer {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 10px 0;
+    position: relative; /* Make footer relative to content */
+    bottom: 0;
+    width: 100%;
+}
+
+footer .privacy a {
+    color: #fff;
+    text-decoration: none;
+    font-size: smaller;
+}
+
+.privacy .fa-minus {
+    padding: 0 2px;
+    font-size: 1.5em;
+    vertical-align: top;
+}
+
+.privacy a:hover {
+    color: #ac2a21;
+    text-decoration: underline;
+}
+
+.pb-3 a {
+    color: #f0f0f0;
+    padding: 0.5em;
+}
+
+.pb-3 a:hover {
+    color: #ac2a21;
+}
+
 /* Mobile accesibility */
 @media only screen and (max-width: 768px) {
     header {
@@ -377,49 +420,6 @@ nav.menu.sticky ul {
    nav.menu ul li.active a span {
        transform: translateY(90%);
    }
-}
-
-main {
-    padding: 0 20px 20px 20px;
-    min-height: calc(100vh - 140px); /* Adjust height to ensure footer is at the bottom */
-    margin-top: 10px; /* Adjusted to reduce space below breadcrumbs */
-}
-
-/* Footer Style */
-footer {
-    background-color: #333;
-    color: #fff;
-    text-align: center;
-    padding: 10px 0;
-    position: relative; /* Make footer relative to content */
-    bottom: 0;
-    width: 100%;
-}
-
-footer .privacy a {
-    color: #fff;
-    text-decoration: none;
-    font-size: smaller;
-}
-
-.privacy .fa-minus {
-    padding: 0 2px;
-    font-size: 1.5em;
-    vertical-align: top;
-}
-
-.privacy a:hover {
-    color: #ac2a21;
-    text-decoration: underline;
-}
-
-.pb-3 a {
-    color: #f0f0f0;
-    padding: 0.5em;
-}
-
-.pb-3 a:hover {
-    color: #ac2a21;
 }
 
 /* Stylizacja scrollToTopBtn */
