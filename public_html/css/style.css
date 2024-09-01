@@ -219,8 +219,8 @@ nav.menu ul li.active a span {
 /* Stylizacja breadcrumbs */
 .breadcrumb {
     background-color: transparent;
-    padding: 5px 0 0 0; /* Adjusted to reduce space */
-    margin: 5px 0 0 0; /* Adjusted to reduce space */
+    padding: 5px 0 0 5px; /* Adjusted to reduce space */
+    margin: 5px 0 0 5px; /* Adjusted to reduce space */
     list-style: none;
     display: flex;
     align-items: center;
