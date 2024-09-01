@@ -279,6 +279,9 @@ footer {
     padding: 0 20px;
 }
 
+.contact-sec i {
+    margin: 5px;
+}
 .footer-section h4 {
     margin-bottom: 10px;
     font-variant: small-caps;
