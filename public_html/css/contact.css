@@ -32,11 +32,12 @@
 .contact-container {
     display: grid;
     grid-template-columns: 7fr 9fr;
-    grid-template-rows: auto 1fr;
+    grid-template-rows: auto;
     width: 100%;
     gap: 20px;
     margin: 0 auto;
     padding: 20px;
+    align-items: start;
 }
 
 .contact-details, .social-links, .contact-form {
@@ -48,21 +49,15 @@
 
 .social-links{
     grid-column: 1 / 2;
-    grid-row: 2 / 3;
 }
 
 .contact-details{
     grid-column: 1 / 2;
-    grid-row: 1 / 2;
-    justify-content: center;
-    text-align: center;
 }
 
 .contact-form {
     grid-column: 2 / 3;
     grid-row: 1 / 3;
-    align-self: stretch;
-    align-content: center;
     position: relative; /* Make the container relative for absolute positioning inside */
 }
 
@@ -304,14 +299,4 @@ input[type="email"], input[type="tel"] {
     .form-group:last-child {
         margin-bottom: 0;
     }
-
-    /*.social-links {
-        margin-top: 20px;
-        width: 100%;
-    }
-
-    .contact-details {
-        text-align: center;
-        width: 100%;
-    }*/
 }
