@@ -103,44 +103,74 @@
 .bg-primary-gradient {
     position: relative;
     border-radius: 15px;
-    padding: 20px; /* Dodanie paddingu, aby tekst nie przylegał do krawędzi */
-    color: #999; /* Ustawienie koloru tekstu na czarny */
-    overflow: hidden; /* Ukrycie nadmiaru zawartości */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 0 6px 20px rgba(0, 0, 0, 0.1); /* Dodanie cienia */
+    padding: 20px;
+    color: #999;
+    overflow: hidden;
+    background-color: #C73333;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='100%25' viewBox='0 0 2 1'%3E%3Cdefs%3E%3ClinearGradient id='a' gradientUnits='userSpaceOnUse' x1='0' x2='0' y1='0' y2='1'%3E%3Cstop offset='0' stop-color='%23C73333'/%3E%3Cstop offset='1' stop-color='%23AC2A21'/%3E%3C/linearGradient%3E%3ClinearGradient id='b' gradientUnits='userSpaceOnUse' x1='0' y1='0' x2='0' y2='1'%3E%3Cstop offset='0' stop-color='%23333333' stop-opacity='0'/%3E%3Cstop offset='1' stop-color='%23333333' stop-opacity='1'/%3E%3C/linearGradient%3E%3ClinearGradient id='c' gradientUnits='userSpaceOnUse' x1='0' y1='0' x2='2' y2='2'%3E%3Cstop offset='0' stop-color='%23333333' stop-opacity='0'/%3E%3Cstop offset='1' stop-color='%23333333' stop-opacity='1'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect x='0' y='0' fill='url(%23a)' width='2' height='1'/%3E%3Cg fill-opacity='0.5'%3E%3Cpolygon fill='url(%23b)' points='0 1 0 0 2 0'/%3E%3Cpolygon fill='url(%23c)' points='2 1 2 0 0 0'/%3E%3C/g%3E%3C/svg%3E");
+    background-attachment: fixed;
+    background-size: cover;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 0 6px 20px rgba(0, 0, 0, 0.1);
 }
 
-.bg-primary-gradient::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: linear-gradient(45deg, #c73333 0%, #ac2a21 50%, #333 100%);
-    filter: blur(5px) brightness(150%); /* Efekt rozmycia i jasności */
-    z-index: 0; /* Ustawienie pseudo-elementu za tekstem */
+.bg-primary-gradient h2 {
+    display: inline-block;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 10px 20px;
+    margin: 0 auto;
+    width: auto;
 }
 
-.bg-primary-gradient h2, .bg-primary-gradient h3, .bg-primary-gradient h4, .bg-primary-gradient p {
-    position: relative; /* Aby tekst był nad pseudo-elementem */
-    color: #333;
-    text-shadow: 1px 1px 2px #555; /* Dodanie cienia do tekstu */
-    z-index: 1;
+.numbers-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    margin-top: 20px;
+    gap: 20px;
 }
-
-.bg-primary-gradient label {
-    position: relative; /* Aby tekst był nad pseudo-elementem */
-    color: #333; /* Ustawienie koloru etykiet na czarny */
-    font-weight: bold; /* Wyróżnienie etykiet pogrubieniem */
-    text-shadow: 1px 1px 2px #999; /* Dodanie cienia do tekstu */
-    z-index: 1;
-}
-
 
 .counter {
-    position: relative; /* Utrzymuje liczniki ponad tłem */
+    position: relative;
+    flex: 1 1 220px;
     text-align: center;
     padding: 30px 0;
+}
+
+/* Pseudo-element to add icon as a background */
+.counter::before {
+    content: "\f118"; /* Kod unicode ikony z Font Awesome (uśmiech) */
+    font-family: "Font Awesome 5 Free"; /* Font Awesome 5 */
+    font-weight: 900; /* Styl ikon */
+    font-size: 5em; /* Rozmiar ikony */
+    color: rgba(255, 255, 255, 0.1); /* Kolor i przezroczystość ikony */
+    position: absolute;
+    top: 50%;
+    left:0;
+    transform: translateY(-50%); /* Wyśrodkowanie ikony */
+    z-index: 0; /* Zapewnia, że ikona znajduje się za tekstem */
+    pointer-events: none; /* Wyłącza interakcję z ikoną */
+}
+
+/* Different icons for each counter */
+.counter:nth-child(1)::before {
+    content: "\f118"; /* Uśmiech */
+}
+
+.counter:nth-child(2)::before {
+    content: "\f07a"; /* Koszyk */
+}
+
+.counter:nth-child(3)::before {
+    content: "\f0c0"; /* Użytkownicy */
+}
+
+.counter:nth-child(4)::before {
+    content: "\f0f4"; /* Filiżanka kawy */
 }
 
 .counter-icon {
@@ -150,8 +180,10 @@
 }
 
 .counter-content {
+    position: relative;
     font-size: 1.5em;
     color: #fff;
+    z-index: 1;
 }
 
 .counter-content .timer {
@@ -162,7 +194,10 @@
 
 .counter-content label {
     display: block;
+    color: #fff;
     margin-top: 10px;
+    border-radius: 10px;
+    padding: 5px;
 }
 
 @media (max-width: 767.98px) {
