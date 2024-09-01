@@ -1,9 +1,11 @@
 .privacy-policy {
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     max-width: 1200px;
     margin: 0 auto;
-    padding: 20px;
+    padding: 20px 40px;
     line-height: 1.6;
-    
 }
 
 .privacy-policy h1, .privacy-policy h2, .privacy-policy h3 {

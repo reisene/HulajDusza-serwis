@@ -29,8 +29,8 @@
 
 .services-overview,
 .service-details {
-    padding: 40px 0;
-    background: #f4f4f4;
+    padding: 20px 0;
+    background: transparent;
 }
 
 .services-overview .services-container,
