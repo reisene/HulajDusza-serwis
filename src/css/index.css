@@ -1,0 +1,215 @@
+/* Hero Section */
+#hero {
+    background: linear-gradient(to right, #ac2a21, #333);
+    color: #fff;
+    padding: 50px 20px;
+    text-align: center;
+    border-radius: 15px; /* Rounded corners */
+    margin-bottom: 20px; /* Space below the hero section */
+}
+
+#hero .hero-content {
+    max-width: 800px;
+    margin: auto;
+}
+
+#hero h2 {
+    font-size: 2.5em;
+    margin-bottom: 20px;
+    color: #ffffffa6; /* Light gray color for better visibility */
+}
+
+#hero p {
+    font-size: 1.2em;
+    margin-bottom: 30px;
+}
+
+#hero .hero-button {
+    background-color: #fff;
+    color: #ac2a21;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    cursor: pointer;
+    border: none;
+}
+
+/* Services Overview Section */
+#services-overview {
+    background: transparent;
+    padding: 50px 20px;
+    text-align: center;
+}
+
+#services-overview h2 {
+    font-size: 2em;
+    margin-bottom: 30px;
+}
+
+.services {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.service {
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    max-width: 300px;
+    margin: 10px;
+}
+
+.service h3 {
+    font-size: 1.5em;
+    margin-bottom: 15px;
+}
+
+.service p {
+    font-size: 1em;
+    color: #666;
+}
+
+.more-button {
+    display: inline-block;
+    margin-top: 20px;
+    background-color: #ac2a21;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    cursor: pointer;
+    border: none;
+}
+
+/* Why Us Section */
+#why-us {
+    padding: 50px 20px;
+    text-align: center;
+}
+
+#why-us h2 {
+    font-size: 2em;
+    margin-bottom: 30px;
+}
+
+.reasons {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.reason {
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin: 20px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 1200px;
+}
+
+.reason-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+/*.reason-content.reverse {
+    flex-direction: row-reverse;
+}*/
+
+.reason .text {
+    flex: 1;
+    padding: 20px;
+    max-width: 33%;
+}
+
+.reason .image {
+    flex: 2;
+    text-align: center;
+    max-width: 67%;
+}
+
+.reason .image img {
+    max-width: 100%;
+    border-radius: 10px;
+    transition: transform 0.3s ease;
+}
+
+.reason .image:hover img{
+    transform: scale(1.1) perspective(1000px) rotatey(-15deg);
+}
+
+.reason-content.reverse .image:hover img{
+    transform: scale(1.1) perspective(1000px) rotatey(15deg);
+}
+
+.reason h3 {
+    font-size: 1.5em;
+    margin-bottom: 15px;
+}
+
+.reason p {
+    font-size: 1em;
+    color: #666;
+}
+
+/* Contact Call-to-Action Section */
+#contact-cta {
+    background: linear-gradient(to right, #333, #ac2a21);
+    color: #fff;
+    padding: 50px 20px;
+    text-align: center;
+    border-radius: 15px; /* Rounded corners */
+    margin-top: 20px; /* Space above the contact section */
+}
+
+#contact-cta h2 {
+    font-size: 2em;
+    margin-bottom: 20px;
+    color: #ffffffa6; /* Light gray color for better visibility */
+}
+
+#contact-cta p {
+    font-size: 1.2em;
+    margin-bottom: 30px;
+}
+
+#contact-cta .contact-button {
+    background-color: #fff;
+    color: #ac2a21;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    cursor: pointer;
+    border: none;
+}
+
+@media (max-width: 768px) {
+    .reason-content {
+        flex-direction: column-reverse; /* Stack image and text vertically on mobile */
+    }
+
+    .reason-content.reverse {
+        flex-direction: column; /* Stack image and text vertically on mobile */
+
+    }
+
+    .reason .text, .reason .image {
+        max-width: 100%; /* Full width on mobile */
+    }
+
+    .reason .image img {
+        margin-bottom: 20px; /* Add space below the image */
+    }
+}

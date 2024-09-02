@@ -87,6 +87,7 @@ nav.menu ul {
     justify-content: center;
     align-items: center;
     position: relative;
+    width: -moz-fit-content;
     width: fit-content;
     z-index: 1; /* Z-index dla ul */
 }
@@ -166,8 +167,6 @@ nav.menu ul li a span {
 nav.menu ul li a:focus span,
 nav.menu ul li a:hover span {
     background-color: rgba(172, 42, 33, 0.6);
-    -webkit-box-shadow:0px 0px 5px 5px rgba(172,42,33,0.6);
-    -moz-box-shadow: 0px 0px 5px 5px rgba(172,42,33,0.6);
     box-shadow: 0px 0px 5px 5px rgba(172,42,33,0.6);
     border-radius: 10px;
     padding: 5px;
@@ -183,8 +182,6 @@ nav.menu ul li.active a ion-icon {
 }
 
 nav.menu ul li a:hover ion-icon {
-    -webkit-box-shadow:0px 0px 10px 5px rgba(172,42,33,0.6);
-    -moz-box-shadow: 0px 0px 10px 5px rgba(172,42,33,0.6);
     box-shadow: 0px 0px 10px 5px rgba(172,42,33,0.6);
     background-color: rgba(172, 42, 33, 0.6);
 }
@@ -267,6 +264,7 @@ footer {
 .footer-container{
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Kolumny dostosowują się do szerokości ekranu */
+    grid-gap: 20px;
     gap: 20px; /* Odstępy między kolumnami */
     justify-content: space-between;
     margin: 0 auto;
@@ -284,6 +282,7 @@ footer {
 }
 .footer-section h4 {
     margin-bottom: 10px;
+    font-feature-settings: "smcp";
     font-variant: small-caps;
 }
 
@@ -409,6 +408,7 @@ footer div.copyright {
         background-color: rgba(51, 51, 51, 0.8);
         padding: 10px 20px;
         border-radius: 5px;
+        width: -moz-max-content;
         width: max-content;
         transition: max-height 1s ease-out; /* Smooth animation */
         overflow: hidden;
@@ -581,3 +581,5 @@ button:hover {
     margin-bottom: 0;
 }
  
+
+/*# sourceMappingURL=style.css.map */

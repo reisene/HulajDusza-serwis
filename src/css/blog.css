@@ -1,0 +1,90 @@
+button.read-more, button.back-to-blog {
+    background-color: #ac2a21;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    margin: 10px auto;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    display: block;
+    text-align: center;
+    width: auto;
+    align-items: center;
+    justify-content: center;
+}
+
+button.read-more i, button.back-to-blog i {
+    margin-left: 5px;
+    justify-content: center;
+    align-items: center;
+}
+
+button.read-more:hover, button.back-to-blog:hover {
+    background-color: #800000;
+}
+
+article p.post-date {
+    font-size: 0.7em; /* Mniejsza czcionka */
+    color: #777; /* Szary kolor */
+    text-align: center;
+}
+
+#posts-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+
+.post-article figure {
+    display: table;
+    margin: 0 auto 20px; /* Usuń marginesy, aby nie wpływały na pozycję */
+}
+
+.post-article figure figcaption {
+    display: table-caption;
+    caption-side: bottom;
+    font-size: 0.75em;
+    color: #777;
+    font-style: italic;
+    text-align: right; /* Wyrównanie tekstu do prawej */
+}
+
+.post-article figure figcaption a {
+    text-decoration: none;
+    color: #ac2a21;
+}
+
+.post-article figure figcaption a:hover {
+    text-decoration: underline;
+}
+
+.post-article img {
+    max-width: 100%;
+    height: auto;
+    max-height: 500px;
+    display: block;
+    margin: 0 auto 5px;
+    border-radius: 20px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.post-article {
+    width: 100%;
+    max-width: 1200px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    margin: 20px 0;
+}
+
+.post-content {
+    width: 90%;
+    text-align: justify;
+    margin: 0 auto;
+    text-indent: 2em;
+}
