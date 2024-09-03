@@ -206,6 +206,25 @@
           </nav>
 
         <main>
+            <div class="sort-and-search">
+                <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="sortDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                        Sortuj
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="sortDropdown">
+                        <li><a class="dropdown-item" href="#" data-sort="default"><i class="bi bi-list"></i> Domyślnie</a></li>
+                        <li><a class="dropdown-item" href="#" data-sort="date-asc"><i class="bi bi-calendar bi-sort-up"></i> Data (rosnąco)</a></li>
+                        <li><a class="dropdown-item" href="#" data-sort="date-desc"><i class="bi bi-calendar bi-sort-down"></i> Data (malejąco)</a></li>
+                        <li><a class="dropdown-item" href="#" data-sort="title-asc"><i class="bi bi-sort-alpha-up"></i> Tytuł (rosnąco)</a></li>
+                        <li><a class="dropdown-item" href="#" data-sort="title-desc"><i class="bi bi-sort-alpha-down"></i> Tytuł (malejąco)</a></li>
+                    </ul>
+                </div>
+            
+                <div class="search-container">
+                    <input type="text" id="searchInput" class="form-control" placeholder="Szukaj...">
+                </div>
+            </div>
+            
             <div id="posts-container"></div>
         </main>
 

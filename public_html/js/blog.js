@@ -11,6 +11,7 @@ $(document).ready(function() {
 
     let loadedPosts = 0;
 
+    // Posts loading
     postPaths.forEach((postPath, index) => {
         fetch(postPath)
             .then(response => {
@@ -53,4 +54,52 @@ $(document).ready(function() {
                 }
             });
     });
+
+    // Sortowanie postów
+    $('.dropdown-item').on('click', function () {
+        const sortType = $(this).data('sort');
+        sortPosts(sortType);
+    });
+
+    function sortPosts(type) {
+        const posts = $('.post-article').get();
+
+        posts.sort((a, b) => {
+            const titleA = $(a).find('h2').text().toUpperCase();
+            const titleB = $(b).find('h2').text().toUpperCase();
+            const dateA = new Date($(a).find('.post-date').text().trim());
+            const dateB = new Date($(b).find('.post-date').text().trim());
+
+            switch (type) {
+                case 'date-asc':
+                    return dateA - dateB;
+                case 'date-desc':
+                    return dateB - dateA;
+                case 'title-asc':
+                    return titleA > titleB ? 1 : -1;
+                case 'title-desc':
+                    return titleA < titleB ? 1 : -1;
+                default:
+                    return 0;
+            }
+        });
+
+        $('#posts-container').empty().append(posts);
+    }
+
+    // Wyszukiwanie
+    $('#searchInput').on('keyup', function () {
+        const searchTerm = $(this).val().toLowerCase();
+        $('.post-article').each(function () {
+            const title = $(this).find('h2').text().toLowerCase();
+            const excerpt = $(this).find('.post-content').text().toLowerCase();
+
+            if (title.includes(searchTerm) || excerpt.includes(searchTerm)) {
+                $(this).show();
+            } else {
+                $(this).hide();
+            }
+        });
+    });
+    
 });
