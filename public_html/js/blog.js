@@ -1,10 +1,10 @@
-$(document).ready(function() {
+$(document).ready(function () {
     const postsContainer = $('#posts-container');
     const postPaths = [
         'posts/post1.html',
         'posts/post2.html',
         'posts/post3.html',
-        // Inne posty
+        // Dodaj więcej ścieżek do postów
     ];
 
     const postElements = Array(postPaths.length).fill(null); // Tablica do przechowywania elementów
@@ -31,12 +31,12 @@ $(document).ready(function() {
 
                 const postElement = $('<article class="post-article">').html(`${title}${date}${image}<div class="post-content">${excerpt}</div><button class="read-more">Czytaj więcej <i class="bi bi-file-earmark-post"></i></button>`);
 
-                postElement.find('.read-more').on('click', function(e) {
+                postElement.find('.read-more').on('click', function (e) {
                     e.preventDefault();
-                    postsContainer.html($(doc.body).html()); 
+                    postsContainer.html($(doc.body).html());
                     postsContainer.append('<button class="back-to-blog">Powrót do bloga <i class="bi bi-arrow-counterclockwise"></i></button>');
-                    $('.back-to-blog').on('click', function() {
-                        location.reload(); 
+                    $('.back-to-blog').on('click', function () {
+                        location.reload();
                     });
                 });
 
@@ -50,7 +50,7 @@ $(document).ready(function() {
             .finally(() => {
                 loadedPosts++;
                 if (loadedPosts === postPaths.length) {
-                    postElements.reverse().forEach(element => postsContainer.append(element)); // Wyświetlamy elementy w odpowiedniej kolejności
+                    postElements.forEach(element => postsContainer.append(element)); // Wyświetlamy elementy w kolejności załadowania
                 }
             });
     });
@@ -58,6 +58,10 @@ $(document).ready(function() {
     // Sortowanie postów
     $('.dropdown-item').on('click', function () {
         const sortType = $(this).data('sort');
+
+        // Dodajemy klasę "active" do klikniętego elementu
+        $('.dropdown-item').removeClass('active-sort');
+        $(this).addClass('active-sort');
         sortPosts(sortType);
     });
 
@@ -101,5 +105,4 @@ $(document).ready(function() {
             }
         });
     });
-    
 });
