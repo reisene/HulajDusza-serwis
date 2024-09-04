@@ -118,6 +118,28 @@ article p.post-date {
     cursor: pointer;
 }
 
+/* Stylizacja dla aktywnego elementu */
+.dropdown-item.active-sort {
+    position: relative;
+    font-weight: bold;
+    color: #ac2a21; /* Zmiana koloru dla aktywnego elementu */
+}
+
+.dropdown-item.active-sort::after {
+    content: ''; /* Usuwamy Unicode */
+    position: absolute;
+    right: 10px; /* Odstęp od prawej krawędzi */
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.2em;
+    color: #ac2a21; /* Kolor ptaszka */
+}
+
+.dropdown-item.active-sort::after {
+    content: "\f4b8"; /* Kod ikony Bootstrap ptaszka */
+    font-family: "Bootstrap Icons";
+}
+
 /* Animations & effects */
 .dropdown-item.active,
 .dropdown-item:focus,
