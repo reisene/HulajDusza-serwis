@@ -50,8 +50,9 @@ $(document).ready(function () {
             .finally(() => {
                 loadedPosts++;
                 if (loadedPosts === postPaths.length) {
-                    postElements.forEach(element => postsContainer.append(element)); // Wyświetlamy elementy w kolejności załadowania
+                    postElements.reverse().forEach(element => postsContainer.append(element)); // Wyświetlamy elementy w odwrotnej kolejności
                 }
+                
             });
     });
 

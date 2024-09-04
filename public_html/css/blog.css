@@ -1,3 +1,5 @@
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css");
+
 /* Posts */
 button.read-more,
 button.back-to-blog {
@@ -126,18 +128,14 @@ article p.post-date {
 }
 
 .dropdown-item.active-sort::after {
-    content: ''; /* Usuwamy Unicode */
+    content: '\f272'; /* Kod Unicode dla check2 z Bootstrap Icons */
+    font-family: 'bootstrap-icons';
     position: absolute;
     right: 10px; /* Odstęp od prawej krawędzi */
     top: 50%;
     transform: translateY(-50%);
     font-size: 1.2em;
     color: #ac2a21; /* Kolor ptaszka */
-}
-
-.dropdown-item.active-sort::after {
-    content: "\f4b8"; /* Kod ikony Bootstrap ptaszka */
-    font-family: "Bootstrap Icons";
 }
 
 /* Animations & effects */
