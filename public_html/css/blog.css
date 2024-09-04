@@ -1,5 +1,6 @@
 /* Posts */
-button.read-more, button.back-to-blog {
+button.read-more,
+button.back-to-blog {
     background-color: #ac2a21;
     color: #fff;
     border: none;
@@ -15,23 +16,27 @@ button.read-more, button.back-to-blog {
     justify-content: center;
 }
 
-button.read-more i, button.back-to-blog i {
+button.read-more i,
+button.back-to-blog i {
     margin-left: 5px;
     justify-content: center;
     align-items: center;
 }
 
-button.read-more:hover, button.back-to-blog:hover {
+button.read-more:hover,
+button.back-to-blog:hover {
     background-color: #800000;
 }
 
 article p.post-date {
-    font-size: 0.7em; /* Mniejsza czcionka */
-    color: #777; /* Szary kolor */
+    font-size: 0.7em;
+    /* Mniejsza czcionka */
+    color: #777;
+    /* Szary kolor */
     text-align: center;
 }
 
-#posts-container{
+#posts-container {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -40,7 +45,8 @@ article p.post-date {
 
 .post-article figure {
     display: table;
-    margin: 0 auto 20px; /* Usuń marginesy, aby nie wpływały na pozycję */
+    margin: 0 auto 20px;
+    /* Usuń marginesy, aby nie wpływały na pozycję */
 }
 
 .post-article figure figcaption {
@@ -49,7 +55,8 @@ article p.post-date {
     font-size: 0.75em;
     color: #777;
     font-style: italic;
-    text-align: right; /* Wyrównanie tekstu do prawej */
+    text-align: right;
+    /* Wyrównanie tekstu do prawej */
 }
 
 .post-article figure figcaption a {
@@ -103,7 +110,8 @@ article p.post-date {
 }
 
 .dropdown-menu {
-    min-width: 200px; /* Minimalna szerokość menu rozwijanego */
+    min-width: 200px;
+    /* Minimalna szerokość menu rozwijanego */
 }
 
 .dropdown-item {
@@ -111,7 +119,9 @@ article p.post-date {
 }
 
 /* Animations & effects */
-.dropdown-item.active, .dropdown-item:focus, .dropdown-item:hover {
+.dropdown-item.active,
+.dropdown-item:focus,
+.dropdown-item:hover {
     background-color: #f8f9fa;
     color: #007bff;
 }
