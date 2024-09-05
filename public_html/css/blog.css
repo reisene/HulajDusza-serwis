@@ -111,6 +111,16 @@ article p.post-date {
     width: 50%;
 }
 
+#searchInput {
+    border-radius: 25px 25px 25px 25px;
+}
+
+#searchInput:focus {
+    border-color: #ac2a21; /* Kolor obramowania po aktywacji */
+    outline: none; /* Usunięcie domyślnej obwódki przeglądarki */
+    box-shadow: 0 4px 12px rgba(172, 42, 33, 0.5); /* Zwiększenie cienia przy aktywacji */
+}
+
 .dropdown-menu {
     min-width: 200px;
     /* Minimalna szerokość menu rozwijanego */
