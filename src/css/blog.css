@@ -104,27 +104,48 @@ article p.post-date {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    width: 100%;
 }
 
+/* Search container */
 .search-container {
     width: 50%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    position: relative;
 }
 
 #searchInput {
     border-radius: 25px 25px 25px 25px; /* lub border-radius: 25px */
     width: 100%;
-    max-width: 400px;
+    padding-left: 45px;
     font-size: 16px;
     border: 2px solid #ccc;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     transition: all 0.3s ease-in-out;
+    height: 40px;
+    display: block;
+    line-height: normal;
+    margin: auto;
 }
 
 #searchInput:focus {
     border-color: #ac2a21; /* Kolor obramowania po aktywacji */
     outline: none; /* Usunięcie domyślnej obwódki przeglądarki */
     box-shadow: 0 4px 12px rgba(172, 42, 33, 0.5); /* Zwiększenie cienia przy aktywacji */
+}
+
+.search-icon {
+    position: absolute;
+    left: 15px; /* Pozycja ikony */
+    top: 50%;
+    transform: translateY(-50%); /* Wycentrowanie ikony pionowo */
+    color: #999;
+    pointer-events: none; /* Zapobiega interakcji z ikoną */
+    font-size: 20px;
 }
 
 .dropdown-menu {
