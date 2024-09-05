@@ -112,7 +112,13 @@ article p.post-date {
 }
 
 #searchInput {
-    border-radius: 25px 25px 25px 25px;
+    border-radius: 25px 25px 25px 25px; /* lub border-radius: 25px */
+    width: 100%;
+    max-width: 400px;
+    font-size: 16px;
+    border: 2px solid #ccc;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease-in-out;
 }
 
 #searchInput:focus {
