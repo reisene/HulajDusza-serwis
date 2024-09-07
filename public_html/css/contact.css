@@ -166,7 +166,7 @@ button:hover {
 }
 
 .contact-details p {
-    margin: 10px 0;
+    margin: 10px auto;
     color: #333;
 }
 
@@ -224,6 +224,7 @@ input[type="email"], input[type="tel"] {
     box-shadow: rgba(0, 0, 0, 0.09) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;
     z-index: 1000;
     background-color: white; /* Ensure the background color is set */
+    align-content: center;
     text-align: center; /* Center the text */
     justify-content: center;
     font-weight: bold; /* Make the text bold */
@@ -280,10 +281,7 @@ input[type="email"], input[type="tel"] {
     .social-links,
     .contact-form {
         grid-column: 1 / 2; /* Elementy zajmują całą szerokość */
-    }
-
-    .contact-form { 
-        margin: 0;
+        margin: 0 auto;
     }
 
     .form-row {
@@ -301,21 +299,6 @@ input[type="email"], input[type="tel"] {
 }
 
 @media (max-width: 400px) {
-    .contact-container {
-        padding: 10px;
-        width: 95%;
-    }
-
-    .contact-form {
-        margin: 0;
-        width: 100%;
-    }
-
-    .form-row {
-        flex-direction: column;
-        width: 100%;
-    }
-
     .form-group {
         margin-right: 0;
         width: 100%;
