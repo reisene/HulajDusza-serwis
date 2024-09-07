@@ -47,96 +47,28 @@ async function handleSubmit(event, token) {
     // Generate a unique ID for the submission
     var uniqueID = new Date().getTime() + "-" + Math.floor(Math.random() * 1000000);
 
-    // Prepare data for Formspree submission
-    var formspreeData = new FormData();
-    formspreeData.append('id', uniqueID);
-    formspreeData.append('name', name);
-    formspreeData.append('email', email);
-    formspreeData.append('phone', phone);
-    formspreeData.append('message', message);
-    formspreeData.append('g-recaptcha-response', token);
+    // Przygotowanie danych do przesłania
+    var formData = new FormData();
+    formData.append('name', name);
+    formData.append('email', email);
+    formData.append('phone', phone);
+    formData.append('message', message);
+    formData.append('g-recaptcha-response', token);
+    formData.append('uniqueID', uniqueID);
 
-    // Formspree URL
-    var formspreeUrl = "https://formspree.io/f/manwqoep";
-
-    // Send data to Formspree
-    fetch(formspreeUrl, {
+    // Przesłanie danych do PHP
+    fetch('/php/send_email.php', {
         method: 'POST',
-        body: formspreeData,
-        mode: 'no-cors'
-    }).then(response => {
-        if (response.ok || response.type === 'opaque') {
-            notification.classList.add('success', 'show');
-            notificationMessage.innerHTML = "Dziękujemy za przesłanie!";
+        body: formData,
+    }).then(response => response.json()).then(data => {
+        if (data.success) {
+            displayNotification(data.message, 'success');
             form.reset();
         } else {
-            response.json().then(data => {
-                notification.classList.add('error', 'show');
-                if (Object.hasOwn(data, 'errors')) {
-                    notificationMessage.innerHTML = data["errors"].map(error => error["message"]).join(", ");
-                } else {
-                    notificationMessage.innerHTML = "Ups! Wystąpił problem z przesłaniem formularza";
-                }
-            });
+            displayNotification(data.message, 'error');
         }
-        setTimeout(() => {
-            notification.classList.remove('show', 'success', 'error');
-        }, 5000); // Hide the notification after 5 seconds
     }).catch(error => {
-        notification.classList.add('error', 'show');
-        notificationMessage.innerHTML = "Ups! Wystąpił problem z przesłaniem formularza";
-        setTimeout(() => {
-            notification.classList.remove('show', 'success', 'error');
-        }, 5000); // Hide the notification after 5 seconds
-    });
-
-    // Airtable API settings
-    var airtablePersonalAccessToken = "patmmJVUgqZQmCvW3.b591c3a621807ac2d784c5c8afbff6612af7c0d2624e6131df6c0e3946dea5af"; // Your Airtable Personal Access Token
-    var airtableBaseId = "appx76Q9YSMyuLxYF"; // Your Airtable Base ID
-    var airtableTableName = "Submissions"; // Your Airtable table name
-    var airtableUrl = `https://api.airtable.com/v0/${airtableBaseId}/${airtableTableName}`;
-
-    // Prepare data for Airtable submission
-    var airtableData = {
-        fields: {
-            id: uniqueID,
-            name: name,
-            email: email,
-            phone: phone,
-            message: message
-        }
-    };
-
-    console.log("Airtable Data: ", JSON.stringify(airtableData));
-
-    // Send data to Airtable
-    fetch(airtableUrl, {
-        method: 'POST',
-        headers: {
-            'Authorization': `Bearer ${airtablePersonalAccessToken}`,
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(airtableData)
-    }).then(response => {
-        if (response.ok) {
-            console.log("Successfully submitted to Airtable");
-        } else {
-            response.json().then(data => {
-                console.error("Error submitting to Airtable:", data);
-                notification.classList.add('error', 'show');
-                notificationMessage.innerHTML = "Ups! Wystąpił problem z przesłaniem formularza: " + data.error.message;
-            });
-        }
-        setTimeout(() => {
-            notification.classList.remove('show', 'success', 'error');
-        }, 5000); // Hide the notification after 5 seconds
-    }).catch(error => {
-        console.error("Error submitting to Airtable:", error);
-        notification.classList.add('error', 'show');
-        notificationMessage.innerHTML = "Ups! Wystąpił problem z przesłaniem formularza";
-        setTimeout(() => {
-            notification.classList.remove('show', 'success', 'error');
-        }, 5000); // Hide the notification after 5 seconds
+        displayNotification("Ups! Wystąpił problem z przesłaniem formularza", 'error');
     });
 }
 
@@ -148,3 +80,13 @@ form.addEventListener("submit", function(event) {
         });
     });
 });
+
+function displayNotification(message, type) {
+    var notification = document.getElementById("notification");
+    var notificationMessage = document.getElementById("notification-message");
+    notification.classList.add(type, 'show');
+    notificationMessage.innerHTML = message;
+    setTimeout(() => {
+        notification.classList.remove('show', 'success', 'error');
+    }, 5000);
+}
