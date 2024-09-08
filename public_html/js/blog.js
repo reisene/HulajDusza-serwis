@@ -98,8 +98,13 @@ $(document).ready(function () {
         $('.post-article').each(function () {
             const title = $(this).find('h2').text().toLowerCase();
             const excerpt = $(this).find('.post-content').text().toLowerCase();
+            const date = $(this).find('.post-date').text().toLowerCase(); // Pobieramy tekst daty
 
-            if (title.includes(searchTerm) || excerpt.includes(searchTerm)) {
+            // Normalizacja daty - usunięcie znaków myślnika dla ułatwienia porównania
+            const normalizedDate = date.replace(/-/g, '');
+            const normalizedSearchTerm = searchTerm.replace(/-/g, '');
+
+            if (title.includes(searchTerm) || excerpt.includes(searchTerm) || normalizedDate.includes(normalizedSearchTerm)) {
                 $(this).show();
             } else {
                 $(this).hide();
