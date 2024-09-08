@@ -1,0 +1,26 @@
+name: Run Gulp Task
+
+# Workflow będzie uruchamiany na wydarzeniach push
+on:
+  push:
+    branches:
+      - main  # Uruchamianie tylko na gałęzi main (możesz zmienić nazwę na gałąź, którą chcesz monitorować)
+
+jobs:
+  build:
+    runs-on: ubuntu-latest  # Środowisko, w którym będzie wykonywany build
+    
+    steps:
+    - name: Checkout code  # Krok do pobrania kodu repozytorium
+      uses: actions/checkout@v3
+
+    - name: Setup Node.js  # Krok do instalacji Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '16'  # Wybór wersji Node.js, którą chcesz zainstalować
+
+    - name: Install dependencies  # Instalowanie zależności
+      run: npm install
+
+    - name: Run Gulp Task  # Uruchomienie zadania npm run gulp
+      run: npm run gulp
