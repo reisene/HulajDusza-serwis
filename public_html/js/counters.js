@@ -1,3 +1,8 @@
+/**
+ * Initializes and animates counters when they become visible in the viewport.
+ * The counters are identified by the 'counter' class and are animated using the 'initCounters' function.
+ * The function also handles scroll events to trigger the counter animations.
+ */
 $(document).ready(function () {
  
     $('.timer').counterUp({
@@ -5,6 +10,10 @@ $(document).ready(function () {
         time: 1000
     });
 
+    /**
+     * Initializes each counter element found with the 'timer' class.
+     * The count-up animation is achieved by incrementing the counter value at regular intervals.
+     */
     const initCounters = () => {
         $('.timer').each(function () {
             console.log("Counter found:", this);
@@ -27,6 +36,10 @@ $(document).ready(function () {
 
     const countersInitialized = new Set();
 
+    /**
+     * Handles the visibility of counter elements and initializes them if they are in view.
+     * The function checks each counter element with the 'counter' class and initializes it if it is not already initialized and is in view.
+     */
     const handleCounters = () => {
         $('.counter').each(function () {
             console.log("Checking counter visibility:", this);
@@ -38,6 +51,9 @@ $(document).ready(function () {
         });
     };
 
+    /**
+     * Handles scroll events by triggering the 'handleCounters' function.
+     */
     const handleScroll = () => {
         handleCounters();
     };
@@ -46,6 +62,11 @@ $(document).ready(function () {
     handleScroll(); // Initialize scroll animations and counters on load
 });
 
+/**
+ * Checks if an element is visible in the viewport.
+ * @param {HTMLElement} element - The element to check.
+ * @returns {boolean} - True if the element is in view, false otherwise.
+ */
 function isElementInView(element) {
     const rect = element.getBoundingClientRect();
     return (
