@@ -1,4 +1,10 @@
+/**
+ * This function initializes the share buttons functionality on a webpage.
+ * It adds event listeners for toggling the visibility of the share buttons,
+ * and hides the SMS share button on non-mobile devices.
+ */
 document.addEventListener('DOMContentLoaded', function() {
+    // Initialize a2a_config with default values
     var a2a_config = a2a_config || {};
     a2a_config.templates = a2a_config.templates || {};
     a2a_config.onclick = false;
@@ -8,13 +14,17 @@ document.addEventListener('DOMContentLoaded', function() {
         ad: true,
     };
 
+    // Get references to the share buttons and toggle button elements
     var shareButtons = document.getElementById('share-buttons');
     var toggleButton = document.getElementById('toggle-share-buttons');
 
-    // Funkcja do przełączania widoczności panelu
+    /**
+     * Toggles the visibility of the share buttons.
+     * If the buttons are hidden, it calculates and sets their position dynamically.
+     */
     function toggleShareButtons() {
         if (shareButtons.style.display === 'none' || shareButtons.style.display === '') {
-            // Oblicz dynamicznie pozycję panelu tylko przy wyświetlaniu
+            // Calculate the position of the button dynamically only when displaying
             var buttonRect = toggleButton.getBoundingClientRect();
             shareButtons.style.left = (buttonRect.right + 0) + 'px';
             shareButtons.style.display = 'block';
@@ -23,10 +33,10 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // Dodajemy obsługę kliknięcia na przycisk
+    // Add event listener for clicking on the toggle button
     toggleButton.addEventListener('click', toggleShareButtons); 
 
-    // Dodajemy obsługę kliknięcia poza panelem, aby go ukryć
+    // Add event listener for clicking outside the panel to hide it
     document.addEventListener('click', function (event) {
         var isClickInsidePanel = shareButtons.contains(event.target);
         var isClickOnToggleButton = toggleButton.contains(event.target);
@@ -35,11 +45,16 @@ document.addEventListener('DOMContentLoaded', function() {
             shareButtons.style.display = 'none';
         }
     });
-    if ('ontouchstart' in window || navigator.maxTouchPoints) { // Sprawdza, czy urządzenie ma możliwość dotyku (czyli prawdopodobnie mobilne)
-        if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) { // Sprawdza, czy to urządzenie mobilne
+
+    // Check if the device supports touch events (likely mobile)
+    if ('ontouchstart' in window || navigator.maxTouchPoints) { 
+        // Check if the device is mobile
+        if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) { 
+            // Show the SMS share button on mobile devices
             document.querySelector('.a2a_button_sms').style.display = 'block';
         }
     } else {
+        // Hide the SMS share button on non-mobile devices
         document.querySelector('.a2a_button_sms').style.display = 'none';
     };
 });

@@ -1,3 +1,9 @@
+/**
+ * Service worker script for HulajDusza website.
+ * This script handles caching static assets and serving them from cache when available.
+ * It also deletes old caches to keep the application up-to-date.
+ */
+
 const CACHE_NAME = 'hulajdusza-cache-v1';
 const urlsToCache = [
   '/',
@@ -25,6 +31,11 @@ const urlsToCache = [
   '/img/Logo/HulajDusza_logo.png'
 ];
 
+/**
+ * Install event listener.
+ * Caches all static assets when the service worker is installed.
+ * @param {Event} event - The install event.
+ */
 self.addEventListener('install', (event) => {
   event.waitUntil(
     caches.open(CACHE_NAME)
@@ -34,6 +45,11 @@ self.addEventListener('install', (event) => {
   );
 });
 
+/**
+ * Fetch event listener.
+ * Serves cached assets when available, otherwise fetches from the network.
+ * @param {Event} event - The fetch event.
+ */
 self.addEventListener('fetch', (event) => {
   event.respondWith(
     caches.match(event.request)
@@ -46,6 +62,11 @@ self.addEventListener('fetch', (event) => {
   );
 });
 
+/**
+ * Activate event listener.
+ * Deletes old caches to keep the application up-to-date.
+ * @param {Event} event - The activate event.
+ */
 self.addEventListener('activate', (event) => {
   const cacheWhitelist = [CACHE_NAME];
   event.waitUntil(
