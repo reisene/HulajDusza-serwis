@@ -1,3 +1,10 @@
+/**
+ * Handles form submission, validates input, and sends data to the server using AJAX.
+ *
+ * @param {Event} event - The submit event triggered by the form.
+ * @param {string} token - The reCAPTCHA token obtained after user interaction.
+ * @returns {void}
+ */
 var form = document.getElementById("my-form");
 
 async function handleSubmit(event, token) {
@@ -47,7 +54,7 @@ async function handleSubmit(event, token) {
     // Generate a unique ID for the submission
     var uniqueID = new Date().getTime() + "-" + Math.floor(Math.random() * 1000000);
 
-    // Przygotowanie danych do przesłania
+    // Prepare data for sending
     var formData = new FormData();
     formData.append('name', name);
     formData.append('email', email);
@@ -56,7 +63,7 @@ async function handleSubmit(event, token) {
     formData.append('g-recaptcha-response', token);
     formData.append('uniqueID', uniqueID);
 
-    // Przesłanie danych do PHP
+    // Send data to PHP
     fetch('/php/send_email.php', {
         method: 'POST',
         body: formData,
@@ -81,6 +88,13 @@ form.addEventListener("submit", function(event) {
     });
 });
 
+/**
+ * Displays a notification with a given message and type.
+ *
+ * @param {string} message - The message to display in the notification.
+ * @param {string} type - The type of notification (e.g., 'success', 'error').
+ * @returns {void}
+ */
 function displayNotification(message, type) {
     var notification = document.getElementById("notification");
     var notificationMessage = document.getElementById("notification-message");
