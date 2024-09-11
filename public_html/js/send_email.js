@@ -9,9 +9,15 @@ var form = document.getElementById("my-form");
 
 async function handleSubmit(event, token) {
     event.preventDefault();
+
+    // Check if form exists before continuing
+    if (!form) {
+        console.error("Form not found.");
+        return;
+    }
+
     var notification = document.getElementById("notification");
     var notificationMessage = document.getElementById("notification-message");
-    var status = document.getElementById("my-form-status");
     var email = document.getElementById("email").value;
     var phone = document.getElementById("phone").value.replace(/\D/g, ''); // Remove non-digit characters for validation
     var name = document.getElementById("name").value;
@@ -23,32 +29,26 @@ async function handleSubmit(event, token) {
 
     // Check if at least one of email or phone is filled
     if (!email && !phone) {
-        notification.classList.add('error', 'show');
-        notificationMessage.innerHTML = "Proszę podać adres email lub numer telefonu.";
-        setTimeout(() => {
-            notification.classList.remove('show', 'success', 'error');
-        }, 5000); // Hide the notification after 5 seconds
+        displayNotification("Proszę podać adres email lub numer telefonu.", 'error');
         return;
     }
 
     // Validate email format
     if (email && !emailPattern.test(email)) {
-        notification.classList.add('error', 'show');
-        notificationMessage.innerHTML = "Proszę podać prawidłowy adres email.";
-        setTimeout(() => {
-            notification.classList.remove('show', 'success', 'error');
-        }, 5000); // Hide the notification after 5 seconds
+        displayNotification("Proszę podać prawidłowy adres email.", 'error');
         return;
     }
 
     // Validate phone format
     if (phone && !mobilePhonePattern.test(phone)) {
-        notification.classList.add('error', 'show');
-        notificationMessage.innerHTML = "Proszę podać prawidłowy numer telefonu (9 cyfr).";
-        setTimeout(() => {
-            notification.classList.remove('show', 'success', 'error');
-        }, 5000); // Hide the notification after 5 seconds
+        displayNotification("Proszę podać prawidłowy numer telefonu (9 cyfr).", 'error');
         return;
+    }
+
+    // Disable form submission button to prevent duplicate submissions
+    var submitButton = form.querySelector('button[type="submit"]');
+    if (submitButton) {
+        submitButton.disabled = true;
     }
 
     // Generate a unique ID for the submission
@@ -64,26 +64,48 @@ async function handleSubmit(event, token) {
     formData.append('uniqueID', uniqueID);
 
     // Send data to PHP
-    fetch('/php/send_email.php', {
-        method: 'POST',
-        body: formData,
-    }).then(response => response.json()).then(data => {
+    try {
+        let response = await fetch('/php/send_email.php', {
+            method: 'POST',
+            body: formData,
+        });
+
+        let data = await response.json();
+
         if (data.success) {
             displayNotification(data.message, 'success');
-            form.reset();
+            setTimeout(() => {
+                form.reset(); // Reset the form after success
+            }, 5000); // Delaying reset after success message
         } else {
             displayNotification(data.message, 'error');
         }
-    }).catch(error => {
+
+    } catch (error) {
+        console.error("Form submission error:", error);
         displayNotification("Ups! Wystąpił problem z przesłaniem formularza", 'error');
-    });
+    } finally {
+        // Re-enable the submit button
+        if (submitButton) {
+            submitButton.disabled = false;
+        }
+    }
 }
 
 form.addEventListener("submit", function(event) {
     event.preventDefault();
     grecaptcha.ready(function() {
-        grecaptcha.execute('6LeTFCAqAAAAAKlvDJZjZnVCdtD76hc3YZiIUs_Q', {action: 'submit'}).then(function(token) {
-            handleSubmit(event, token);
+        grecaptcha.execute('6LeTFCAqAAAAAKlvDJZjZnVCdtD76hc3YZiIUs_Q', {action: 'submit'})
+        .then(function(token) {
+            if (token) {
+                handleSubmit(event, token);
+            } else {
+                displayNotification("ReCAPTCHA verification failed. Please try again.", 'error');
+            }
+        })
+        .catch(function(error) {
+            console.error("ReCAPTCHA error:", error);
+            displayNotification("ReCAPTCHA verification failed. Please try again.", 'error');
         });
     });
 });
@@ -98,9 +120,17 @@ form.addEventListener("submit", function(event) {
 function displayNotification(message, type) {
     var notification = document.getElementById("notification");
     var notificationMessage = document.getElementById("notification-message");
-    notification.classList.add(type, 'show');
-    notificationMessage.innerHTML = message;
-    setTimeout(() => {
-        notification.classList.remove('show', 'success', 'error');
-    }, 5000);
+
+    // Make sure notification exists before attempting to modify it
+    if (notification && notificationMessage) {
+        notification.classList.add(type, 'show');
+        notificationMessage.innerHTML = message;
+
+        // Notify screen readers
+        notification.setAttribute('aria-live', 'assertive');
+
+        setTimeout(() => {
+            notification.classList.remove('show', 'success', 'error');
+        }, 5000);
+    }
 }
