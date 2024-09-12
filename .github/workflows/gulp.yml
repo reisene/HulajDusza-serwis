@@ -17,7 +17,7 @@ jobs:
     - name: Setup Node.js  # Krok do instalacji Node.js
       uses: actions/setup-node@v3
       with:
-        node-version: '16'  # Wybór wersji Node.js, którą chcesz zainstalować
+        node-version: '20.x'  # Wybór wersji Node.js, którą chcesz zainstalować
 
     - name: Install dependencies  # Instalowanie zależności
       run: npm install
