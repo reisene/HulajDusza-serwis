@@ -27,7 +27,7 @@
     "gulp-sourcemaps": "^3.0.0",
     "gulp-uglify": "^3.0.2",
     "postcss": "^8.4.45",
-    "postcss-preset-env": "^10.0.2"
+    "postcss-preset-env": "^10.0.3"
   },
   "dependencies": {
     "@flaticon/flaticon-uicons": "^3.3.1",
