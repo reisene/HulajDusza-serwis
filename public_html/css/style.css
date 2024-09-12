@@ -365,7 +365,7 @@ footer div.copyright{
     text-decoration: underline;
 }
 
-/* Mobile accesibility */
+/* Mobile responsive */
 @media only screen and (max-width: 768px) {
     header {
         padding: 5px 10px;
@@ -585,7 +585,7 @@ button:hover {
 
 /* Add2Any Style */
 
-/* Stylowanie przycisku */
+/* Button styling */
 #toggle-share-buttons {
     position: fixed;
     top: 50%;
@@ -604,7 +604,7 @@ button:hover {
     background-color: #555;
 }
 
-/* Stylowanie panelu udostępniania */
+/* Sharing panel styling */
 .a2a_sticky {
     position: fixed;
     top: 50%;
