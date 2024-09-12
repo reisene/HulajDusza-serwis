@@ -291,8 +291,10 @@ footer {
     gap: 20px; /* Odstępy między kolumnami */
     justify-content: space-between;
     margin: 0 auto;
-    padding: 0 10px 50px 10px;
+    padding: 0 10px;
     font-size: smaller;
+    position: relative;
+    padding-bottom: 50px;
 }
 
 .footer-section {
@@ -331,11 +333,32 @@ footer div.social a:hover {
     color: #ac2a21;
 }
 
-footer div.copyright {
+.custom-shape-divider-bottom-1726092730 {
+    position: absolute;
+    bottom: 0; /* Przyklei divider do góry elementu */
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+    rotate: 180deg;
+}
+
+.custom-shape-divider-bottom-1726092730 svg {
+    position: relative;
+    display: block;
+    width: calc(100% + 1.3px);
+    height: 50px;
+}
+
+.custom-shape-divider-bottom-1726092730 .shape-fill {
+    fill: #111111; /* Kolor kształtu */
+}
+
+footer div.copyright{
     background-color: #111;
-    -webkit-box-shadow: inset 0px 0px 24px 4px rgba(51, 51, 51, 1);
+    /*-webkit-box-shadow: inset 0px 0px 24px 4px rgba(51, 51, 51, 1);
     -moz-box-shadow: inset 0px 0px 24px 4px rgba(51, 51, 51, 1);
-    box-shadow: inset 0px 0px 24px 4px rgba(51, 51, 51, 1);
+    box-shadow: inset 0px 0px 24px 4px rgba(51, 51, 51, 1);*/
 }
 
 .privacy a:hover {
