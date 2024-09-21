@@ -1,3 +1,23 @@
+/**+
+ * This function initializes the website's functionality, including://+
+ * - AOS (Animate On Scroll) initialization//+
+ * - Menu toggle functionality//+
+ * - Close menu when clicked outside//+
+ * - Adjust menu icons on window resize//+
+ * - Add 'active' class to the current menu item//+
+ * - Smooth scroll functionality for navigation links//+
+ * - Sticky header and menu functionality//+
+ * - Logo scaling and header padding adjustment on scroll//+
+ * - Update page title with a site-specific suffix//+
+ * - Scroll to top button functionality//+
+ * - Scroll animations with Intersection Observer//+
+ * - Service worker registration for offline support//+
+ * - Function to check if an element is in view//+
+ * - Tawk.to chat script initialization//+
+ * - Google Analytics tracking code initialization//+
+
+ * @returns {void}//+
+ *///+
 $(document).ready(function () {
     // Inicjalizacja AOS
     AOS.init({
@@ -54,7 +74,7 @@ $(document).ready(function () {
 
     $('nav.menu ul li a').each(function () {
         var linkUrl = this.href;
-        
+
         // Check if the link is to the homepage
         if (linkUrl === currentUrl || 
             (linkUrl === baseUrl + '/' && currentUrl === baseUrl + '/') || 
@@ -80,7 +100,7 @@ $(document).ready(function () {
 
     function makeSticky() {
         const scrollTop = $(window).scrollTop();
-    
+
         // Sticky header and menu
         if (scrollTop > sticky) {
             stickyHeader.addClass('sticky');
@@ -89,7 +109,7 @@ $(document).ready(function () {
             stickyHeader.removeClass('sticky');
             stickyMenu.removeClass('sticky');
         }
-        
+
         // Logo and header scaling
         const maxLogoScale = 150; // Original width
         const minLogoScale = 100; // Reduced width in sticky state
