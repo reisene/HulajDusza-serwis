@@ -4,7 +4,7 @@
  * and hides the SMS share button on non-mobile devices.
  */
 document.addEventListener('DOMContentLoaded', function() {
-    // Initialize a2a_config with default values
+    // Initializes and sets up a share panel.
     var a2a_config = a2a_config || {};
     a2a_config.templates = a2a_config.templates || {};
     a2a_config.onclick = false;
@@ -19,8 +19,9 @@ document.addEventListener('DOMContentLoaded', function() {
     var toggleButton = document.getElementById('toggle-share-buttons');
 
     /**
-     * Toggles the visibility of the share buttons.
-     * If the buttons are hidden, it calculates and sets their position dynamically.
+     * @description Toggles the display of a group of share buttons on and off, positioning
+     * them dynamically relative to another button when displayed. It checks the current
+     * display state of the share buttons and updates their style accordingly.
      */
     function toggleShareButtons() {
         if (shareButtons.style.display === 'none' || shareButtons.style.display === '') {
@@ -38,6 +39,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Add event listener for clicking outside the panel to hide it
     document.addEventListener('click', function (event) {
+        // Handles click events on a document.
         var isClickInsidePanel = shareButtons.contains(event.target);
         var isClickOnToggleButton = toggleButton.contains(event.target);
 
