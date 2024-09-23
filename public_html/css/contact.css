@@ -50,6 +50,24 @@
 
 .social-links{
     grid-column: 1 / 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.social-links a {
+    margin: 10px 0;
+    color: #ac2a21;
+    font-size: 24px;
+    text-decoration: none;
+}
+
+.social-links a:hover {
+    color: #555;
+}
+
+.fa-paper-plane{
+    margin-right: 5px;
 }
 
 .contact-details{
@@ -186,27 +204,6 @@ button:hover {
 
 input[type="email"], input[type="tel"] {
     width: 100%;
-}
-
-.social-links {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.social-links a {
-    margin: 10px 0;
-    color: #ac2a21;
-    font-size: 24px;
-    text-decoration: none;
-}
-
-.social-links a:hover {
-    color: #555;
-}
-
-.fa-paper-plane{
-    margin-right: 5px;
 }
 
 /* Notification Styles */
