@@ -23,7 +23,7 @@
 }
 
 .services-hero p {
-    margin: 10px 30px 0 30px;
+    margin: 10px 30px 0;
     font-size: 1.2em;
 }
 
@@ -124,5 +124,3 @@
         flex-direction: column;
     }
 }
-
-/*# sourceMappingURL=services.css.map */

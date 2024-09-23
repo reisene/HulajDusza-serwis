@@ -119,7 +119,7 @@ article p.post-date {
 }
 
 #searchInput {
-    border-radius: 25px 25px 25px 25px; /* lub border-radius: 25px */
+    border-radius: 25px; /* lub border-radius: 25px */
     width: 100%;
     padding-left: 45px;
     font-size: 16px;
