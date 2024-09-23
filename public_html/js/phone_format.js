@@ -1,7 +1,9 @@
 document.addEventListener("DOMContentLoaded", function() {
+    // Executes when HTML document has finished loading and parsing.
     var phoneInput = document.getElementById("phone");
 
     phoneInput.addEventListener("input", function(event) {
+        // Formats phone numbers.
         var value = phoneInput.value.replace(/\D/g, ''); // Remove all non-digit characters
         var formattedValue = '';
 
