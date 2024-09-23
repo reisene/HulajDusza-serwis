@@ -11,6 +11,9 @@ jobs:
     runs-on: ubuntu-latest  # Środowisko, w którym będzie wykonywany build
     
     steps:
+    - name: Honeybadger Deploy Action
+      uses: honeybadger-io/github-notify-deploy-action@v1
+            
     - name: Checkout code  # Krok do pobrania kodu repozytorium
       uses: actions/checkout@v4
 
