@@ -3,7 +3,7 @@
  * Fetches and loads blog posts, handles post sorting, searching, and reading more functionality.
  */
 $(document).ready(function () {
-    // Define the container for the blog posts
+    // Loads blog posts from HTML files and enables sorting and searching.
     const postsContainer = $('#posts-container');
 
     // Define the paths to the blog post HTML files
@@ -22,14 +22,17 @@ $(document).ready(function () {
 
     // Load blog posts
     postPaths.forEach((postPath, index) => {
+        // Loads and processes HTML posts from URLs.
         fetch(postPath)
             .then(response => {
+                // Handles HTTP response.
                 if (!response.ok) {
                     throw new Error('Nie udało się załadować posta: ' + postPath);
                 }
                 return response.text();
             })
             .then(data => {
+                // Parses HTML data, extracts post details, and creates a post element.
                 const parser = new DOMParser();
                 const doc = parser.parseFromString(data, 'text/html');
 
@@ -44,10 +47,13 @@ $(document).ready(function () {
 
                 // Handle the "Read More" button click event
                 postElement.find('.read-more').on('click', function (e) {
+                    // Listens for and handles a click event on the ".read-more" element, performing
+                    // several actions when triggered.
                     e.preventDefault();
                     postsContainer.html($(doc.body).html());
                     postsContainer.append('<button class="back-to-blog">Powrót do bloga <i class="bi bi-arrow-counterclockwise"></i></button>');
                     $('.back-to-blog').on('click', function () {
+                        // Triggers on click events and reloads the current page.
                         location.reload();
                     });
                 });
@@ -56,11 +62,14 @@ $(document).ready(function () {
                 postElements[index] = postElement; 
             })
             .catch(error => {
+                // Catches and handles an error.
                 console.error('Error loading post:', error);
                 const errorElement = $('<article class="post-article">').html(`<h2>Błąd</h2><p>Nie udało się załadować posta: ${postPath}</p>`);
                 postElements[index] = errorElement; // Zachowujemy błąd w odpowiednim miejscu w tablicy
             })
             .finally(() => {
+                // Increments and checks loadedPosts counter, then appends elements when loading is
+                // complete.
                 loadedPosts++;
                 if (loadedPosts === postPaths.length) {
                     // Append the post elements in reverse order to the container
@@ -72,6 +81,7 @@ $(document).ready(function () {
 
     // Handle post sorting
     $('.dropdown-item').on('click', function () {
+        // Triggers sorting when an item is clicked.
         const sortType = $(this).data('sort');
 
         // Add the "active" class to the clicked element
@@ -83,13 +93,21 @@ $(document).ready(function () {
     });
 
     /**
-     * Sorts the blog posts based on the given sort type.
-     * @param {string} type - The type of sorting to perform ('date-asc', 'date-desc', 'title-asc', 'title-desc').
+     * @description Sorts a collection of post articles based on their titles or dates,
+     * depending on the provided type parameter. It then updates the DOM by appending the
+     * sorted posts to a specified container element.
+     *
+     * @param {string | 'date-asc' | 'date-desc' | 'title-asc' | 'title-desc'} type -
+     * Used to specify sorting criteria.
+     *
+     * @returns {DOMElement[]} An array containing zero or more DOM elements representing
+     * the sorted posts.
      */
     function sortPosts(type) {
         const posts = $('.post-article').get();
 
         posts.sort((a, b) => {
+            // Sorts array elements.
             const titleA = $(a).find('h2').text().toUpperCase();
             const titleB = $(b).find('h2').text().toUpperCase();
             const dateA = new Date($(a).find('.post-date').text().trim());
@@ -115,10 +133,12 @@ $(document).ready(function () {
 
     // Handle post searching
     $('#searchInput').on('keyup', function () {
+        // Triggers search functionality.
         const searchTerm = $(this).val().toLowerCase();
 
         // Loop through each post element
         $('.post-article').each(function () {
+            // Filters search results.
             const title = $(this).find('h2').text().toLowerCase();
             const excerpt = $(this).find('.post-content').text().toLowerCase();
             const date = $(this).find('.post-date').text().toLowerCase(); // Pobieramy tekst daty
