@@ -7,6 +7,15 @@
  */
 var form = document.getElementById("my-form");
 
+/**
+ * @description Processes a form submission asynchronously, validating user input and
+ * sending data to a PHP script for email or phone notification. It handles errors,
+ * displays notifications, and resets the form after successful submission.
+ *
+ * @param {Event} event - Used to prevent form submission.
+ *
+ * @param {string} token - Used for Google reCAPTCHA validation.
+ */
 async function handleSubmit(event, token) {
     event.preventDefault();
 
@@ -75,6 +84,7 @@ async function handleSubmit(event, token) {
         if (data.success) {
             displayNotification(data.message, 'success');
             setTimeout(() => {
+                // Resets a form after 5 seconds.
                 form.reset(); // Reset the form after success
             }, 5000); // Delaying reset after success message
         } else {
@@ -93,10 +103,13 @@ async function handleSubmit(event, token) {
 }
 
 form.addEventListener("submit", function(event) {
+    // Listens for form submission.
     event.preventDefault();
     grecaptcha.ready(function() {
+        // Executes a reCAPTCHA challenge and handles its result.
         grecaptcha.execute('6LeTFCAqAAAAAKlvDJZjZnVCdtD76hc3YZiIUs_Q', {action: 'submit'})
         .then(function(token) {
+            // Handles ReCAPTCHA response.
             if (token) {
                 handleSubmit(event, token);
             } else {
@@ -104,6 +117,7 @@ form.addEventListener("submit", function(event) {
             }
         })
         .catch(function(error) {
+            // Catches errors.
             console.error("ReCAPTCHA error:", error);
             displayNotification("ReCAPTCHA verification failed. Please try again.", 'error');
         });
@@ -111,11 +125,14 @@ form.addEventListener("submit", function(event) {
 });
 
 /**
- * Displays a notification with a given message and type.
+ * @description Displays a notification to the user, indicating that it takes two
+ * parameters: `message` and `type`. It adds the message and type to an existing HTML
+ * element, notifies screen readers, and automatically hides the notification after
+ * 5 seconds.
  *
- * @param {string} message - The message to display in the notification.
- * @param {string} type - The type of notification (e.g., 'success', 'error').
- * @returns {void}
+ * @param {string} message - Displayed to the user as notification content.
+ *
+ * @param {string} type - Used to specify notification style.
  */
 function displayNotification(message, type) {
     var notification = document.getElementById("notification");
@@ -130,6 +147,7 @@ function displayNotification(message, type) {
         notification.setAttribute('aria-live', 'assertive');
 
         setTimeout(() => {
+            // Removes classes from an HTML element.
             notification.classList.remove('show', 'success', 'error');
         }, 5000);
     }
