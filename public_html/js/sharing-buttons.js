@@ -56,5 +56,5 @@ document.addEventListener('DOMContentLoaded', function() {
     } else {
         // Hide the SMS share button on non-mobile devices
         document.querySelector('.a2a_button_sms').style.display = 'none';
-    };
+    }
 });
