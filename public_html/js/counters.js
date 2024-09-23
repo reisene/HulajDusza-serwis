@@ -5,17 +5,21 @@
  */
 $(document).ready(function () {
  
+    // Initializes counter elements with animation upon scrolling or loading.
     $('.timer').counterUp({
         delay: 10,
         time: 1000
     });
 
     /**
-     * Initializes each counter element found with the 'timer' class.
-     * The count-up animation is achieved by incrementing the counter value at regular intervals.
+     * @description Initializes and starts a timer on every element with class `timer`.
+     * It sets up an incrementing counter to reach the value specified in `data-to`
+     * attribute, at a speed defined by `data-speed`, updating the element's text display
+     * every 100 milliseconds.
      */
     const initCounters = () => {
         $('.timer').each(function () {
+            // Initializes a timer.
             console.log("Counter found:", this);
             var countTo = parseInt($(this).attr('data-to'));
             var speed = parseInt($(this).attr('data-speed'));
@@ -24,6 +28,7 @@ $(document).ready(function () {
 
             var $this = $(this);
             var counter = setInterval(function () {
+                // Increments and updates text every second, stopping at a certain value.
                 count += increment;
                 if (count >= countTo) {
                     count = countTo;
@@ -37,11 +42,14 @@ $(document).ready(function () {
     const countersInitialized = new Set();
 
     /**
-     * Handles the visibility of counter elements and initializes them if they are in view.
-     * The function checks each counter element with the 'counter' class and initializes it if it is not already initialized and is in view.
+     * @description Iterates over elements with class "counter". It checks if each element
+     * is visible within the viewport and has not been initialized before, then calls
+     * `initCounters` to initialize it and adds it to a set for tracking initialization
+     * status.
      */
     const handleCounters = () => {
         $('.counter').each(function () {
+            // Checks for elements in view and initializes them if not already initialized.
             console.log("Checking counter visibility:", this);
             if (isElementInView(this) && !countersInitialized.has(this)) {
                 console.log("Counter in view:", this);
@@ -52,7 +60,9 @@ $(document).ready(function () {
     };
 
     /**
-     * Handles scroll events by triggering the 'handleCounters' function.
+     * @description Triggers an execution of the `handleCounters` function every time a
+     * scroll event occurs, enabling dynamic updates to counters or other variables based
+     * on scrolling activity.
      */
     const handleScroll = () => {
         handleCounters();
@@ -63,9 +73,15 @@ $(document).ready(function () {
 });
 
 /**
- * Checks if an element is visible in the viewport.
- * @param {HTMLElement} element - The element to check.
- * @returns {boolean} - True if the element is in view, false otherwise.
+ * @description Checks if a given HTML element is currently visible within its parent's
+ * viewport by comparing its bounding rectangle coordinates to the inner dimensions
+ * of the window or document element. It returns true if the element is visible, false
+ * otherwise.
+ *
+ * @param {HTMLElement} element - Checked for visibility within the viewport.
+ *
+ * @returns {boolean} True if the element is currently visible within the viewport
+ * and false otherwise.
  */
 function isElementInView(element) {
     const rect = element.getBoundingClientRect();
