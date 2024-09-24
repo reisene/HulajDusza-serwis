@@ -1,23 +1,3 @@
-/**+
- * This function initializes the website's functionality, including://+
- * - AOS (Animate On Scroll) initialization//+
- * - Menu toggle functionality//+
- * - Close menu when clicked outside//+
- * - Adjust menu icons on window resize//+
- * - Add 'active' class to the current menu item//+
- * - Smooth scroll functionality for navigation links//+
- * - Sticky header and menu functionality//+
- * - Logo scaling and header padding adjustment on scroll//+
- * - Update page title with a site-specific suffix//+
- * - Scroll to top button functionality//+
- * - Scroll animations with Intersection Observer//+
- * - Service worker registration for offline support//+
- * - Function to check if an element is in view//+
- * - Tawk.to chat script initialization//+
- * - Google Analytics tracking code initialization//+
-
- * @returns {void}//+
- *///+
 $(document).ready(function () {
     // Inicjalizacja AOS
     AOS.init({
