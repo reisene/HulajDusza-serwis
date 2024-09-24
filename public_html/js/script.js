@@ -177,15 +177,16 @@ $(document).ready(function () {
 });
 
 if ('serviceWorker' in navigator) {
-    window.addEventListener('load', () => {
-        navigator.serviceWorker.register('/js/service-worker.js')
-            .then((registration) => {
-                console.log('ServiceWorker registration successful with scope: ', registration.scope);
-            }, (error) => {
-                console.log('ServiceWorker registration failed: ', error);
-            });
-    });
-}
+    window.addEventListener('load', registerServiceWorker);
+  }
+  
+  function registerServiceWorker() {
+    const swUrl = '/js/service-worker.js';
+    navigator.serviceWorker
+      .register(swUrl)
+      .then(({ scope }) => console.log(`ServiceWorker registration successful with scope: ${scope}`))
+      .catch((error) => console.error(`ServiceWorker registration failed: ${error}`));
+  }
 
 function isElementInView(element) {
     const rect = element.getBoundingClientRect();
