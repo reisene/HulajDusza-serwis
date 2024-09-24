@@ -95,7 +95,7 @@ $(document).ready(function () {
       const maxScroll = 300; // Adjust this value to set when the scaling stops
   
       let logoWidth = maxLogoScale - (scrollTop / maxScroll) * (maxLogoScale - minLogoScale);
-      if (logoWidth < minLogoScale) {logoWidth = minLogoScale};
+      logoWidth = Math.max(logoWidth, minLogoScale);
       logo.css('width', logoWidth + 'px');
   
       const maxPadding = 10; // Original padding top/bottom
