@@ -5,7 +5,7 @@
  * @param {string} token - The reCAPTCHA token obtained after user interaction.
  * @returns {void}
  */
-var form = document.getElementById("my-form");
+const form = document.getElementById("my-form");
 
 /**
  * @description Processes a form submission asynchronously, validating user input and
@@ -17,111 +17,100 @@ var form = document.getElementById("my-form");
  * @param {string} token - Used for Google reCAPTCHA validation.
  */
 async function handleSubmit(event, token) {
-    event.preventDefault();
+  event.preventDefault();
 
-    // Check if form exists before continuing
-    if (!form) {
-        console.error("Form not found.");
-        return;
+  // Check if form exists before continuing
+  if (!form) {
+    console.error("Form not found.");
+    return;
+  }
+
+  const notification = document.getElementById("notification");
+  const notificationMessage = document.getElementById("notification-message");
+  const formData = {
+    email: document.getElementById("email").value.trim(),
+    phone: document.getElementById("phone").value.replace(/\D/g, ''),
+    name: document.getElementById("name").value.trim(),
+    message: document.getElementById("message").value.trim()
+  };
+
+  const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+  const mobilePhonePattern = /^[0-9]{9}$/; // Polish mobile phone number pattern: 9 digits
+
+  if (!formData.email && !formData.phone) {
+    displayNotification("Proszę podać adres email lub numer telefonu.", 'error');
+    return;
+  }
+
+  if (formData.email && !emailPattern.test(formData.email)) {
+    displayNotification("Proszę podać prawidłowy adres email.", 'error');
+    return;
+  }
+
+  if (formData.phone && !mobilePhonePattern.test(formData.phone)) {
+    displayNotification("Proszę podać prawidłowy numer telefonu (9 cyfr).", 'error');
+    return;
+  }
+
+  const submitButton = form.querySelector('button[type="submit"]');
+  if (submitButton) {
+    submitButton.disabled = true;
+  }
+
+  const uniqueID = `${Date.now()}${Math.floor(Math.random() * 1000000).toString(36)}`;
+
+  // Prepare data for sending
+  const data = new FormData();
+  data.append('name', formData.name);
+  data.append('email', formData.email);
+  data.append('phone', formData.phone);
+  data.append('message', formData.message);
+  data.append('g-recaptcha-response', token);
+  data.append('uniqueID', uniqueID);
+
+  // Send data to PHP
+  try {
+    const response = await fetch('/php/send_email.php', {
+      method: 'POST',
+      body: data,
+    });
+
+    const result = await response.json();
+
+    if (result.success) {
+      displayNotification(result.message, 'success');
+      setTimeout(() => {
+        form.reset(); // Reset the form after success
+      }, 5000); // Delaying reset after success message
+    } else {
+      displayNotification(result.message, 'error');
     }
-
-    var notification = document.getElementById("notification");
-    var notificationMessage = document.getElementById("notification-message");
-    var email = document.getElementById("email").value;
-    var phone = document.getElementById("phone").value.replace(/\D/g, ''); // Remove non-digit characters for validation
-    var name = document.getElementById("name").value;
-    var message = document.getElementById("message").value;
-
-    // Email and phone validation patterns
-    var emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-    var mobilePhonePattern = /^[0-9]{9}$/; // Polish mobile phone number pattern: 9 digits
-
-    // Check if at least one of email or phone is filled
-    if (!email && !phone) {
-        displayNotification("Proszę podać adres email lub numer telefonu.", 'error');
-        return;
-    }
-
-    // Validate email format
-    if (email && !emailPattern.test(email)) {
-        displayNotification("Proszę podać prawidłowy adres email.", 'error');
-        return;
-    }
-
-    // Validate phone format
-    if (phone && !mobilePhonePattern.test(phone)) {
-        displayNotification("Proszę podać prawidłowy numer telefonu (9 cyfr).", 'error');
-        return;
-    }
-
-    // Disable form submission button to prevent duplicate submissions
-    var submitButton = form.querySelector('button[type="submit"]');
+  } catch (error) {
+    console.error("Form submission error:", error);
+    displayNotification("Ups! Wystąpił problem z przesłaniem formularza", 'error');
+  } finally {
+    // Re-enable the submit button
     if (submitButton) {
-        submitButton.disabled = true;
+      submitButton.disabled = false;
     }
-
-    // Generate a unique ID for the submission
-    var uniqueID = new Date().getTime() + "-" + Math.floor(Math.random() * 1000000);
-
-    // Prepare data for sending
-    var formData = new FormData();
-    formData.append('name', name);
-    formData.append('email', email);
-    formData.append('phone', phone);
-    formData.append('message', message);
-    formData.append('g-recaptcha-response', token);
-    formData.append('uniqueID', uniqueID);
-
-    // Send data to PHP
-    try {
-        let response = await fetch('/php/send_email.php', {
-            method: 'POST',
-            body: formData,
-        });
-
-        let data = await response.json();
-
-        if (data.success) {
-            displayNotification(data.message, 'success');
-            setTimeout(() => {
-                // Resets a form after 5 seconds.
-                form.reset(); // Reset the form after success
-            }, 5000); // Delaying reset after success message
-        } else {
-            displayNotification(data.message, 'error');
-        }
-
-    } catch (error) {
-        console.error("Form submission error:", error);
-        displayNotification("Ups! Wystąpił problem z przesłaniem formularza", 'error');
-    } finally {
-        // Re-enable the submit button
-        if (submitButton) {
-            submitButton.disabled = false;
-        }
-    }
+  }
 }
 
-form.addEventListener("submit", function(event) {
-    // Listens for form submission.
-    event.preventDefault();
-    grecaptcha.ready(function() {
-        // Executes a reCAPTCHA challenge and handles its result.
-        grecaptcha.execute('6LeTFCAqAAAAAKlvDJZjZnVCdtD76hc3YZiIUs_Q', {action: 'submit'})
-        .then(function(token) {
-            // Handles ReCAPTCHA response.
-            if (token) {
-                handleSubmit(event, token);
-            } else {
-                displayNotification("ReCAPTCHA verification failed. Please try again.", 'error');
-            }
-        })
-        .catch(function(error) {
-            // Catches errors.
-            console.error("ReCAPTCHA error:", error);
-            displayNotification("ReCAPTCHA verification failed. Please try again.", 'error');
-        });
-    });
+form.addEventListener("submit", async function(event) {
+  event.preventDefault();
+
+  try {
+    const token = await grecaptcha.execute('6LeTFCAqAAAAAKlvDJZjZnVCdtD76hc3YZiIUs_Q', { action: 'submit' });
+
+    if (token) {
+      handleSubmit(event, token);
+    } else {
+      displayNotification("ReCAPTCHA verification failed. Please try again.", 'error');
+    }
+  } catch (error) {
+    console.error("ReCAPTCHA error:", error);
+    displayNotification("ReCAPTCHA verification failed. Please try again.", 'error');
+  }
 });
 
 /**
@@ -135,20 +124,18 @@ form.addEventListener("submit", function(event) {
  * @param {string} type - Used to specify notification style.
  */
 function displayNotification(message, type) {
-    var notification = document.getElementById("notification");
-    var notificationMessage = document.getElementById("notification-message");
+  const notification = document.getElementById("notification");
+  const notificationMessage = document.getElementById("notification-message");
 
-    // Make sure notification exists before attempting to modify it
-    if (notification && notificationMessage) {
-        notification.classList.add(type, 'show');
-        notificationMessage.innerHTML = message;
+  if (notification && notificationMessage) {
+    notification.classList.add(type, 'show');
+    notificationMessage.innerHTML = message ;
 
-        // Notify screen readers
-        notification.setAttribute('aria-live', 'assertive');
+    // Notify screen readers
+    notification.setAttribute('aria-live', 'assertive');
 
-        setTimeout(() => {
-            // Removes classes from an HTML element.
-            notification.classList.remove('show', 'success', 'error');
-        }, 5000);
-    }
+    setTimeout(() => {
+      notification.classList.remove('show', 'success', 'error');
+    }, 5000);
+  }
 }
