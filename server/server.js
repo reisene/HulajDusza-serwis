@@ -29,7 +29,7 @@ app.post('/set-cookies', (req, res) => {
     res.cookie('analytics', analytics, { maxAge: 1000 * 60 * 60 * 24 * 30 });
     res.cookie('marketing', marketing, { maxAge: 1000 * 60 * 60 * 24 * 30 });
 
-    const sql = `INSERT INTO cookies (necessary, analytics, marketing) VALUES (?, ?, ?)`;
+    const sql = "INSERT INTO cookies (necessary, analytics, marketing) VALUES (?, ?, ?)";
     db.query(sql, [necessary, analytics, marketing], (err, result) => {
         if (err) throw err;
         console.log('Dane ciasteczek zapisane do bazy danych');
