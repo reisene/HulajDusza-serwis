@@ -15,7 +15,7 @@ const db = mysql.createConnection({
 
 db.connect((err) => {
     if (err) throw err;
-    console.log('Połączono z bazą danych MySQL');
+    
 });
 
 app.use(bodyParser.json());
@@ -32,12 +32,12 @@ app.post('/set-cookies', (req, res) => {
     const sql = "INSERT INTO cookies (necessary, analytics, marketing) VALUES (?, ?, ?)";
     db.query(sql, [necessary, analytics, marketing], (err, result) => {
         if (err) throw err;
-        console.log('Dane ciasteczek zapisane do bazy danych');
+        
     });
 
     res.sendStatus(200);
 });
 
 app.listen(port, () => {
-    console.log(`Serwer działa na porcie ${port}`);
+    
 });
