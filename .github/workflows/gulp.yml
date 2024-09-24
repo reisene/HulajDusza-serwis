@@ -3,9 +3,7 @@ name: Run Gulp Task
 # Workflow będzie uruchamiany na wydarzeniach push
 on:
   push:
-    branches:
-      - main  # Uruchamianie tylko na gałęzi main (możesz zmienić nazwę na gałąź, którą chcesz monitorować)
-
+  
 jobs:
   build:
     runs-on: ubuntu-latest  # Środowisko, w którym będzie wykonywany build
