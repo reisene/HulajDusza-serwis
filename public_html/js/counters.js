@@ -20,7 +20,7 @@ $(document).ready(function () {
     const initCounters = () => {
         $('.timer').each(function () {
             // Initializes a timer.
-            console.log("Counter found:", this);
+            
             var countTo = parseInt($(this).attr('data-to'));
             var speed = parseInt($(this).attr('data-speed'));
             var count = 0;
@@ -50,9 +50,9 @@ $(document).ready(function () {
     const handleCounters = () => {
         $('.counter').each(function () {
             // Checks for elements in view and initializes them if not already initialized.
-            console.log("Checking counter visibility:", this);
+            
             if (isElementInView(this) && !countersInitialized.has(this)) {
-                console.log("Counter in view:", this);
+                
                 initCounters();
                 countersInitialized.add(this);
             }
