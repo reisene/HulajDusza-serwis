@@ -16,6 +16,7 @@ const paths = {
 };
 
 gulp.task('html', function() {
+  // Processes HTML files.
   return gulp.src([path.join(paths.src, '**/*.html')]) // Przetwarza wszystkie pliki HTML w src i podfolderach
     .pipe(ignore.exclude('partials/**/*')) // Wyklucza folder partials z kopiowania
     .pipe(fileInclude({
@@ -27,6 +28,7 @@ gulp.task('html', function() {
 
 // Zadanie do przetwarzania plików CSS
 gulp.task('css', function() {
+  // Compiles CSS files.
   return gulp.src(paths.css)
     .pipe(sourcemaps.init())
     .pipe(postcss([
@@ -38,6 +40,7 @@ gulp.task('css', function() {
 });
 
 gulp.task('watch', function() {
+  // Sets up file watching for Gulp tasks.
   gulp.watch([
     path.join(paths.src, '*.html', '**/*.html'), // Monitoruje zmiany w folderze src
     path.join(paths.partials, '**/*.html'), // Monitoruje zmiany w folderze partials
