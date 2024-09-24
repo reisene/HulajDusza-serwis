@@ -2,6 +2,7 @@
  * Main function that initializes the blog functionality.
  * Fetches and loads blog posts, handles post sorting, searching, and reading more functionality.
  */
+// 
 $(document).ready(function () {
     // Loads blog posts from HTML files and enables sorting and searching.
     const postsContainer = $('#posts-container');
