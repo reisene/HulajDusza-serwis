@@ -8,6 +8,9 @@ test_patterns = ["**/__tests__/**", "**/*.spec.ts", "**/*.spec.js", "**/*.test.t
   name = "javascript"
   enabled = true
 
+  [analyzers.meta]
+  environment = ["jquery"]
+
 [[analyzers]]
   name = "php"
   enabled = true
