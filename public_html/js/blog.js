@@ -28,6 +28,7 @@ $(document).ready(function () {
             .then(response => {
                 // Handles HTTP response.
                 if (!response.ok) {
+                    // skipcq: JS-0246
                     throw new Error('Nie udało się załadować posta: ' + postPath);
                 }
                 return response.text();
