@@ -31,9 +31,11 @@ const cacheExpirationTime = 30;
 
 // Install event listener
 self.addEventListener('install', (event) => {
+  // Handles service worker installation.
   event.waitUntil(
     caches.open(CACHE_NAME)
       .then((cache) => {
+        // Adds multiple URLs to a cache.
         return cache.addAll(urlsToCache);
       })
   );
@@ -41,9 +43,11 @@ self.addEventListener('install', (event) => {
 
 // Fetch event listener
 self.addEventListener('fetch', (event) => {
+  // Handles fetch events.
   event.respondWith(
     caches.match(event.request)
       .then((response) => {
+        // Checks and caches responses.
         if (response) {
           // If the response is cached, check if it's expired
           const cachedResponseDate = response.headers.get('date');
@@ -55,9 +59,10 @@ self.addEventListener('fetch', (event) => {
             // If the response is expired, fetch a new one from the network
             return fetch(event.request)
               .then((newResponse) => {
-                // Cache the new response
+                // Caches responses.
                 caches.open(CACHE_NAME)
                   .then((cache) => {
+                    // Caches a response.
                     cache.put(event.request, newResponse.clone());
                   });
                 return newResponse;
@@ -70,9 +75,10 @@ self.addEventListener('fetch', (event) => {
           // If the response is not cached, fetch a new one from the network
           return fetch(event.request)
             .then((newResponse) => {
-              // Cache the new response
+              // Clones and caches a response.
               caches.open(CACHE_NAME)
                 .then((cache) => {
+                  // Caches a response.
                   cache.put(event.request, newResponse.clone());
                 });
               return newResponse;
@@ -84,11 +90,14 @@ self.addEventListener('fetch', (event) => {
 
 // Activate event listener
 self.addEventListener('activate', (event) => {
+  // Clears unwanted caches.
   const cacheWhitelist = [CACHE_NAME];
   event.waitUntil(
     caches.keys().then((cacheNames) => {
+      // Deletes unwanted caches.
       return Promise.all(
         cacheNames.map((cacheName) => {
+          // Removes unapproved cache.
           if (cacheWhitelist.indexOf(cacheName) === -1) {
             return caches.delete(cacheName);
           }
@@ -100,6 +109,7 @@ self.addEventListener('activate', (event) => {
 
 // Push event listener
 self.addEventListener('push', (event) => {
+  // Handles incoming push notifications.
   if (event.data) {
     console.log('Received push data:', event.data.text());
   } else {
@@ -109,9 +119,11 @@ self.addEventListener('push', (event) => {
 
 // Notification click event listener
 self.addEventListener('notificationclick', (event) => {
+  // Handles notification clicks.
   event.notification.close();
   event.waitUntil(
     clients.matchAll().then((clients) => {
+      // Handles open window operations.
       if (clients.openWindow) {
         return clients.openWindow('/');
       }
