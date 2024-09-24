@@ -1,9 +1,4 @@
-/**
- * Service worker script for HulajDusza website.
- * This script handles caching static assets and serving them from cache when available.
- * It also deletes old caches to keep the application up-to-date.
- */
-
+// Define the cache name and the URLs to cache
 const CACHE_NAME = 'hulajdusza-cache-v1';
 const urlsToCache = [
   '/',
@@ -31,53 +26,107 @@ const urlsToCache = [
   '/img/Logo/HulajDusza_logo.png'
 ];
 
-/**
- * Install event listener.
- * Caches all static assets when the service worker is installed.
- * @param {Event} event - The install event.
- */
+// Define the cache expiration time (in days)
+const cacheExpirationTime = 30;
+
+// Install event listener
 self.addEventListener('install', (event) => {
+  // Handles service worker installation.
   event.waitUntil(
     caches.open(CACHE_NAME)
       .then((cache) => {
+        // Adds multiple URLs to a cache.
         return cache.addAll(urlsToCache);
       })
   );
 });
 
-/**
- * Fetch event listener.
- * Serves cached assets when available, otherwise fetches from the network.
- * @param {Event} event - The fetch event.
- */
+// Fetch event listener
 self.addEventListener('fetch', (event) => {
+  // Handles fetch events.
   event.respondWith(
     caches.match(event.request)
       .then((response) => {
+        // Checks and caches responses.
         if (response) {
-          return response;
+          // If the response is cached, check if it's expired
+          const cachedResponseDate = response.headers.get('date');
+          const currentDate = new Date();
+          const expirationDate = new Date(cachedResponseDate);
+          expirationDate.setDate(expirationDate.getDate() + cacheExpirationTime);
+
+          if (currentDate > expirationDate) {
+            // If the response is expired, fetch a new one from the network
+            return fetch(event.request)
+              .then((newResponse) => {
+                // Caches responses.
+                caches.open(CACHE_NAME)
+                  .then((cache) => {
+                    // Caches a response.
+                    cache.put(event.request, newResponse.clone());
+                  });
+                return newResponse;
+              });
+          } else {
+            // If the response is not expired, return the cached one
+            return response;
+          }
+        } else {
+          // If the response is not cached, fetch a new one from the network
+          return fetch(event.request)
+            .then((newResponse) => {
+              // Clones and caches a response.
+              caches.open(CACHE_NAME)
+                .then((cache) => {
+                  // Caches a response.
+                  cache.put(event.request, newResponse.clone());
+                });
+              return newResponse;
+            });
         }
-        return fetch(event.request);
       })
   );
 });
 
-/**
- * Activate event listener.
- * Deletes old caches to keep the application up-to-date.
- * @param {Event} event - The activate event.
- */
+// Activate event listener
 self.addEventListener('activate', (event) => {
+  // Clears unwanted caches.
   const cacheWhitelist = [CACHE_NAME];
   event.waitUntil(
     caches.keys().then((cacheNames) => {
+      // Deletes unwanted caches.
       return Promise.all(
         cacheNames.map((cacheName) => {
+          // Removes unapproved cache.
           if (cacheWhitelist.indexOf(cacheName) === -1) {
             return caches.delete(cacheName);
           }
         })
       );
+    })
+  );
+});
+
+// Push event listener
+self.addEventListener('push', (event) => {
+  // Handles incoming push notifications.
+  if (event.data) {
+    console.log('Received push data:', event.data.text());
+  } else {
+    console.log('Received empty push data');
+  }
+});
+
+// Notification click event listener
+self.addEventListener('notificationclick', (event) => {
+  // Handles notification clicks.
+  event.notification.close();
+  event.waitUntil(
+    clients.matchAll().then((clients) => {
+      // Handles open window operations.
+      if (clients.openWindow) {
+        return clients.openWindow('/');
+      }
     })
   );
 });
