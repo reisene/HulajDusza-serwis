@@ -1,12 +1,10 @@
-name: Label Pull Requests
+name: Label Previous Pull Requests
 
 on:
   workflow_dispatch:
-    inputs:
-      label:
-        description: 'Label to add'
-        required: true
-
+  pull_request:
+    types:
+      - unlabeled
 jobs:
   label-pr:
     runs-on: ubuntu-latest
