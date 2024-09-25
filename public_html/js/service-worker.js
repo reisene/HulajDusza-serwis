@@ -35,7 +35,7 @@ self.addEventListener('install', (event) => {
   event.waitUntil(
     caches.open(CACHE_NAME)
       .then((cache) => {
-        // Adds multiple URLs to a cache.
+        // Adds resources to a cache.
         return cache.addAll(urlsToCache);
       })
   );
@@ -43,7 +43,7 @@ self.addEventListener('install', (event) => {
 
 // Fetch event listener
 self.addEventListener('fetch', (event) => {
-  // Handles fetch events.
+  // Handles fetch events with caching and expiration.
   event.respondWith(
     caches.match(event.request)
       .then((response) => {
@@ -59,7 +59,7 @@ self.addEventListener('fetch', (event) => {
             // If the response is expired, fetch a new one from the network
             return fetch(event.request)
               .then((newResponse) => {
-                // Caches responses.
+                // Caches responses to requests.
                 caches.open(CACHE_NAME)
                   .then((cache) => {
                     // Caches a response.
@@ -75,10 +75,10 @@ self.addEventListener('fetch', (event) => {
           // If the response is not cached, fetch a new one from the network
           return fetch(event.request)
             .then((newResponse) => {
-              // Clones and caches a response.
+              // Caches and returns a response.
               caches.open(CACHE_NAME)
                 .then((cache) => {
-                  // Caches a response.
+                  // Caches a HTTP response.
                   cache.put(event.request, newResponse.clone());
                 });
               return newResponse;
@@ -90,14 +90,14 @@ self.addEventListener('fetch', (event) => {
 
 // Activate event listener
 self.addEventListener('activate', (event) => {
-  // Clears unwanted caches.
+  // Clears unwanted browser caches.
   const cacheWhitelist = [CACHE_NAME];
   event.waitUntil(
     caches.keys().then((cacheNames) => {
       // Deletes unwanted caches.
       return Promise.all(
         cacheNames.map((cacheName) => {
-          // Removes unapproved cache.
+          // Deletes an unauthorized cache.
           if (cacheWhitelist.indexOf(cacheName) === -1) {
             return caches.delete(cacheName);
           }
@@ -110,6 +110,12 @@ self.addEventListener('activate', (event) => {
 // Push event listener
 self.addEventListener('push', (event) => {
   // Handles incoming push notifications.
+  // 
+  // However, a more accurate description would be:
+  // 
+  // The invocation listens for and processes incoming push events.
+  // 
+  // Or simply: This invocation receives push notifications.
   if (event.data) {
     console.log('Received push data:', event.data.text());
   } else {
@@ -123,7 +129,7 @@ self.addEventListener('notificationclick', (event) => {
   event.notification.close();
   event.waitUntil(
     clients.matchAll().then((clients) => {
-      // Handles open window operations.
+      // Opens a new window.
       if (clients.openWindow) {
         return clients.openWindow('/');
       }
