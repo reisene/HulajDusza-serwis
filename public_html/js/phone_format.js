@@ -1,4 +1,5 @@
 $(document).ready(function() {
+  // Formats phone input.
   $('#phone').on('input', function() {
     // Formats phone numbers.
     var value = $(this).val().replace(/\D/g, ''); // Remove all non-digit characters
