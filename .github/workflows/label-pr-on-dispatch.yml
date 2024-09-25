@@ -12,14 +12,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
       - name: Add label to pull requests
         uses: actions/labeler@v5
         with:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
-      - name: Add label to all pull requests
-        run: |          
-          for pr in $(gh api /repos/${GITHUB_REPO}/pulls -q '.[] | .number'); do
-            actions/labeler@v5
-            repo-token: ${{ secrets.GITHUB_TOKEN }}        
-          done
+          pr-number: $pr
