@@ -18,7 +18,7 @@ Documentation:
     - guides/*
     - guides/**
     - '**/*.md'
- - head-branch: ['^komment', 'komment', '^comment', 'comment']
+- head-branch: ['^komment', 'komment', '^comment', 'comment']
 
 # Add 'source' label to any change to src files within the source dir EXCEPT for the docs sub-folder
 source:
