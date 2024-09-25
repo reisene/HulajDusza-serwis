@@ -20,7 +20,7 @@ jobs:
     - id: Checkout
       uses: actions/checkout@v4
       
-    - id: Label the PR
+    - id: Label-the-PR
       uses: actions/labeler@v5
       with:
         repo-token: "${{ secrets.GITHUB_TOKEN }}"
