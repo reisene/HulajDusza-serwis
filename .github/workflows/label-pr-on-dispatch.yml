@@ -15,4 +15,8 @@ jobs:
         uses: actions/labeler@v5
         with:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
-          pr-number: ${{ github.event.pull_request.unlabeled }}
+          pr-number: |
+            63
+            64
+            65
+            66
