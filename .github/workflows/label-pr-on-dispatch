@@ -1,4 +1,4 @@
-e: Label Pull Requests
+name: Label Pull Requests
 
 on:
   workflow_dispatch:
@@ -19,4 +19,5 @@ jobs:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           issue-number: ${{ github.event.pull_request.number }}
           label: ${{ inputs.label }}
-      - name: Add label to all pull requests        run: |          for pr in $(gh api /repos/${GITHUB_REPO}/pulls -q '.[] | .number'); do            github/issue-update-label@v1              github-token: ${{ secrets.GITHUB_TOKEN }}              issue-number: $pr              label: ${{ inputs.label }}          done
+      - name: Add label to all pull requests
+        run: |          for pr in $(gh api /repos/${GITHUB_REPO}/pulls -q '.[] | .number'); do            github/issue-update-label@v1              github-token: ${{ secrets.GITHUB_TOKEN }}              issue-number: $pr              label: ${{ inputs.label }}          done
