@@ -1,0 +1,23 @@
+name: Label Pull Requests
+
+on:
+  workflow_dispatch:
+    inputs:
+      label:
+        description: 'Label to add'
+        required: true
+
+jobs:
+  label-pr:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Add label to pull requests
+        uses: github/issue-update-label@v1
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          issue-number: ${{ github.event.pull_request.number }}
+          label: ${{ inputs.label }}
+      - name: Add label to all pull requests
+        run: |          for pr in $(gh api /repos/${GITHUB_REPO}/pulls -q '.[] | .number'); do            github/issue-update-label@v1              github-token: ${{ secrets.GITHUB_TOKEN }}              issue-number: $pr              label: ${{ inputs.label }}          done
