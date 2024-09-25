@@ -1,7 +1,10 @@
-name: Label Pull Requests
+name: Label Previous Pull Requests
 
 on:
   workflow_dispatch:
+    pull_request:
+      types:
+        - unlabeled
     inputs:
       label:
         description: 'Label to add'
@@ -17,4 +20,3 @@ jobs:
         uses: actions/labeler@v5
         with:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
-          pr-number: ${{ github.event.pull_request.number}}
