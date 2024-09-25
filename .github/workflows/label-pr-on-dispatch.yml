@@ -14,16 +14,12 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
       - name: Add label to pull requests
-        uses: actions/laberer@v5
+        uses: actions/labeler@v5
         with:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
-          issue-number: ${{ github.event.pull_request.number }}
-          label: ${{ inputs.label }}
       - name: Add label to all pull requests
         run: |          
           for pr in $(gh api /repos/${GITHUB_REPO}/pulls -q '.[] | .number'); do
-            actions/laberer@v5
-            repo-token: ${{ secrets.GITHUB_TOKEN }}
-            issue-number: $pr             
-            label: ${{ inputs.label }}          
+            actions/labeler@v5
+            repo-token: ${{ secrets.GITHUB_TOKEN }}        
           done
