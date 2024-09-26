@@ -156,8 +156,12 @@ $(document).ready(function () {
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', registerServiceWorker);
     }
-  
-    function registerServiceWorker() {
+
+
+    /**
+     * Registers the service worker.
+     */
+    function register_ServiceWorker() {
       const swUrl = '/js/service-worker.js';
       navigator.serviceWorker
         .register(swUrl)
