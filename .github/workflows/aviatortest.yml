@@ -1,0 +1,26 @@
+name: Run tests and upload results
+
+on: [push]
+
+jobs:
+  test-and-upload:
+    name: Test and Upload
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v3
+    - name: Set up Python 3.7
+      uses: actions/setup-python@v1
+      with:
+        python-version: 3.7
+    - name: Install dependencies and run test
+      run: |
+        pip install pytest
+        python -m pytest -vv --junitxml="test_results/output.xml"
+    - name: Upload files with github action
+      if: success() || failure()
+      uses: aviator-co/upload-action@v0.1.0
+      with:
+        assets: test_results/output.xml
+        aviator_api_token: ${{ secrets.AVIATOR_API_TOKEN }}
