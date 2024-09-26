@@ -47,12 +47,6 @@ pull_request_rules:
       label:
         toggle:
           - top of the stack
-  - name: Automatic merge
-    description: Merge when PR passes all branch protection and has label automerge
-    conditions:
-      - label = automerge
-    actions:
-      merge:
   - name: Notify when a PR is removed from the queue
     description: Notify the PR author when its pull request is removed from the merge queue.
     conditions:
