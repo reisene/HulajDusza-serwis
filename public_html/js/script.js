@@ -161,7 +161,7 @@ $(document).ready(function () {
     /**
      * Registers the service worker.
      */
-    function register_ServiceWorker() {
+    function registerServiceWorker() {
       const swUrl = '/js/service-worker.js';
       navigator.serviceWorker
         .register(swUrl)
