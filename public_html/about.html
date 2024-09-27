@@ -71,21 +71,21 @@
     </script>
 
     <!-- Sentry -->
-    <script
-        src="https://js-de.sentry-cdn.com/1eb1a271b9a426a0673669241d92edff.min.js"
-        crossorigin="anonymous">
-    </script>
     <script>
         Sentry.onLoad(function() {
           Sentry.init({
               // Tracing
               tracesSampleRate: 1.0, // Capture 100% of the transactions
               // Session Replay
-              replaysSessionSampleRate: 0.1, // This sets the sample rate at 10%. You may want to change it to 100% while in development and then sample at a lower rate in production.
+              replaysSessionSampleRate: 1.0, // This sets the sample rate at 10%. You may want to change it to 100% while in development and then sample at a lower rate in production.
               replaysOnErrorSampleRate: 1.0, // If you're not already sampling the entire session, change the sample rate to 100% when sampling sessions where errors occur.
             });
         });
-      </script>
+    </script>
+    <script
+        src="https://js-de.sentry-cdn.com/1eb1a271b9a426a0673669241d92edff.min.js"
+        crossorigin="anonymous">
+    </script>
 
     <!-- jQuery -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
