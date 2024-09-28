@@ -1,3 +1,8 @@
+/**
+ * @description Formats phone input in a real-time manner. It removes non-digit
+ * characters, and when the length is exactly 9, it rearranges the digits to display
+ * them in groups of three with spaces between each group.
+ */
 function phoneFormatter() {
   // Formats phone input.
   $('#phone').on('input', function phoneInput() {
