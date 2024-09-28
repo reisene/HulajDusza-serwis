@@ -1,0 +1,27 @@
+- label: "JIRA"
+  message: "$issuePrefix"
+  icon: "jira"
+  color: "blue"
+  url: "https://jira.company.com/browse/$issuePrefix"
+  when: "$issuePrefix"
+
+
+
+- label: "PR Size"
+  message: "Large"
+  color: "red"
+  when: "$additions >= 500"
+
+- label: "PR Size"
+  message: "Medium"
+  color: "yellow"
+  when: "$additions > 200 && $additions < 500"
+
+- label: "Passed"
+  message: "QA"
+  color: green
+  when: "$payload.pull_request.body.includes('- [x] QA')"
+
+- message: "Contributor"
+  color: "#000000"
+  when: "$payload.pull_request.author_association == 'CONTRIBUTOR'"
