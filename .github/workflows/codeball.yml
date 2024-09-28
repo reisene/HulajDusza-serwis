@@ -1,6 +1,6 @@
 name: Codeball
 on:
-  pull_request: {}
+  pull_request:
   pull_request_review_comment:
     types: [created, edited]
 
@@ -15,5 +15,5 @@ jobs:
           # For all configuration options see https://github.com/sturdy-dev/codeball-action/blob/v2/action.yml
           approvePullRequests: "true"
           labelPullRequestsWhenApproved: "true"
-          labelPullRequestsWhenReviewNeeded: "true"
+          labelPullRequestsWhenReviewNeeded: "false"
           failJobsWhenReviewNeeded: "false"
