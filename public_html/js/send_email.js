@@ -12,13 +12,13 @@ phoneFormatter();
 const form = $("#my-form");
 
 /**
- * @description Processes a form submission asynchronously, validating user input and
- * sending data to a PHP script for email or phone notification. It handles errors,
- * displays notifications, and resets the form after successful submission.
+ * @description Processes and submits a form asynchronously, performing client-side
+ * validation and displaying notifications accordingly. It handles form data preparation,
+ * submission to a PHP script, and reset.
  *
- * @param {Event} event - Used to prevent form submission.
+ * @param {Event} event - Used to handle form submission events.
  *
- * @param {string} token - Used for Google reCAPTCHA validation.
+ * @param {string} token - Used to validate form submissions using Google reCAPTCHA.
  */
 async function handleSubmit(event, token) {
   event.preventDefault();
@@ -87,6 +87,7 @@ async function handleSubmit(event, token) {
     if (result.success) {
       displayNotification(result.message, 'success');
       setTimeout(() => {
+        // Resets a form after a delay.
         form[0].reset(); // Reset the form after success
       }, 5000); // Delaying reset after success message
     } else {
@@ -104,6 +105,7 @@ async function handleSubmit(event, token) {
 }
 
 form.on("submit", async function(event) {
+  // Handles form submission events.
   event.preventDefault();
 
   try {
@@ -121,14 +123,13 @@ form.on("submit", async function(event) {
 });
 
 /**
- * @description Displays a notification to the user, indicating that it takes two
- * parameters: `message` and `type`. It adds the message and type to an existing HTML
- * element, notifies screen readers, and automatically hides the notification after
- * 5 seconds.
+ * @description Displays a notification to the user with the specified message and
+ * type, adding accessibility features for screen readers and automatically hiding
+ * after five seconds.
  *
- * @param {string} message - Displayed to the user as notification content.
+ * @param {string} message - Used to display an informative message on screen.
  *
- * @param {string} type - Used to specify notification style.
+ * @param {string | 'success' | 'error'} type - Used to specify the notification's style.
  */
 function displayNotification(message, type) {
   const notification = $("#notification");
@@ -145,6 +146,7 @@ function displayNotification(message, type) {
     notification.attr('aria-live', 'assertive');
 
     setTimeout(() => {
+      // Removes classes from an element after a delay.
       notification.removeClass('show', 'success', 'error');
       
     }, 5000);
