@@ -1,12 +1,13 @@
 /**
- * @description Displays a notification to the user, indicating that it takes two
- * parameters: `message` and `type`. It adds the message and type to an existing HTML
- * element, notifies screen readers, and automatically hides the notification after
+ * @description Creates a visual notification with a specified message and type on a
+ * webpage. It adds classes to display the notification, assigns an aria attribute
+ * for screen readers, sets the message content, and removes the notification after
  * 5 seconds.
  *
- * @param {string} message - Displayed to the user as notification content.
+ * @param {string} message - Used to set notification text content.
  *
- * @param {string} type - Used to specify notification style.
+ * @param {'success' | 'error' | string} type - Used to determine notification style
+ * (success or error).
  */
 
 function displayNotification(message, type) {
@@ -28,7 +29,7 @@ function displayNotification(message, type) {
         notification.setAttribute('aria-live', 'assertive');
 
         setTimeout(() => {
-            // Removes classes from an HTML element.
+            // Waits and removes classes.
             notification.classList.remove('show', 'success', 'error');
         }, 5000);
     }
