@@ -10,8 +10,8 @@
  */
 
 function displayNotification(message, type) {
-    var notification = document.getElementById("notification");
-    var notificationMessage = document.getElementById("notification-message");
+    const notification = document.getElementById("notification");
+    const notificationMessage = document.getElementById("notification-message");
 
     // Make sure notification exists before attempting to modify it
     if (!notification || !notificationMessage) {
