@@ -37,5 +37,5 @@ jobs:
           OCO_DESCRIPTION: false
           OCO_EMOJI: false
           OCO_MODEL: gpt-4o
-          OCO_LANGUAGE: en
+          OCO_LANGUAGE: pl
           OCO_PROMPT_MODULE: conventional-commit
