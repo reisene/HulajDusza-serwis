@@ -13,13 +13,13 @@ phoneFormatter();
 const form = document.getElementById("my-form");
 
 /**
- * @description Processes a form submission asynchronously, validating user input and
- * sending data to a PHP script for email or phone notification. It handles errors,
- * displays notifications, and resets the form after successful submission.
+ * @description Processes and submits a form asynchronously, performing client-side
+ * validation and displaying notifications accordingly. It handles form data preparation,
+ * submission to a PHP script, and reset.
  *
- * @param {Event} event - Used to prevent form submission.
+ * @param {Event} event - Used to handle form submission events.
  *
- * @param {string} token - Used for Google reCAPTCHA validation.
+ * @param {string} token - Used to validate form submissions using Google reCAPTCHA.
  */
 async function handleSubmit(event, token) {
   event.preventDefault();
