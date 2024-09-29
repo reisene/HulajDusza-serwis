@@ -5,11 +5,12 @@
  * @param {string} token - The reCAPTCHA token obtained after user interaction.
  * @returns {void}
  */
+import displayNotification from './modules/notification.js';
+import phoneFormatter from './modules/phone_format.js';
 
-import phoneFormatter from './phone_format.js';
 phoneFormatter();
 
-const form = $("#my-form");
+const form = document.getElementById("my-form");
 
 /**
  * @description Processes and submits a form asynchronously, performing client-side
@@ -24,18 +25,18 @@ async function handleSubmit(event, token) {
   event.preventDefault();
 
   // Check if form exists before continuing
-  if (!form.length) {
+  if (!form) {
     console.error("Form not found.");
     return;
   }
   
-  const notification = $("#notification");
-  const notificationMessage = $("#notification-message");
+  const notification = document.getElementById("notification");
+  const notificationMessage = document.getElementById("notification-message");
   const formData = {
-    email: $("#email").val().trim(),
-    phone: $("#phone").val().replace(/\D/g, ''),
-    name: $("#name").val().trim(),
-    message: $("#message").val().trim()
+    email: document.getElementById("email").value,
+    phone: document.getElementById("phone").value.replace(/\D/g, ''),
+    name: document.getElementById("name").value,
+    message: document.getElementById("message").value
   };
 
   const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
@@ -56,9 +57,9 @@ async function handleSubmit(event, token) {
     return;
   }
 
-  const submitButton = form.find('button[type="submit"]');
-  if (submitButton.length) {
-    submitButton.prop('disabled', true);
+  const submitButton = form.querySelector('button[type="submit"]');
+  if (submitButton) {
+      submitButton.disabled = true;
   }
 
   const uniqueID = `${Date.now()}${Math.floor(Math.random() * 1000000).toString(36)}`;
@@ -74,81 +75,50 @@ async function handleSubmit(event, token) {
 
   // Send data to PHP
   try {
-    const response = await $.ajax({
-      type: 'POST',
-      url: '/php/send_email.php',
-      data: data,
-      contentType: false,
-      processData: false
+    const response = await fetch('/php/send_email.php', {
+      method: 'POST',
+      body: data,
     });
-
-    const result = response;
-
+  
+    const result = await response.json();
+  
     if (result.success) {
       displayNotification(result.message, 'success');
       setTimeout(() => {
-        // Resets a form after a delay.
-        form[0].reset(); // Reset the form after success
+        form.reset(); // Reset the form after success
       }, 5000); // Delaying reset after success message
     } else {
       displayNotification(result.message, 'error');
     }
   } catch (error) {
-    console.error("Form submission error:", error);
+    console.error("Form submission error:", error.message, error.stack);
     displayNotification("Ups! Wystąpił problem z przesłaniem formularza", 'error');
   } finally {
     // Re-enable the submit button
-    if (submitButton.length) {
-      submitButton.prop('disabled', false);
+    if (submitButton) {
+      submitButton.disabled = false;
     }
   }
 }
 
-form.on("submit", async function(event) {
-  // Handles form submission events.
+form.addEventListener("submit", function(event) {
+  // Listens for form submission.
   event.preventDefault();
-
-  try {
-    const token = await grecaptcha.execute('6LeTFCAqAAAAAKlvDJZjZnVCdtD76hc3YZiIUs_Q', { action: 'submit' });
-
-    if (token) {
-      handleSubmit(event, token);
-    } else {
-      displayNotification("ReCAPTCHA verification failed. Please try again.", 'error');
-    }
-  } catch (error) {
-    console.error("ReCAPTCHA error:", error);
-    displayNotification("ReCAPTCHA verification failed. Please try again.", 'error');
-  }
-});
-
-/**
- * @description Displays a notification to the user with the specified message and
- * type, adding accessibility features for screen readers and automatically hiding
- * after five seconds.
- *
- * @param {string} message - Used to display an informative message on screen.
- *
- * @param {string | 'success' | 'error'} type - Used to specify the notification's style.
- */
-function displayNotification(message, type) {
-  const notification = $("#notification");
-  const notificationMessage = $("#notification-message");
-
-  if (notification.length && notificationMessage.length) {
-    // Add the notification type and show classes
-    notification.addClass(type).addClass('show');
-
-    // Update the notification message
-    notificationMessage.text(message);
-
-    // Notify screen readers
-    notification.attr('aria-live', 'assertive');
-
-    setTimeout(() => {
-      // Removes classes from an element after a delay.
-      notification.removeClass('show', 'success', 'error');
-      
-    }, 5000);
-  }
-}
+  grecaptcha.ready(function() {
+      // Executes a reCAPTCHA challenge and handles its result.
+      grecaptcha.execute('6LeTFCAqAAAAAKlvDJZjZnVCdtD76hc3YZiIUs_Q', {action: 'submit'})
+      .then(function(token) {
+          // Handles ReCAPTCHA response.
+          if (token) {
+              handleSubmit(event, token);
+          } else {
+              displayNotification("ReCAPTCHA verification failed. Please try again.", 'error');
+          }
+      })
+      .catch(function(error) {
+          // Catches errors.
+          console.error("ReCAPTCHA error:", error);
+          displayNotification("ReCAPTCHA verification failed. Please try again.", 'error');
+      });
+  });
+})
