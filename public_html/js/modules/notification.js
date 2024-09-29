@@ -22,7 +22,7 @@ function displayNotification(message, type) {
     // Make sure notification exists before attempting to modify it
     if (notification && notificationMessage) {
         notification.classList.add(type, 'show');
-        notificationMessage.innerHTML = message;
+        notificationMessage.textContent = message;
 
         // Notify screen readers
         notification.setAttribute('aria-live', 'assertive');
