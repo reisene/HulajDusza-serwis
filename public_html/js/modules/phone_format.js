@@ -1,12 +1,12 @@
 /**
- * @description Formats phone input in a real-time manner. It removes non-digit
- * characters, and when the length is exactly 9, it rearranges the digits to display
- * them in groups of three with spaces between each group.
+ * @description Formats phone numbers input into a text field with a specific format,
+ * separating digits every three characters with spaces. It achieves this by listening
+ * for input changes and modifying the formatted value accordingly.
  */
 function phoneFormatter() {
   // Formats phone input.
   $('#phone').on('input', function phoneInput() {
-    // Formats phone numbers.
+    // Formats phone numbers as user types.
     var value = $(this).val().replace(/\D/g, ''); // Remove all non-digit characters
     if (value.length === 9) {
       var formattedValue = '';

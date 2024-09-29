@@ -13,13 +13,14 @@ phoneFormatter();
 const form = document.getElementById("my-form");
 
 /**
- * @description Processes and submits a form asynchronously, performing client-side
- * validation and displaying notifications accordingly. It handles form data preparation,
- * submission to a PHP script, and reset.
+ * @description Prevents form submission default action, validates form data for email
+ * and phone fields, prepares a FormData object with the validated data, sends it to
+ * a PHP endpoint via fetch API, and displays success or error notifications based
+ * on the response received.
  *
- * @param {Event} event - Used to handle form submission events.
+ * @param {Event} event - Used to prevent default form submission behavior.
  *
- * @param {string} token - Used to validate form submissions using Google reCAPTCHA.
+ * @param {string} token - Required for reCAPTCHA verification.
  */
 async function handleSubmit(event, token) {
   event.preventDefault();
@@ -85,6 +86,7 @@ async function handleSubmit(event, token) {
     if (result.success) {
       displayNotification(result.message, 'success');
       setTimeout(() => {
+        // Calls `form.reset()` after a 5-second delay.
         form.reset(); // Reset the form after success
       }, 5000); // Delaying reset after success message
     } else {
@@ -102,10 +104,10 @@ async function handleSubmit(event, token) {
 }
 
 form.addEventListener("submit", function(event) {
-  // Listens for form submission.
+  // Listens for form submission events.
   event.preventDefault();
   grecaptcha.ready(function() {
-      // Executes a reCAPTCHA challenge and handles its result.
+      // Executes reCAPTCHA and handles its response.
       grecaptcha.execute('6LeTFCAqAAAAAKlvDJZjZnVCdtD76hc3YZiIUs_Q', {action: 'submit'})
       .then(function(token) {
           // Handles ReCAPTCHA response.
@@ -116,7 +118,7 @@ form.addEventListener("submit", function(event) {
           }
       })
       .catch(function(error) {
-          // Catches errors.
+          // Handles catched ReCAPTCHA errors.
           console.error("ReCAPTCHA error:", error);
           displayNotification("ReCAPTCHA verification failed. Please try again.", 'error');
       });
