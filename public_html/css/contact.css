@@ -66,10 +66,6 @@
     color: #555;
 }
 
-.fa-paper-plane{
-    margin-right: 5px;
-}
-
 .contact-details{
     grid-column: 1 / 2;
 }
@@ -175,6 +171,10 @@ button {
 
 button:hover {
     background-color: #555;
+}
+
+.fa-paper-plane{
+    margin-right: 5px;
 }
 
 .status {
