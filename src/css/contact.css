@@ -166,6 +166,41 @@ fieldset {
     border-radius: 4px;
     cursor: pointer;
     font-size: 16px;
+    transition: transform 0.3s ease-in-out;
+}
+
+#my-form-button.loading {
+  transform: scale(0.8);
+}
+
+#my-form-button.loading .fa-paper-plane {
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+
+#my-form-button.loading .fa-spinner {
+  opacity: 1;
+  transition: opacity 0.3s ease-in-out;
+}
+
+#my-form-button.success {
+  background-color: #4CAF50;
+  color: white;
+}
+
+#my-form-button.success .fa-check {
+  opacity: 1;
+  transition: opacity 0.3s ease-in-out;
+}
+
+#my-form-button.error {
+  background-color: #F44336;
+  color: white;
+}
+
+#my-form-button.error .fa-times {
+  opacity: 1;
+  transition: opacity 0.3s ease-in-out;
 }
 
 #my-form-button:hover {
@@ -174,6 +209,10 @@ fieldset {
 
 #my-form-button .fa-paper-plane, #my-form-button .send-form{
     margin: 0 5px;
+}
+
+.hidden {
+    display: none;
 }
 
 .status {
