@@ -103,7 +103,7 @@ $(document).ready(function () {
   
       let headerPadding = maxPadding - (scrollTop / maxScroll) * (maxPadding - minPadding);
       
-      if (headerPadding < minPadding) {headerPadding = minPadding};
+      if (headerPadding < minPadding) {headerPadding = minPadding}
 
       stickyHeader.css('padding', headerPadding + 'px 20px');
     }

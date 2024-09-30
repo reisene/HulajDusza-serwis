@@ -7,8 +7,10 @@
  */
 import displayNotification from './modules/notification.js';
 import phoneFormatter from './modules/phone_format.js';
+import initButtonAnimation from './modules/button-animation.js';
 
 phoneFormatter();
+const { animateButton, resetButton } = initButtonAnimation();
 
 const form = document.getElementById("my-form");
 
@@ -86,20 +88,27 @@ async function handleSubmit(event, token) {
     if (result.success) {
       displayNotification(result.message, 'success');
       setTimeout(() => {
+        animateButton('success');
+      }, 0);
+      setTimeout(() => {
         // Calls `form.reset()` after a 5-second delay.
         form.reset(); // Reset the form after success
       }, 5000); // Delaying reset after success message
     } else {
       displayNotification(result.message, 'error');
+      setTimeout(() => {
+        animateButton('error');
+      }, 0);
     }
   } catch (error) {
     console.error("Form submission error:", error.message, error.stack);
     displayNotification("Ups! Wystąpił problem z przesłaniem formularza", 'error');
   } finally {
     // Re-enable the submit button
-    if (submitButton) {
-      submitButton.disabled = false;
-    }
+    submitButton.disabled = false;
+    setTimeout(() => {
+      resetButton ();
+    }, 5000);
   }
 }
 
