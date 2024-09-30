@@ -159,8 +159,8 @@ fieldset {
     justify-content: center; /* Center the button within the form */
 }
 
-button {
-    padding: 10px 20px;
+#my-form-button {
+    padding: 10px;
     background-color: #ac2a21;
     color: #fff;
     border: none;
@@ -169,12 +169,12 @@ button {
     font-size: 16px;
 }
 
-button:hover {
+#my-form-button:hover {
     background-color: #555;
 }
 
-.fa-paper-plane{
-    margin-right: 5px;
+#my-form-button .fa-paper-plane, #my-form-button .send-form{
+    margin: 0 5px;
 }
 
 .status {
