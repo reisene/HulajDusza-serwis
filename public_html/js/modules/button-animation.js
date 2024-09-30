@@ -4,6 +4,7 @@ function initButtonAnimation() {
 
     // Funkcja do animacji ładowania
     function animateLoading() {
+        formButton.classList.remove('submit')
         formButton.classList.add('loading');
         formButton.querySelector('.fa-paper-plane').classList.add('hidden');
         formButton.querySelector('.fa-spinner').classList.remove('hidden');
@@ -24,11 +25,22 @@ function initButtonAnimation() {
     
     // Funkcja do resetowania buttonu
     function resetButton() {
+        if (formButton) {
             formButton.classList.remove('loading', 'success', 'error');
-            formButton.querySelector('.fa-check').classList.add('hidden');
-            formButton.querySelector('.fa-times').classList.add('hidden');
-            formButton.querySelector('.fa-paper-plane').classList.remove('hidden');
-        
+            formButton.classList.add('submit');
+            const faCheck = formButton.querySelector('.fa-check');
+            const faTimes = formButton.querySelector('.fa-times');
+            if (faCheck) {
+                faCheck.classList.add('hidden');
+            }
+            if (faTimes) {
+                faTimes.classList.add('hidden');
+            }
+            const faPaperPlane = formButton.querySelector('.fa-paper-plane');
+            faPaperPlane.setAttribute('class', 'svg-inline--fa fa-paper-plane');
+        } else {
+            console.error('formButton jest null');
+        }
     }
 
     // Dodaj klasę loading po kliknięciu przycisku

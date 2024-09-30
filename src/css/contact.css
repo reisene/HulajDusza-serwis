@@ -160,8 +160,8 @@ fieldset {
 
 #my-form-button {
     padding: 10px;
-    background-color: #ac2a21;
     color: #fff;
+    background-color: #ac2a21;
     border: none;
     border-radius: 4px;
     cursor: pointer;
@@ -169,45 +169,73 @@ fieldset {
     transition: transform 0.3s ease-in-out;
 }
 
+#my-form-button.submit {
+    background-color: #ac2a21;
+}
+
+#my-form-button.submit .fa-paper-plane {
+    opacity: 1;
+    transition: opacity 0.3s ease-in-out;
+    -webkit-transition: opacity 0.3s ease-in-out;
+    -moz-transition: opacity 0.3s ease-in-out;
+    -ms-transition: opacity 0.3s ease-in-out;
+    -o-transition: opacity 0.3s ease-in-out;
+}
+
 #my-form-button.loading {
-  transform: scale(0.8);
+    background-color: #555;
+    transform: scale(0.8);
 }
 
 #my-form-button.loading .fa-paper-plane {
-  opacity: 0;
-  transition: opacity 0.3s ease-in-out;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+    -webkit-transition: opacity 0.3s ease-in-out;
+    -moz-transition: opacity 0.3s ease-in-out;
+    -ms-transition: opacity 0.3s ease-in-out;
+    -o-transition: opacity 0.3s ease-in-out;
 }
 
 #my-form-button.loading .fa-spinner {
-  opacity: 1;
-  transition: opacity 0.3s ease-in-out;
+    opacity: 1;
+    transition: opacity 0.3s ease-in-out;
+    -webkit-transition: opacity 0.3s ease-in-out;
+    -moz-transition: opacity 0.3s ease-in-out;
+    -ms-transition: opacity 0.3s ease-in-out;
+    -o-transition: opacity 0.3s ease-in-out;
 }
 
 #my-form-button.success {
-  background-color: #4CAF50;
-  color: white;
+    background-color: #4CAF50;
 }
 
 #my-form-button.success .fa-check {
-  opacity: 1;
-  transition: opacity 0.3s ease-in-out;
+    opacity: 1;
+    transition: opacity 0.3s ease-in-out;
+    -webkit-transition: opacity 0.3s ease-in-out;
+    -moz-transition: opacity 0.3s ease-in-out;
+    -ms-transition: opacity 0.3s ease-in-out;
+    -o-transition: opacity 0.3s ease-in-out;
 }
 
 #my-form-button.error {
-  background-color: #F44336;
-  color: white;
+    background-color: #F44336;
 }
 
 #my-form-button.error .fa-times {
-  opacity: 1;
-  transition: opacity 0.3s ease-in-out;
+    opacity: 1;
+    transition: opacity 0.3s ease-in-out;
+    -webkit-transition: opacity 0.3s ease-in-out;
+    -moz-transition: opacity 0.3s ease-in-out;
+    -ms-transition: opacity 0.3s ease-in-out;
+    -o-transition: opacity 0.3s ease-in-out;
 }
 
 #my-form-button:hover {
     background-color: #555;
 }
 
-#my-form-button .fa-paper-plane, #my-form-button .send-form{
+#my-form-button i, #my-form-button .send-form{
     margin: 0 5px;
 }
 

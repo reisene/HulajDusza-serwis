@@ -106,7 +106,9 @@ async function handleSubmit(event, token) {
   } finally {
     // Re-enable the submit button
     submitButton.disabled = false;
-    resetButton ();
+    setTimeout(() => {
+      resetButton ();
+    }, 5000);
   }
 }
 
