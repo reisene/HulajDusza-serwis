@@ -15,14 +15,13 @@ const { animateButton, resetButton } = initButtonAnimation();
 const form = document.getElementById("my-form");
 
 /**
- * @description Prevents form submission default action, validates form data for email
- * and phone fields, prepares a FormData object with the validated data, sends it to
- * a PHP endpoint via fetch API, and displays success or error notifications based
- * on the response received.
+ * @description Processes a form submission, validating user input and sending it to
+ * a PHP script via an AJAX request. It also displays notifications, resets the form
+ * after success, and re-enables the submit button upon completion or failure.
  *
  * @param {Event} event - Used to prevent default form submission behavior.
  *
- * @param {string} token - Required for reCAPTCHA verification.
+ * @param {string} token - Used to authenticate reCAPTCHA responses.
  */
 async function handleSubmit(event, token) {
   event.preventDefault();
@@ -88,15 +87,17 @@ async function handleSubmit(event, token) {
     if (result.success) {
       displayNotification(result.message, 'success');
       setTimeout(() => {
+        // Calls animateButton with 'success'.
         animateButton('success');
       }, 0);
       setTimeout(() => {
-        // Calls `form.reset()` after a 5-second delay.
+        // Calls form.reset() with a delay.
         form.reset(); // Reset the form after success
       }, 5000); // Delaying reset after success message
     } else {
       displayNotification(result.message, 'error');
       setTimeout(() => {
+        // Immediately invokes itself.
         animateButton('error');
       }, 0);
     }
@@ -107,19 +108,20 @@ async function handleSubmit(event, token) {
     // Re-enable the submit button
     submitButton.disabled = false;
     setTimeout(() => {
+      // Calls `resetButton` after 5 seconds delay.
       resetButton ();
     }, 5000);
   }
 }
 
 form.addEventListener("submit", function(event) {
-  // Listens for form submission events.
+  // Handles form submission events.
   event.preventDefault();
   grecaptcha.ready(function() {
       // Executes reCAPTCHA and handles its response.
       grecaptcha.execute('6LeTFCAqAAAAAKlvDJZjZnVCdtD76hc3YZiIUs_Q', {action: 'submit'})
       .then(function(token) {
-          // Handles ReCAPTCHA response.
+          // Handles ReCAPTCHA responses.
           if (token) {
               handleSubmit(event, token);
           } else {
@@ -127,7 +129,7 @@ form.addEventListener("submit", function(event) {
           }
       })
       .catch(function(error) {
-          // Handles catched ReCAPTCHA errors.
+          // Catches ReCAPTCHA errors.
           console.error("ReCAPTCHA error:", error);
           displayNotification("ReCAPTCHA verification failed. Please try again.", 'error');
       });

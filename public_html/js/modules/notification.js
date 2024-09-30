@@ -1,13 +1,12 @@
 /**
- * @description Creates a visual notification with a specified message and type on a
- * webpage. It adds classes to display the notification, assigns an aria attribute
- * for screen readers, sets the message content, and removes the notification after
- * 5 seconds.
+ * @description Displays a notification to the user with a specified message and type,
+ * adding it to the webpage and notifying screen readers. It removes the notification
+ * after 5 seconds, allowing for customizable notifications.
  *
- * @param {string} message - Used to set notification text content.
+ * @param {string} message - Intended to display notification content.
  *
- * @param {'success' | 'error' | string} type - Used to determine notification style
- * (success or error).
+ * @param {string | 'success' | 'error'} type - Used to indicate the notification's
+ * color scheme.
  */
 
 function displayNotification(message, type) {
@@ -29,7 +28,7 @@ function displayNotification(message, type) {
         notification.setAttribute('aria-live', 'assertive');
 
         setTimeout(() => {
-            // Waits and removes classes.
+            // Waits then removes classes.
             notification.classList.remove('show', 'success', 'error');
         }, 5000);
     }
