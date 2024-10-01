@@ -165,8 +165,12 @@ $(document).ready(function () {
       const swUrl = '/js/service-worker.js';
       navigator.serviceWorker
         .register(swUrl)
-        .then(({ scope }) => console.log(`ServiceWorker registration successful with scope: ${scope}`))
-        .catch((error) => console.error(`ServiceWorker registration failed: ${error}`));
+        .then(({ scope }) => Sentry.captureMessage(`ServiceWorker registration successful with scope: ${scope}`, 'info'))
+        .catch((error) => Sentry.captureException(error, {
+  extra: {
+    foo: 'bar',
+  },
+}));
     }
   
     // Element visibility check
@@ -180,7 +184,7 @@ $(document).ready(function () {
       );
     }
   
-    // Tawk.to Script
+    // Tawk.to Script to initialize chat
     var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
     (function(){
       var s1 = document.createElement("script"), s0 = document.getElementsByTagName("script")[0];
