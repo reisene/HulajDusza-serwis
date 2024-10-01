@@ -3,6 +3,8 @@
  *
  * @returns {void}
  */
+import initStickyHeader from './modules/sticky-header.js';
+
 $(document).ready(function () {
     // Initialize AOS
     AOS.init({
@@ -77,38 +79,7 @@ $(document).ready(function () {
       }, 800);
     });
   
-    // Sticky header and menu
-    const stickyHeader = $('header');
-    const stickyMenu = $('nav.menu');
-    const sticky = stickyHeader.offset().top;
-    const logo = $('.header-left img'); // Select your logo image
-  
-    function makeSticky() {
-      const scrollTop = $(window).scrollTop();
-      const stickyClass = scrollTop > sticky ? 'sticky' : '';
-      stickyHeader.addClass(stickyClass);
-      stickyMenu.addClass(stickyClass);
-  
-      // Logo and header scaling
-      const maxLogoScale = 150; // Original width
-      const minLogoScale = 100; // Reduced width in sticky state
-      const maxScroll = 300; // Adjust this value to set when the scaling stops
-  
-      let logoWidth = maxLogoScale - (scrollTop / maxScroll) * (maxLogoScale - minLogoScale);
-      logoWidth = Math.max(logoWidth, minLogoScale);
-      logo.css('width', logoWidth + 'px');
-  
-      const maxPadding = 10; // Original padding top/bottom
-      const minPadding = 5;  // Reduced padding in sticky state
-  
-      let headerPadding = maxPadding - (scrollTop / maxScroll) * (maxPadding - minPadding);
-      
-      if (headerPadding < minPadding) {headerPadding = minPadding}
-
-      stickyHeader.css('padding', headerPadding + 'px 20px');
-    }
-  
-    $(window).scroll(makeSticky);
+    initStickyHeader();
   
     // Page title modification
     const originalTitle = document.title;
