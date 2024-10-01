@@ -60,8 +60,12 @@ function initButtonAnimation() {
             const faPaperPlane = formButton.querySelector('.fa-paper-plane');
             faPaperPlane.setAttribute('class', 'svg-inline--fa fa-paper-plane');
         } else {
-            throw new Error('formButton is null');
-        }
+    Sentry.captureException(new Error('formButton is null'), {
+      extra: {
+        foo: 'bar',
+      },
+    });
+  }
     }
 
     // Dodaj klasę loading po kliknięciu przycisku
