@@ -35,7 +35,7 @@ function getStickyHeader() {
   
     let headerPadding = maxPadding - (scrollTop / maxScroll) * (maxPadding - minPadding);
     
-    headerPadding = Math.max(headerPadding, minPadding)
+    headerPadding = Math.max(headerPadding, minPadding);
   
     stickyHeader.css('padding', headerPadding + 'px 20px');
   }
