@@ -60,7 +60,7 @@ function initButtonAnimation() {
             const faPaperPlane = formButton.querySelector('.fa-paper-plane');
             faPaperPlane.setAttribute('class', 'svg-inline--fa fa-paper-plane');
         } else {
-            console.error('formButton jest null');
+            throw new Error('formButton is null');
         }
     }
 
