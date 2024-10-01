@@ -165,12 +165,11 @@ $(document).ready(function () {
       const swUrl = '/js/service-worker.js';
       navigator.serviceWorker
         .register(swUrl)
-        .then(({ scope }) => Sentry.captureMessage(`ServiceWorker registration successful with scope: ${scope}`, 'info'))
         .catch((error) => Sentry.captureException(error, {
-  extra: {
-    foo: 'bar',
-  },
-}));
+          extra: {
+            foo: 'bar',
+          },
+        }));
     }
   
     // Element visibility check
