@@ -31,6 +31,7 @@ const cacheExpirationTime = 30;
 
 // Install event listener
 self.addEventListener('install', (event) => {
+  // Initializes a service worker during installation.
   event.waitUntil(
     caches.open(CACHE_NAME)
       .then((cache) => cache.addAll(urlsToCache))
@@ -39,6 +40,7 @@ self.addEventListener('install', (event) => {
 
 // Fetch event listener
 self.addEventListener('fetch', (event) => {
+  // Handles browser requests for caching purposes.
   event.respondWith(
     async function() {
       const cache = await caches.open(CACHE_NAME);
@@ -68,10 +70,13 @@ self.addEventListener('fetch', (event) => {
 
 // Activate event listener
 self.addEventListener('activate', (event) => {
+  // Cleans old cache names during service worker activation.
   event.waitUntil(
     caches.keys().then((cacheNames) => {
+      // Deletes non-matching caches.
       return Promise.all(
         cacheNames.map((cacheName) => {
+          // Deletes cache entries.
           if (cacheName !== CACHE_NAME) {
             return caches.delete(cacheName);
           }
@@ -83,6 +88,7 @@ self.addEventListener('activate', (event) => {
 
 // Push event listener
 self.addEventListener('push', (event) => {
+  // Handles incoming push notifications.
   if (event.data) {
     console.log('Received push data:', event.data.text());
   } else {
@@ -92,9 +98,11 @@ self.addEventListener('push', (event) => {
 
 // Notification click event listener
 self.addEventListener('notificationclick', (event) => {
+  // Handles notification clicks.
   event.notification.close();
   event.waitUntil(
     clients.matchAll().then((clients) => {
+      // Opens a new browser window to root URL.
       if (clients.openWindow) {
         return clients.openWindow('/');
       }
