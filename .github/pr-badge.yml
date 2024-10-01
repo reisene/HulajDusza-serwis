@@ -5,7 +5,12 @@
   url: "https://jira.company.com/browse/$issuePrefix"
   when: "$issuePrefix"
 
+- message: "$author"
+  color: "green"
 
+- message: "Work in Progress"
+  color: "yellow"
+  when: "$payload.pull_request.title.includes('WIP')"
 
 - label: "PR Size"
   message: "Large"
@@ -25,3 +30,24 @@
 - message: "Contributor"
   color: "#000000"
   when: "$payload.pull_request.author_association == 'CONTRIBUTOR'"
+
+- label: "Label"
+  message: "Feature"
+  when: "$labels.includes('Feature')"
+
+- label: "Label"
+  message: "Fix"
+  when: "$labels.includes('Fix')"
+
+- label: "Label"
+  message: "Task"
+  when: "$labels.includes('Task')"
+
+- label: "Draft"
+  message: "Draft"
+  color: "lightgrey"
+  when: "$payload.pullrequest.draft"
+
+- label: "Closed"
+  message: "Closed"
+  color: "gray"
