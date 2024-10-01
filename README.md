@@ -1,3 +1,5 @@
+[![codebeat badge](https://codebeat.co/badges/cffb6fb5-1852-4ee0-8376-611636ce6e54)](https://codebeat.co/projects/github-com-reisene-hulajdusza-serwis-main)
+
 # HulajDusza-serwis
 
 ## PL: Projekt strony internetowej dla serwisu hulajnóg elektrycznych
