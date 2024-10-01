@@ -7,11 +7,13 @@ const postcss = require('gulp-postcss');
 const autoprefixer = require('autoprefixer');
 const postcssPresetEnv = require('postcss-preset-env');
 const sourcemaps = require('gulp-sourcemaps');
+const babel = require('gulp-babel');
 
 const paths = {
   src: 'src/',
   css: 'src/css/**/*.css', // Ścieżka do plików CSS
   partials: 'src/partials',
+  js: 'src/js/**/*.js',
   dest: 'public_html/'
 };
 
@@ -39,6 +41,14 @@ gulp.task('css', function() {
     .pipe(gulp.dest(path.join(paths.dest, 'css')));
 });
 
+gulp.task('js', function() {
+  return gulp.src('src/js/**/*.js')
+    .pipe(babel({
+      presets: ['@babel/preset-env']
+    }))
+    .pipe(gulp.dest('public_html/js'));
+});
+
 gulp.task('watch', function() {
   // Sets up file watching for Gulp tasks.
   gulp.watch([
@@ -46,6 +56,7 @@ gulp.task('watch', function() {
     path.join(paths.partials, '**/*.html'), // Monitoruje zmiany w folderze partials
     ], gulp.series('html'));
   gulp.watch(paths.css, gulp.series('css')); // Monitoruje zmiany w plikach CSS
+  gulp.watch('src/js/**/*.js', gulp.series('js'));
 });
 
-gulp.task('default', gulp.series('html', 'css'));
+gulp.task('default', gulp.series('html', 'css', 'js'));
