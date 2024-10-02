@@ -238,7 +238,7 @@ nav.menu ul li.active a span {
 }
 
 /* Style dla sticky menu i nagłówka */
-header.sticky, nav.menu.sticky {
+header.sticky {
     position: fixed;
     width: 100%;
     z-index: 1000;

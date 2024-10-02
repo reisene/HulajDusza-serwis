@@ -1,9 +1,3 @@
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports["default"] = void 0;
 /**
  * @description Formats phone numbers input into a text field with a specific format,
  * separating digits every three characters with spaces. It achieves this by listening
@@ -25,6 +19,6 @@ function phoneFormatter() {
       $(this).val(formattedValue);
     }
   });
-}
-;
-var _default = exports["default"] = phoneFormatter;
+};
+
+export default phoneFormatter;
