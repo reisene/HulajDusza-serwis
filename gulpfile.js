@@ -1,3 +1,5 @@
+require ('./instruments.js')
+
 const gulp = require('gulp');
 const fileInclude = require('gulp-file-include');
 const replace = require('gulp-replace');

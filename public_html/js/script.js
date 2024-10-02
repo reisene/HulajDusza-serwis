@@ -33,6 +33,15 @@ class App {
   initScrollToTop() {
     const scrollToTopBtn = $("#scrollToTopBtn");
 
+    // Smooth scroll functionality for navigation links
+    $('.smooth-scroll').click((event) => {
+      event.preventDefault();
+      const target = $(event.target).attr('href');
+      $('html, body').animate({
+        scrollToTopBtn: $(target).offset().top
+      }, 800);
+    });
+
     $(window).scroll(() => {
       if ($(window).scrollTop() > 20) {
         scrollToTopBtn.addClass("show");

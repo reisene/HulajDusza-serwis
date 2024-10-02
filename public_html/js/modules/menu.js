@@ -38,7 +38,7 @@ class Menu {
     });
 
     $(document).click((event) => {
-      if (!this.menu.is(event.target) && this.menu.ha(event.target).length === 0 &&
+      if (!this.menu.is(event.target) && this.menu.has(event.target).length === 0 &&
           !this.menuToggle.is(event.target) && this.menuToggle.has(event.target).length === 0 &&this.menu.hasClass('active')) {
         this.menu.css('animation', 'menu-opacitydown 0.2sease-in-out forwards');
         setTimeout(() => {
@@ -73,15 +73,6 @@ class Menu {
           (linkUrl === `${baseUrl}/index.html` && (currentUrl === `${baseUrl}/` || currentUrl === `${baseUrl}/index.html`))) {
           $(element).parent().addClass('active');
       }
-    });
-
-    // Smooth scroll functionality for navigation links
-    $('.smooth-scroll').click((event) => {
-      event.preventDefault();
-      const target = $(event.target).attr('href');
-      $('html, body').animate({
-        scrollTop: $(target).offset().top
-      }, 800);
     });
   }
 }
