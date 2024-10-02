@@ -30,7 +30,7 @@ class Menu {
       if (!this.menu.hasClass('active')) {
         this.menu.addClass('active').css('animation','menu-opacityup 0.2s ease-in-out forwards');
       } else {
-        this.menu.css('animation', 'menu-opacitydown 0.2sease-in-out forwards');
+        this.menu.css('animation', 'menu-opacitydown 0.2s ease-in-out forwards');
         setTimeout(() => {
           // Calls immediately with a 200ms delay.
           this.menu.removeClass('active');
