@@ -1,0 +1,3 @@
+import { MissingInstrumentationContext } from '@sentry/types';
+export declare const createMissingInstrumentationContext: (pkg: string) => MissingInstrumentationContext;
+//# sourceMappingURL=createMissingInstrumentationContext.d.ts.map
