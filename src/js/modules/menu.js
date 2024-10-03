@@ -25,28 +25,33 @@ class Menu {
    * adding an 'active' class to the current menu item based on the current URL.
    */
   init() {
+    this.handleMenuToggle();
+    this.handleDocumentClick();
+    this.handleWindowResize();
+    this.addActiveClassToMenuItem();
+  }
+  
+  handleMenuToggle() {
     this.menuToggle.click(() => {
-      // Toggles a menu's active state and animation.
       if (!this.menu.hasClass('active')) {
         this.menu.addClass('active').css('animation','menu-opacityup 0.2s ease-in-out forwards');
       } else {
         this.menu.css('animation', 'menu-opacitydown 0.2s ease-in-out forwards');
         setTimeout(() => {
-          // Calls immediately with a 200ms delay.
           this.menu.removeClass('active');
         }, 200); // Adjust to animation duration
       }
       this.menuIcon.toggle();
       this.closeIcon.toggle();
     });
-
+  }
+  
+  handleDocumentClick() {
     $(document).click((event) => {
-      // Handles document click events.
       if (!this.menu.is(event.target) && this.menu.has(event.target).length === 0 &&
           !this.menuToggle.is(event.target) && this.menuToggle.has(event.target).length === 0 &&this.menu.hasClass('active')) {
         this.menu.css('animation', 'menu-opacitydown 0.2sease-in-out forwards');
         setTimeout(() => {
-          // Executes after a delay of 200 milliseconds.
           this.menu.removeClass('active');
           this.closeIcon.hide();
           if ($(window).width() <= 768) {
@@ -55,9 +60,10 @@ class Menu {
         }, 200); // Adjust to animation duration
       }
     });
-
+  }
+  
+  handleWindowResize() {
     $(window).resize(() => {
-      // Runs on window resize.
       if ($(window).width() > 768) {
         this.menuIcon.hide();
         this.closeIcon.hide();
@@ -65,16 +71,15 @@ class Menu {
         this.menuIcon.show();
       }
     });
-
-    // Add 'active' class to the current menu item
+  }
+  
+  addActiveClassToMenuItem() {
     const currentUrl = window.location.href;
     const baseUrl = window.location.origin; // Get thebase URL
-
+  
     $('nav.menu ul li a').each((index, element) => {
-      // Iterates over each link in the navigation menu, checking if it is active based on
-      // the current URL.
       const linkUrl = element.href;
-
+  
       // Check if the link is to the homepage
       if (linkUrl === currentUrl ||
           (linkUrl === `${baseUrl}/` && currentUrl === `${baseUrl}/`) ||
