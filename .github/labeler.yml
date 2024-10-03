@@ -42,3 +42,7 @@ release:
 # Add 'JIRA' label to any PR where the head branch name starts with `HS-` or has a `HS-` section in the name
 JIRA:
  - head-branch: ['^HS-', 'HS-']
+
+ # Add 'fix' label to any PR where the head branch name starts with `fix` or has a `fix` section in the name
+fix:
+ - head-branch: ['^fix', 'fix']
