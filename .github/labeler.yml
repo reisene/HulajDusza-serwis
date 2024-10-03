@@ -38,3 +38,7 @@ improvement:
 # Add 'release' label to any PR that is opened against the `main` branch
 release:
  - base-branch: 'main'
+
+# Add 'JIRA' label to any PR where the head branch name starts with `HS-` or has a `HS-` section in the name
+JIRA:
+ - head-branch: ['^HS-', 'HS-']
