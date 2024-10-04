@@ -14,7 +14,6 @@
   "devDependencies": {
     "@babel/core": "^7.25.7",
     "@babel/preset-env": "^7.25.7",
-    "@sentry/node": "^8.33.1",
     "autoprefixer": "^10.4.20",
     "del": "^7.1.0",
     "gulp": "^5.0.0",
@@ -39,6 +38,7 @@
     "@fortawesome/fontawesome-free": "^6.6.0",
     "@fortawesome/fontawesome-svg-core": "^6.6.0",
     "@ngrok/ngrok": "^1.4.1",
+    "@sentry/node": "^8.33.1",
     "@sentry/profiling-node": "^8.33.1",
     "aos": "^3.0.0-beta.6",
     "body-parser": "^1.20.3",
