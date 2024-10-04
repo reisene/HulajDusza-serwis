@@ -5,22 +5,18 @@ import searchPosts from './modules/post-searcher.js';
 
 $(document).ready(function () {
 
-  // Loads and handles posts on a webpage.
   const postsContainer = $('#posts-container');
 
   try {
     loadPosts(postPaths, postsContainer).then(postElements => {
-      // Executes after loading posts.
+      // Handle post sorting
       $('.dropdown-item').on('click', function () {
-        // Handles a dropdown item click event, retrieves the sort type from the clicked item,
-        // and sorts the posts accordingly.
         const sortType = $(this).data('sort');
         sortPosts(sortType, postsContainer);
       });
 
       // Handle post searching
       $('#searchInput').on('keyup', function () {
-        // Triggers on each keyup event of an element.
         const searchTerm = $(this).val().toLowerCase();
         searchPosts(searchTerm, postsContainer);
       });
