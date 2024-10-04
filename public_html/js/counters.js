@@ -8,7 +8,7 @@ $(document).ready(function () {
     // Initializes counter elements with animation upon scrolling or loading.
     $('.timer').counterUp({
         delay: 10,
-        time: 1000
+        time: 1000,
     });
 
     /**
