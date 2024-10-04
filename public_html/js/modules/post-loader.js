@@ -1,24 +1,18 @@
 /**
- * @description Loads multiple HTML posts from given URLs, extracts post details,
- * creates HTML elements, and appends them to a container element upon completion.
- * It handles errors, supports pagination, and includes a "Read More" button with a
- * back-to-blog feature.
+ * Loads blog posts from HTML files and enables sorting and searching.
  *
- * @param {string[]} postPaths - An array of URLs to load HTML posts from.
+ * @param {string[]} postPaths - An array of paths to the blog post HTML files.
+ * @param {jQuery} postsContainer - The container element for the posts.
  *
- * @param {object} postsContainer - Used to append loaded post elements to it.
- *
- * @returns {HTMLElement[]} An array of DOM elements representing the loaded posts.
+ * @returns {Promise} A promise that resolves with an array of post elements.
  */
 function loadPosts(postPaths, postsContainer) {
     const postElements = Array(postPaths.length).fill(null);
     let loadedPosts = 0;
   
     postPaths.forEach((postPath, index) => {
-      // Loads and parses HTML posts.
       fetch(postPath)
         .then(response => {
-          // Processes a response from an HTTP request.
           if (!response.ok) {
             throw new Error(`Failed to load post: ${postPath}`);
           }
@@ -26,7 +20,7 @@ function loadPosts(postPaths, postsContainer) {
           return response.text();
         })
         .then(data => {
-          // Parses HTML data, extracts post details, and creates a post element.
+          // Parse HTML data, extract post details, and create a post element.
           const parser = new DOMParser();
           const doc = parser.parseFromString(data, 'text/html');
   
@@ -41,14 +35,13 @@ function loadPosts(postPaths, postsContainer) {
   
           // Handle the "Read More" button click event
           postElement.find('.read-more').on('click', function (e) {
-            // Listens for a click event on a specific element and performs several actions when
-            // triggered.
+            // Listens for and handles a click event on the ".read-more" element, performing
             // several actions when triggered.
             e.preventDefault();
             postsContainer.html($(doc.body).html());
             postsContainer.append('<button class="back-to-blog">Powrót do bloga <i class="bi bi-arrow-counterclockwise"></i></button>');
             $('.back-to-blog').on('click', function () {
-              // Triggers on a specific event and reloads the current page.
+              // Triggers on click events and reloads the current page.
               location.reload();
             });
           });
@@ -57,14 +50,13 @@ function loadPosts(postPaths, postsContainer) {
           postElements[index] = postElement;
         })
         .catch(error => {
-          // Catches and handles errors.
+          // Catches and handles an error.
           console.error('Error loading post:', error);
           const errorElement = $('<article class="post-article">').html(`<h2>Błąd</h2><p>Nie udało się załadować posta: ${postPath}</p>`);
           postElements[index] = errorElement; // Zachowujemy błąd w odpowiednim miejscu w tablicy
         })
         .finally(() => {
-          // Increments the loadedPosts counter and appends post elements to the container when
-          // all posts are loaded.
+          // Increments and checks loadedPosts counter, then appends elements when loading is
           // complete.
           loadedPosts++;
           if (loadedPosts === postPaths.length) {

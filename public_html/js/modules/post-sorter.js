@@ -1,21 +1,14 @@
 /**
- * @description Sorts a list of blog posts in a specified order based on their title
- * or date. It retrieves all posts with the class 'post-article', sorts them according
- * to the provided type, and then appends the sorted list to a specified container.
+ * Sorts a collection of post articles based on their titles or dates.
  *
- * @param {string | 'date-asc' | 'date-desc' | 'title-asc' | 'title-desc'} type -
- * Used to specify the sorting criteria and order of the posts.
- *
- * @param {object} postsContainer - Used to specify the container element where the
- * sorted posts will be appended.
- *
- * @returns {any} 0.
+ * @param {string} type - The type of sorting (date-asc, date-desc, title-asc, title-desc).
+ * @param {jQuery} postsContainer - The container element for the posts.
  */
 function sortPosts(type, postsContainer) {
     const posts = $('.post-article').get();
   
     posts.sort((a, b) => {
-      // Sorts an array of HTML elements based on title or date.
+      // Sorts array elements.
       const titleA = $(a).find('h2').text().toUpperCase();
       const titleB = $(b).find('h2').text().toUpperCase();
       const dateA = new Date($(a).find('.post-date').text().trim());
