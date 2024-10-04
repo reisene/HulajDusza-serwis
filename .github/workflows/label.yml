@@ -24,3 +24,13 @@ jobs:
       uses: actions/labeler@v5
       with:
         repo-token: "${{ secrets.GITHUB_TOKEN }}"
+
+    - name: Add bot label
+      uses: actions/github-script@v5
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            github.issues.updateLabel({
+              issue_number: github.context.pullRequest.number,
+              label: 'bot'
+            })
