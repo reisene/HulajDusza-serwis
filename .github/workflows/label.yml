@@ -40,7 +40,9 @@ jobs:
       with:
         github-token: ${{ secrets.GITHUB_TOKEN }}
         script: |
-            github.issues.addLabel({
-              issue_number: github.context.pullRequest.number,
-              label: 'bot'
-            })
+          github.pulls.addLabel({
+          owner: github.context.repo.owner,
+          repo: github.context.repo.repo,
+          pull_number: github.context.pullRequest.number,
+          label: 'bot'
+          })
