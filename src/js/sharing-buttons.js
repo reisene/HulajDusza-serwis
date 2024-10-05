@@ -19,9 +19,8 @@ document.addEventListener('DOMContentLoaded', function() {
     var toggleButton = document.getElementById('toggle-share-buttons');
 
     /**
-     * @description Toggles the display of a group of share buttons on and off, positioning
-     * them dynamically relative to another button when displayed. It checks the current
-     * display state of the share buttons and updates their style accordingly.
+     * @description Toggles the visibility of a 'shareButtons' element, displaying it
+     * when hidden and vice versa, while dynamically positioning it relative to a 'toggleButton'.
      */
     function toggleShareButtons() {
         if (shareButtons.style.display === 'none' || shareButtons.style.display === '') {
@@ -39,7 +38,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Add event listener for clicking outside the panel to hide it
     document.addEventListener('click', function (event) {
-        // Handles click events on a document.
+        // Handles document click events.
         var isClickInsidePanel = shareButtons.contains(event.target);
         var isClickOnToggleButton = toggleButton.contains(event.target);
 
