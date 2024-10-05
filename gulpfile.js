@@ -67,7 +67,7 @@ gulp.task('js', () => {
   .pipe(babel({
     presets: ['@babel/preset-env'],
   }))
-  .pipe(gulp.dest(path.join(paths.dest, 'js'), { sourcemaps: '.' }));
+  .pipe(gulp.dest(path.join(paths.dest, 'js', { sourcemaps: '.' })));
 });
 
 gulp.task('watch', function() {
