@@ -16,6 +16,7 @@ function displayNotification(message, type) {
     // Make sure notification exists before attempting to modify it
     if (!notification || !notificationMessage) {
         console.error("Elementy notification lub notificationMessage nie istnieją");
+        Sentry.captureException(new Error("Elementy notification lub notificationMessage nie istnieją"));
         return;
     }
 

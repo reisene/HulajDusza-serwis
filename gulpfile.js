@@ -10,6 +10,7 @@ const autoprefixer = require('autoprefixer');
 const postcssPresetEnv = require('postcss-preset-env');
 const sourcemaps = require('gulp-sourcemaps');
 const fs = require('fs').promises;
+const babel = require('@babel/core');
 
 const paths = {
   src: 'src/',
@@ -64,6 +65,11 @@ gulp.task('watchPosts', async function() {
 
 gulp.task('js', () => {
   return gulp.src(paths.js)
+    .pipe(sourcemaps.init())
+    .pipe(babel({
+      presets: ['@babel/preset-env'],
+    }))
+    .pipe(sourcemaps.write('.'))
     .pipe(gulp.dest(path.join(paths.dest, 'js')));
 });
 
