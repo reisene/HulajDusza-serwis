@@ -1,54 +1,87 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pl">
-    <head>
-        <title>Blog</title>
-        @@include('head.html')
-        <script type="module" src="./js/blog.js"></script>
-        <link rel="stylesheet" href="./css/blog.css">
-    </head>
-    
-    <body>
-        <!-- Google Tag Manager (noscript) -->
-         <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WZLT4R8J"
-            height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-            <!-- End Google Tag Manager (noscript) -->
-        <header>
-            @@include('header.html')
-        </header>
-        
+  <head>
+    <title>Blog</title>
+    @@include('head.html')
+    <script type="module" src="./js/blog.js"></script>
+    <link rel="stylesheet" href="./css/blog.css" />
+  </head>
 
-        <nav aria-label="breadcrumb">
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="index.html">Strona Główna</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Blog</li>
-            </ol>
-        </nav>
+  <body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript
+      ><iframe
+        src="https://www.googletagmanager.com/ns.html?id=GTM-WZLT4R8J"
+        height="0"
+        width="0"
+        style="display: none; visibility: hidden"
+      ></iframe
+    ></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+    <header>@@include('header.html')</header>
 
-        <main>
-            <div class="sort-and-search">
-                <div class="dropdown">
-                    <button class="btn btn-secondary dropdown-toggle" type="button" id="sortDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-                        Sortuj
-                    </button>
-                    <ul class="dropdown-menu" aria-labelledby="sortDropdown">
-                        <li><a class="dropdown-item active-sort" href="#" data-sort="default"><i class="bi bi-list"></i> Domyślnie</a></li>
-                        <li><a class="dropdown-item" href="#" data-sort="date-asc"><i class="bi bi-calendar bi-sort-up"></i> Data (rosnąco)</a></li>
-                        <li><a class="dropdown-item" href="#" data-sort="date-desc"><i class="bi bi-calendar bi-sort-down"></i> Data (malejąco)</a></li>
-                        <li><a class="dropdown-item" href="#" data-sort="title-asc"><i class="bi bi-sort-alpha-up"></i> Tytuł (rosnąco)</a></li>
-                        <li><a class="dropdown-item" href="#" data-sort="title-desc"><i class="bi bi-sort-alpha-down"></i> Tytuł (malejąco)</a></li>
-                    </ul>
-                </div>
-            
-                <div class="search-container">
-                    <i class="bi bi-search search-icon"></i>
-                    <input type="text" id="searchInput" class="form-control" placeholder="Szukaj...">
-                </div>
-            </div>
-            
-            <div id="posts-container"></div>
-        </main>
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="index.html">Strona Główna</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Blog</li>
+      </ol>
+    </nav>
 
-        @@include('footer.html')
+    <main>
+      <div class="sort-and-search">
+        <div class="dropdown">
+          <button
+            class="btn btn-secondary dropdown-toggle"
+            type="button"
+            id="sortDropdown"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            Sortuj
+          </button>
+          <ul class="dropdown-menu" aria-labelledby="sortDropdown">
+            <li>
+              <a class="dropdown-item active-sort" href="#" data-sort="default"
+                ><i class="bi bi-list"></i> Domyślnie</a
+              >
+            </li>
+            <li>
+              <a class="dropdown-item" href="#" data-sort="date-asc"
+                ><i class="bi bi-calendar bi-sort-up"></i> Data (rosnąco)</a
+              >
+            </li>
+            <li>
+              <a class="dropdown-item" href="#" data-sort="date-desc"
+                ><i class="bi bi-calendar bi-sort-down"></i> Data (malejąco)</a
+              >
+            </li>
+            <li>
+              <a class="dropdown-item" href="#" data-sort="title-asc"
+                ><i class="bi bi-sort-alpha-up"></i> Tytuł (rosnąco)</a
+              >
+            </li>
+            <li>
+              <a class="dropdown-item" href="#" data-sort="title-desc"
+                ><i class="bi bi-sort-alpha-down"></i> Tytuł (malejąco)</a
+              >
+            </li>
+          </ul>
+        </div>
 
-    </body>
+        <div class="search-container">
+          <i class="bi bi-search search-icon"></i>
+          <input
+            type="text"
+            id="searchInput"
+            class="form-control"
+            placeholder="Szukaj..."
+          />
+        </div>
+      </div>
+
+      <div id="posts-container"></div>
+    </main>
+
+    @@include('footer.html')
+  </body>
 </html>

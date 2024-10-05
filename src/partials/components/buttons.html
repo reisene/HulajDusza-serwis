@@ -1,30 +1,49 @@
 <button onclick="topFunction()" id="scrollToTopBtn" title="Go to top">
-    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-arrow-bar-up" viewBox="0 0 16 16">
-        <path id="short" fill-rule="evenodd" d="M8 12a.5.5 0 0 0 .5-.5V5.707l2.146 2.147a.5.5 0 0 0 .708-.708l-3-3a.5.5 0 0 0-.708 0l-3 3a.5.5 0 1 0 .708.708L7.5 5.707V11.5a.5.5 0 0 0 .5.5"/>
-        <path id="long" fill-rule="evenodd" d="M8 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L7.5 2.707V14.5a.5.5 0 0 0 .5.5"/>
-    </svg>
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="24"
+    height="24"
+    fill="currentColor"
+    class="bi bi-arrow-bar-up"
+    viewBox="0 0 16 16"
+  >
+    <path
+      id="short"
+      fill-rule="evenodd"
+      d="M8 12a.5.5 0 0 0 .5-.5V5.707l2.146 2.147a.5.5 0 0 0 .708-.708l-3-3a.5.5 0 0 0-.708 0l-3 3a.5.5 0 1 0 .708.708L7.5 5.707V11.5a.5.5 0 0 0 .5.5"
+    />
+    <path
+      id="long"
+      fill-rule="evenodd"
+      d="M8 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L7.5 2.707V14.5a.5.5 0 0 0 .5.5"
+    />
+  </svg>
 </button>
 
 <button id="toggle-share-buttons"><i class="bi bi-share"></i></button>
 <!-- AddToAny BEGIN -->
-<div id="share-buttons" class="a2a_kit a2a_kit_size_32 a2a_default_style a2a_sticky a2a_vertical_style" style="display: none;">
-    <a class="a2a_button_facebook"></a>
-    <a class="a2a_button_facebook_messenger"></a>
-    <a class="a2a_button_linkedin"></a>
-    <a class="a2a_button_whatsapp"></a>
-    <a class="a2a_button_x"></a>
-    <a class="a2a_button_sms"></a>
-    <a class="a2a_button_email"></a>
-    <a class="a2a_button_copy_link"></a>
+<div
+  id="share-buttons"
+  class="a2a_kit a2a_kit_size_32 a2a_default_style a2a_sticky a2a_vertical_style"
+  style="display: none"
+>
+  <a class="a2a_button_facebook"></a>
+  <a class="a2a_button_facebook_messenger"></a>
+  <a class="a2a_button_linkedin"></a>
+  <a class="a2a_button_whatsapp"></a>
+  <a class="a2a_button_x"></a>
+  <a class="a2a_button_sms"></a>
+  <a class="a2a_button_email"></a>
+  <a class="a2a_button_copy_link"></a>
 </div>
 <!-- AddToAny END -->
- 
+
 <script data-cookieconsent="ignore">
-window.dataLayer = window.dataLayer || [];
-function gtag() {
+  window.dataLayer = window.dataLayer || [];
+  function gtag() {
     dataLayer.push(arguments);
-}
-gtag("consent", "default", {
+  }
+  gtag("consent", "default", {
     ad_personalization: "denied",
     ad_storage: "denied",
     ad_user_data: "denied",
@@ -33,7 +52,7 @@ gtag("consent", "default", {
     personalization_storage: "denied",
     security_storage: "granted",
     wait_for_update: 500,
-});
-gtag("set", "ads_data_redaction", true);
-gtag("set", "url_passthrough", false);
+  });
+  gtag("set", "ads_data_redaction", true);
+  gtag("set", "url_passthrough", false);
 </script>

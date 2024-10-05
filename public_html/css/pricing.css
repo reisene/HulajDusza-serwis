@@ -1,131 +1,132 @@
 /* Unikalne style dla strony pricing.html */
 
 .pricing-hero {
-    background: linear-gradient(to right, #ac2a21, #333);
-    color: #fff;
-    padding: 60px 0;
-    text-align: center;
-    border-radius: 15px; /* Rounded corners */
-    margin-bottom: 20px; /* Space below the hero section */
+  background: linear-gradient(to right, #ac2a21, #333);
+  color: #fff;
+  padding: 60px 0;
+  text-align: center;
+  border-radius: 15px; /* Rounded corners */
+  margin-bottom: 20px; /* Space below the hero section */
 }
 
 .pricing-hero h2 {
-    margin: 0;
-    font-size: 2.5em;
-    color: #ffffffa6;
+  margin: 0;
+  font-size: 2.5em;
+  color: #ffffffa6;
 }
 
 .pricing-hero p {
-    margin: 10px 0 0;
-    font-size: 1.2em;
+  margin: 10px 0 0;
+  font-size: 1.2em;
 }
 
 .pricing-table {
-    padding: 40px 0;
-    background: transparent;
+  padding: 40px 0;
+  background: transparent;
 }
 
 .pricing-table .pricing-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
 }
 
-.pricing-container p{
-    margin-top: 20px;
-    text-align: center;
+.pricing-container p {
+  margin-top: 20px;
+  text-align: center;
 }
 
 .attend {
-    background-color: #fff; /* Osobne tło dla każdej sekcji */
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  background-color: #fff; /* Osobne tło dla każdej sekcji */
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-.attention{
-    color: #ac2a21;
-    font-weight: bold;
+.attention {
+  color: #ac2a21;
+  font-weight: bold;
 }
 
 /* Styl dla tabeli z border-radius */
 .pricing-table table {
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    width: 100%;
-    border-collapse: separate; /* Zmiana na separate */
-    border-spacing: 0; /* Ustawienie spacing na 0 */
-    margin-top: 20px;
-    border-radius: 10px; /* Zaokrąglenie narożników */
-    overflow: hidden; /* Ukrywanie narożników zawartości */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  border-collapse: separate; /* Zmiana na separate */
+  border-spacing: 0; /* Ustawienie spacing na 0 */
+  margin-top: 20px;
+  border-radius: 10px; /* Zaokrąglenie narożników */
+  overflow: hidden; /* Ukrywanie narożników zawartości */
 }
 
-.pricing-table th, .pricing-table td {
-    border: 1px solid #ddd;
-    padding: 10px;
-    text-align: left;
+.pricing-table th,
+.pricing-table td {
+  border: 1px solid #ddd;
+  padding: 10px;
+  text-align: left;
 }
 
 .pricing-table th {
-    background-color: #ac2a21;
-    color: #fff;
-    border-top-left-radius: 10px; /* Zaokrąglenie górnych narożników */
-    border-top-right-radius: 10px; /* Zaokrąglenie górnych narożników */
+  background-color: #ac2a21;
+  color: #fff;
+  border-top-left-radius: 10px; /* Zaokrąglenie górnych narożników */
+  border-top-right-radius: 10px; /* Zaokrąglenie górnych narożników */
 }
 
 .pricing-table td {
-    background-color: #fff;
-    color: #333;
+  background-color: #fff;
+  color: #333;
 }
 
 /* Dodatkowe style dla pierwszego i ostatniego wiersza tabeli */
 .pricing-table tr:first-child th:first-child {
-    border-top-left-radius: 10px;
+  border-top-left-radius: 10px;
 }
 
 .pricing-table tr:first-child th:last-child {
-    border-top-right-radius: 10px;
+  border-top-right-radius: 10px;
 }
 
 .pricing-table tr:last-child td:first-child {
-    border-bottom-left-radius: 10px;
+  border-bottom-left-radius: 10px;
 }
 
 .pricing-table tr:last-child td:last-child {
-    border-bottom-right-radius: 10px;
+  border-bottom-right-radius: 10px;
 }
 
 .cta-price {
-    background: linear-gradient(to right, #ac2a21, #333);
-    color: #fff;
-    padding: 40px 0;
-    text-align: center;
-    border-radius: 15px;
+  background: linear-gradient(to right, #ac2a21, #333);
+  color: #fff;
+  padding: 40px 0;
+  text-align: center;
+  border-radius: 15px;
 }
 
 .cta-price h2 {
-    margin: 0;
-    font-size: 1.8em;
-    color: #ffffffa6;
+  margin: 0;
+  font-size: 1.8em;
+  color: #ffffffa6;
 }
 
 .cta-price p {
-    margin: 10px 0 20px;
-    font-size: 18px;
+  margin: 10px 0 20px;
+  font-size: 18px;
 }
 
 .cta-price .btn {
-    padding: 10px 20px;
-    background-color: #fff;
-    color: #ac2a21;
-    font-weight: bold;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    text-decoration: none;
-    font-size: 16px;
+  padding: 10px 20px;
+  background-color: #fff;
+  color: #ac2a21;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  text-decoration: none;
+  font-size: 16px;
 }
 
 .cta-price .btn:hover {
-    background-color: #f4f4f4;
+  background-color: #f4f4f4;
 }
 /*# sourceMappingURL=pricing.css.map */
