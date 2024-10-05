@@ -1,4 +1,4 @@
-[![codebeat badge](https://codebeat.co/badges/cffb6fb5-1852-4ee0-8376-611636ce6e54)](https://codebeat.co/projects/github-com-reisene-hulajdusza-serwis-main)
+[![codebeat badge](https://codebeat.co/badges/cffb6fb5-1852-4ee0-8376-611636ce6e54)](https://codebeat.co/projects/github-com-reisene-hulajdusza-serwis-main) [![DeepSource](https://app.deepsource.com/gh/reisene/HulajDusza-serwis.svg/?label=code+coverage&show_trend=true&token=2ofIDvThFe6rDqkioEg-Znl9)](https://app.deepsource.com/gh/reisene/HulajDusza-serwis/)
 
 # HulajDusza-serwis
 
