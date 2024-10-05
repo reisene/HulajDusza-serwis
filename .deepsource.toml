@@ -14,7 +14,8 @@ exclude_patterns = [
   "out",
   "bin",
   "build",
-  "dist"
+  "dist",
+  "public_html"
 ]
 
 [[analyzers]]
@@ -31,6 +32,3 @@ name = "php"
 
 [[transformers]]
 name = "prettier"
-
-[[transformers]]
-name = "standardjs"
