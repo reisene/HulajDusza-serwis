@@ -10,7 +10,7 @@ const autoprefixer = require('autoprefixer');
 const postcssPresetEnv = require('postcss-preset-env');
 const sourcemaps = require('gulp-sourcemaps');
 const fs = require('fs').promises;
-const babel = require('@babel/core');
+const babel = require('gulp-babel');
 
 const paths = {
   src: 'src/',
