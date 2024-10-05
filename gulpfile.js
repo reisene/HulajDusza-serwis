@@ -1,6 +1,7 @@
 require ('./instruments.js');
 
-const Sentry = require('@sentry/node')
+const Sentry = require('@sentry/node');
+
 const gulp = require('gulp');
 const fileInclude = require('gulp-file-include');
 const uglify = require('gulp-uglify-js');
