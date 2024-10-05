@@ -8,7 +8,7 @@ const ignore = require('gulp-ignore');
 const postcss = require('gulp-postcss');
 const autoprefixer = require('autoprefixer');
 const postcssPresetEnv = require('postcss-preset-env');
-const sourcemaps = require('gulp-sourcemaps');
+const src = require('gulp');
 const fs = require('fs').promises;
 const babel = require('gulp-babel');
 
@@ -37,14 +37,12 @@ gulp.task('html', function() {
 gulp.task('css', function() {
   try {
     // Compiles CSS files.
-    return gulp.src(paths.css)
-      .pipe(sourcemaps.init())
+    return gulp.src(paths.css { sourcemaps: true })
       .pipe(postcss([
         autoprefixer(),
         postcssPresetEnv({ stage: 3 }),
       ]))
-      .pipe(sourcemaps.write('.'))
-      .pipe(gulp.dest(path.join(paths.dest, 'css')));
+      .pipe(gulp.dest(path.join(paths.dest, 'css' { sourcemaps: '.' })));
     } catch (error) {
       Sentry.captureException(error); 
     }
@@ -65,12 +63,11 @@ gulp.task('watchPosts', async function() {
 
 gulp.task('js', () => {
   return gulp.src(paths.js)
-    .pipe(sourcemaps.init())
-    .pipe(babel({
-      presets: ['@babel/preset-env'],
-    }))
-    .pipe(sourcemaps.write('.'))
-    .pipe(gulp.dest(path.join(paths.dest, 'js')));
+  return gulp.src(paths.js, { sourcemaps: true })
+  .pipe(babel({
+    presets: ['@babel/preset-env'],
+  }))
+  .pipe(gulp.dest(path.join(paths.dest, 'js'), { sourcemaps: '.' }));
 });
 
 gulp.task('watch', function() {
