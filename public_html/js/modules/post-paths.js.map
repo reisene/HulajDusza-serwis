@@ -1,0 +1,1 @@
+{"version":3,"file":"post-paths.js","names":[],"sources":["modules/post-paths.js"],"sourcesContent":["export default [\n  '/posts/post1.html',\n  '/posts/post2.html'\n];"],"mappings":";;;;;;oCAAe,CACb,mBAAmB,EACnB,mBAAmB,CACpB","ignoreList":[]}

@@ -1,24 +1,24 @@
-import postPaths from './modules/post-paths.js';
-import loadPosts from './modules/post-loader.js';
-import sortPosts from './modules/post-sorter.js';
-import searchPosts from './modules/post-searcher.js';
+"use strict";
 
+var _postPaths = _interopRequireDefault(require("./modules/post-paths.js"));
+var _postLoader = _interopRequireDefault(require("./modules/post-loader.js"));
+var _postSorter = _interopRequireDefault(require("./modules/post-sorter.js"));
+var _postSearcher = _interopRequireDefault(require("./modules/post-searcher.js"));
+function _interopRequireDefault(e) { return e && e.__esModule ? e : { "default": e }; }
 $(document).ready(function () {
-
-  const postsContainer = $('#posts-container');
-
+  var postsContainer = $('#posts-container');
   try {
-    loadPosts(postPaths, postsContainer).then(postElements => {
+    (0, _postLoader["default"])(_postPaths["default"], postsContainer).then(function (postElements) {
       // Handle post sorting
       $('.dropdown-item').on('click', function () {
-        const sortType = $(this).data('sort');
-        sortPosts(sortType, postsContainer);
+        var sortType = $(this).data('sort');
+        (0, _postSorter["default"])(sortType, postsContainer);
       });
 
       // Handle post searching
       $('#searchInput').on('keyup', function () {
-        const searchTerm = $(this).val().toLowerCase();
-        searchPosts(searchTerm, postsContainer);
+        var searchTerm = $(this).val().toLowerCase();
+        (0, _postSearcher["default"])(searchTerm, postsContainer);
       });
     });
   } catch (error) {
@@ -26,3 +26,4 @@ $(document).ready(function () {
     Sentry.captureMessage('Błąd podczas ładowania postów');
   }
 });
+//# sourceMappingURL=blog.js.map
