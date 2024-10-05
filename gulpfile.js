@@ -37,12 +37,12 @@ gulp.task('html', function() {
 gulp.task('css', function() {
   try {
     // Compiles CSS files.
-    return gulp.src(paths.css { sourcemaps: true })
+    return gulp.src(paths.css, { sourcemaps: true })
       .pipe(postcss([
         autoprefixer(),
         postcssPresetEnv({ stage: 3 }),
       ]))
-      .pipe(gulp.dest(path.join(paths.dest, 'css' { sourcemaps: '.' })));
+      .pipe(gulp.dest(path.join(paths.dest, 'css', { sourcemaps: '.' })));
     } catch (error) {
       Sentry.captureException(error); 
     }
