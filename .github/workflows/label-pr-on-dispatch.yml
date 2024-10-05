@@ -17,4 +17,8 @@ jobs:
         with:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
           pr-number: |
-            ${{ github.event.pull_request.node_id}}
+            129
+            128
+            123
+            123
+            
