@@ -46,9 +46,9 @@
 - label: "Draft"
   message: "Draft"
   color: "lightgrey"
-  when: "$payload.pull_request.draft == true"
+  when: "$payload.pull_request.draft === 'true'"
 
 - label: "Closed"
   message: "Closed"
   color: "gray"
-  when: "$payload.pull_request.closed == true"
+  when: "$payload.pull_request.closed === 'true'"
