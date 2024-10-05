@@ -64,13 +64,9 @@ gulp.task('watchPosts', async function() {
 });
 
 gulp.task('js', () => {
-  return gulp.src(paths.js)
-    .pipe(sourcemaps.init())
-    .pipe(babel({
-      presets: ['@babel/preset-env'],
-    }))
-    .pipe(sourcemaps.write('.'))
-    .pipe(gulp.dest(path.join(paths.dest, 'js')));
+  return gulp.src('src/js/**/*.js')
+    .pipe(babel())
+    .pipe(gulp.dest('public_html/js'));
 });
 
 gulp.task('watch', function() {
