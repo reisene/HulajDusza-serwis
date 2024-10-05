@@ -1,16 +1,36 @@
-# DeepSource configuration file
-# Learn how to configure: https://docs.deepsource.com/docs/configuration
 version = 1
-exclude_patterns = ["node_modules", "bower_components", "out", "bin", "build", "dist"]
-test_patterns = ["**/__tests__/**", "**/*.spec.ts", "**/*.spec.js", "**/*.test.ts", "**/*.test.js"]
+
+test_patterns = [
+  "**/__tests__/**",
+  "**/*.spec.ts",
+  "**/*.spec.js",
+  "**/*.test.ts",
+  "**/*.test.js"
+]
+
+exclude_patterns = [
+  "node_modules",
+  "bower_components",
+  "out",
+  "bin",
+  "build",
+  "dist"
+]
 
 [[analyzers]]
-  name = "javascript"
-  enabled = true
+name = "javascript"
 
   [analyzers.meta]
-  environment = ["jquery"]
+  environment = [
+    "jquery",
+    "browser"
+  ]
 
 [[analyzers]]
-  name = "php"
-  enabled = true
+name = "php"
+
+[[transformers]]
+name = "prettier"
+
+[[transformers]]
+name = "standardjs"
