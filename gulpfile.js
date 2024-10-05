@@ -2,7 +2,7 @@ require ('./instruments.js');
 
 const gulp = require('gulp');
 const fileInclude = require('gulp-file-include');
-const replace = require('gulp-replace');
+const uglify = require('gulp-uglify');
 const path = require('path');
 const ignore = require('gulp-ignore');
 const postcss = require('gulp-postcss');
@@ -64,9 +64,9 @@ gulp.task('watchPosts', async function() {
 });
 
 gulp.task('js', () => {
-  return gulp.src('src/js/**/*.js')
-    .pipe(babel())
-    .pipe(gulp.dest('public_html/js'));
+  return gulp.src(paths.js)
+    .pipe(uglify())
+    .pipe(gulp.dest(path.join(paths.dest, 'js')));
 });
 
 gulp.task('watch', function() {
