@@ -18,7 +18,7 @@ $(document).ready(function () {
    * attribute, at a speed defined by `data-speed`, updating the element's text display
    * every 100 milliseconds.
    */
-  var initCounters = function initCounters() {
+  const initCounters = () => {
     $('.timer').each(function () {
       // Initializes a timer.
 
@@ -39,7 +39,7 @@ $(document).ready(function () {
       }, 100);
     });
   };
-  var countersInitialized = new Set();
+  const countersInitialized = new Set();
 
   /**
    * @description Iterates over elements with class "counter". It checks if each element
@@ -47,7 +47,7 @@ $(document).ready(function () {
    * `initCounters` to initialize it and adds it to a set for tracking initialization
    * status.
    */
-  var handleCounters = function handleCounters() {
+  const handleCounters = () => {
     $('.counter').each(function () {
       // Checks for elements in view and initializes them if not already initialized.
 
@@ -63,7 +63,7 @@ $(document).ready(function () {
    * scroll event occurs, enabling dynamic updates to counters or other variables based
    * on scrolling activity.
    */
-  var handleScroll = function handleScroll() {
+  const handleScroll = () => {
     handleCounters();
   };
   $(window).scroll(handleScroll);
@@ -82,7 +82,6 @@ $(document).ready(function () {
  * and false otherwise.
  */
 function isElementInView(element) {
-  var rect = element.getBoundingClientRect();
+  const rect = element.getBoundingClientRect();
   return rect.top >= 0 && rect.left >= 0 && rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) && rect.right <= (window.innerWidth || document.documentElement.clientWidth);
 }
-//# sourceMappingURL=counters.js.map

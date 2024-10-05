@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports["default"] = void 0;
+exports.default = void 0;
 /**
  * @description Initializes animations for a form submission button. It animates the
  * button's state when clicked, submits a request, and resets to its original state
@@ -12,7 +12,7 @@ exports["default"] = void 0;
  * @returns {any} An object containing two properties: animateButton and resetButton.
  */
 function initButtonAnimation() {
-  var formButton = document.getElementById('my-form-button');
+  const formButton = document.getElementById('my-form-button');
 
   /**
    * @description Modifies a UI element's appearance to indicate loading state,
@@ -55,15 +55,15 @@ function initButtonAnimation() {
     if (formButton) {
       formButton.classList.remove('loading', 'success', 'error');
       formButton.classList.add('submit');
-      var faCheck = formButton.querySelector('.fa-check');
-      var faTimes = formButton.querySelector('.fa-times');
+      const faCheck = formButton.querySelector('.fa-check');
+      const faTimes = formButton.querySelector('.fa-times');
       if (faCheck) {
         faCheck.classList.add('hidden');
       }
       if (faTimes) {
         faTimes.classList.add('hidden');
       }
-      var faPaperPlane = formButton.querySelector('.fa-paper-plane');
+      const faPaperPlane = formButton.querySelector('.fa-paper-plane');
       faPaperPlane.setAttribute('class', 'svg-inline--fa fa-paper-plane');
     } else {
       Sentry.captureException(new Error('formButton is null'), {
@@ -78,16 +78,15 @@ function initButtonAnimation() {
   formButton.addEventListener('click', animateLoading);
 
   // Usuń klasę loading po zakończeniu animacji
-  formButton.addEventListener('transitionend', function () {
+  formButton.addEventListener('transitionend', () => {
     // Handles form button transitions when they end.
     if (formButton.classList.contains('loading')) {
       formButton.classList.remove('loading');
     }
   });
   return {
-    animateButton: animateButton,
-    resetButton: resetButton
+    animateButton,
+    resetButton
   };
 }
-var _default = exports["default"] = initButtonAnimation;
-//# sourceMappingURL=button-animation.js.map
+var _default = exports.default = initButtonAnimation;

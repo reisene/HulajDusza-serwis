@@ -3,16 +3,16 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports["default"] = void 0;
+exports.default = void 0;
 function phoneFormatter() {
   // Formats phone input.
-  var phoneInput = document.getElementById('phone');
-  phoneInput.addEventListener('input', function () {
+  const phoneInput = document.getElementById('phone');
+  phoneInput.addEventListener('input', () => {
     // Formats phone numbers as user types.
-    var value = phoneInput.value.replace(/\D/g, ''); // Remove all non-digit characters
+    const value = phoneInput.value.replace(/\D/g, ''); // Remove all non-digit characters
     if (value.length === 9) {
-      var formattedValue = '';
-      for (var i = 0; i < value.length; i++) {
+      let formattedValue = '';
+      for (let i = 0; i < value.length; i++) {
         if (i > 0 && i % 3 === 0) {
           formattedValue += ' ';
         }
@@ -22,5 +22,4 @@ function phoneFormatter() {
     }
   });
 }
-var _default = exports["default"] = phoneFormatter;
-//# sourceMappingURL=phone_format.js.map
+var _default = exports.default = phoneFormatter;

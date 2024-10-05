@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports["default"] = void 0;
+exports.default = void 0;
 /**
  * Searches for posts based on a search term.
  *
@@ -11,11 +11,11 @@ exports["default"] = void 0;
  * @param {jQuery} postsContainer - The container element for the posts.
  */
 function searchPosts(searchTerm, postsContainer) {
-  var posts = $('.post-article');
+  const posts = $('.post-article');
   posts.each(function () {
-    var post = $(this);
-    var title = post.find('h2').text().toLowerCase();
-    var excerpt = post.find('.post-content').text().toLowerCase();
+    const post = $(this);
+    const title = post.find('h2').text().toLowerCase();
+    const excerpt = post.find('.post-content').text().toLowerCase();
     if (title.includes(searchTerm) || excerpt.includes(searchTerm)) {
       post.show();
     } else {
@@ -23,5 +23,4 @@ function searchPosts(searchTerm, postsContainer) {
     }
   });
 }
-var _default = exports["default"] = searchPosts;
-//# sourceMappingURL=post-searcher.js.map
+var _default = exports.default = searchPosts;

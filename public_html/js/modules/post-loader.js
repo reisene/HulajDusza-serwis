@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports["default"] = void 0;
+exports.default = void 0;
 /**
  * Loads blog posts from HTML files and enables sorting and searching.
  *
@@ -13,27 +13,27 @@ exports["default"] = void 0;
  * @returns {Promise} A promise that resolves with an array of post elements.
  */
 function loadPosts(postPaths, postsContainer) {
-  var postElements = Array(postPaths.length).fill(null);
-  var loadedPosts = 0;
-  postPaths.forEach(function (postPath, index) {
-    fetch(postPath).then(function (response) {
+  const postElements = Array(postPaths.length).fill(null);
+  let loadedPosts = 0;
+  postPaths.forEach((postPath, index) => {
+    fetch(postPath).then(response => {
       if (!response.ok) {
-        throw new Error("Failed to load post: ".concat(postPath));
+        throw new Error(`Failed to load post: ${postPath}`);
       }
       return response.text();
-    }).then(function (data) {
+    }).then(data => {
       // Parse HTML data, extract post details, and create a post element.
-      var parser = new DOMParser();
-      var doc = parser.parseFromString(data, 'text/html');
+      const parser = new DOMParser();
+      const doc = parser.parseFromString(data, 'text/html');
 
       // Extract post details from the HTML
-      var title = $(doc).find('h2').prop('outerHTML') || '<h2>Brak tytułu</h2>';
-      var date = $(doc).find('.post-date').prop('outerHTML') || '<p class="post-date"><strong>Data publikacji:</strong> Nieznana</p>';
-      var image = $(doc).find('img').prop('outerHTML') || '<p>Brak obrazka</p>';
-      var excerpt = $(doc).find('section p').first().prop('outerHTML') || '<p>Brak treści</p>';
+      const title = $(doc).find('h2').prop('outerHTML') || '<h2>Brak tytułu</h2>';
+      const date = $(doc).find('.post-date').prop('outerHTML') || '<p class="post-date"><strong>Data publikacji:</strong> Nieznana</p>';
+      const image = $(doc).find('img').prop('outerHTML') || '<p>Brak obrazka</p>';
+      const excerpt = $(doc).find('section p').first().prop('outerHTML') || '<p>Brak treści</p>';
 
       // Create a post element
-      var postElement = $('<article class="post-article">').html("".concat(title).concat(date).concat(image, "<div class=\"post-content\">").concat(excerpt, "</div><button class=\"read-more\">Czytaj wi\u0119cej <i class=\"bi bi-file-earmark-post\"></i></button>"));
+      const postElement = $('<article class="post-article">').html(`${title}${date}${image}<div class="post-content">${excerpt}</div><button class="read-more">Czytaj więcej <i class="bi bi-file-earmark-post"></i></button>`);
 
       // Handle the "Read More" button click event
       postElement.find('.read-more').on('click', function (e) {
@@ -50,24 +50,21 @@ function loadPosts(postPaths, postsContainer) {
 
       // Store the post element in the appropriate position in the array
       postElements[index] = postElement;
-    })["catch"](function (error) {
+    }).catch(error => {
       // Catches and handles an error.
       console.error('Error loading post:', error);
-      var errorElement = $('<article class="post-article">').html("<h2>B\u0142\u0105d</h2><p>Nie uda\u0142o si\u0119 za\u0142adowa\u0107 posta: ".concat(postPath, "</p>"));
+      const errorElement = $('<article class="post-article">').html(`<h2>Błąd</h2><p>Nie udało się załadować posta: ${postPath}</p>`);
       postElements[index] = errorElement; // Zachowujemy błąd w odpowiednim miejscu w tablicy
-    })["finally"](function () {
+    }).finally(() => {
       // Increments and checks loadedPosts counter, then appends elements when loading is
       // complete.
       loadedPosts++;
       if (loadedPosts === postPaths.length) {
         // Append the post elements in reverse order to the container
-        postElements.reverse().forEach(function (element) {
-          return postsContainer.append(element);
-        });
+        postElements.reverse().forEach(element => postsContainer.append(element));
       }
     });
   });
   return Promise.resolve(postElements);
 }
-var _default = exports["default"] = loadPosts;
-//# sourceMappingURL=post-loader.js.map
+var _default = exports.default = loadPosts;

@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports["default"] = void 0;
+exports.default = void 0;
 /**
  * @description Displays a notification to the user with a specified message and type,
  * adding it to the webpage and notifying screen readers. It removes the notification
@@ -16,8 +16,8 @@ exports["default"] = void 0;
  */
 
 function displayNotification(message, type) {
-  var notification = document.getElementById("notification");
-  var notificationMessage = document.getElementById("notification-message");
+  const notification = document.getElementById("notification");
+  const notificationMessage = document.getElementById("notification-message");
 
   // Make sure notification exists before attempting to modify it
   if (!notification || !notificationMessage) {
@@ -33,12 +33,11 @@ function displayNotification(message, type) {
 
     // Notify screen readers
     notification.setAttribute('aria-live', 'assertive');
-    setTimeout(function () {
+    setTimeout(() => {
       // Waits then removes classes.
       notification.classList.remove('show', 'success', 'error');
     }, 5000);
   }
 }
 ;
-var _default = exports["default"] = displayNotification;
-//# sourceMappingURL=notification.js.map
+var _default = exports.default = displayNotification;

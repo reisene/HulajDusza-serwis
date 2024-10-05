@@ -17,8 +17,8 @@ document.addEventListener("DOMContentLoaded", function () {
   };
 
   // Get references to the share buttons and toggle button elements
-  var shareButtons = document.getElementById("share-buttons");
-  var toggleButton = document.getElementById("toggle-share-buttons");
+  const shareButtons = document.getElementById("share-buttons");
+  const toggleButton = document.getElementById("toggle-share-buttons");
 
   /**
    * @description Toggles the visibility of a 'shareButtons' element, displaying it
@@ -27,7 +27,7 @@ document.addEventListener("DOMContentLoaded", function () {
   function toggleShareButtons() {
     if (shareButtons.style.display === "none" || shareButtons.style.display === "") {
       // Calculate the position of the button dynamically only when displaying
-      var buttonRect = toggleButton.getBoundingClientRect();
+      const buttonRect = toggleButton.getBoundingClientRect();
       shareButtons.style.left = buttonRect.right + 0 + "px";
       shareButtons.style.display = "block";
     } else {
@@ -41,8 +41,8 @@ document.addEventListener("DOMContentLoaded", function () {
   // Add event listener for clicking outside the panel to hide it
   document.addEventListener("click", function (event) {
     // Handles document click events.
-    var isClickInsidePanel = shareButtons.contains(event.target);
-    var isClickOnToggleButton = toggleButton.contains(event.target);
+    const isClickInsidePanel = shareButtons.contains(event.target);
+    const isClickOnToggleButton = toggleButton.contains(event.target);
     if (!isClickInsidePanel && !isClickOnToggleButton) {
       shareButtons.style.display = "none";
     }
@@ -60,4 +60,3 @@ document.addEventListener("DOMContentLoaded", function () {
     document.querySelector(".a2a_button_sms").style.display = "none";
   }
 });
-//# sourceMappingURL=sharing-buttons.js.map
