@@ -1,4 +1,4 @@
-[![codebeat badge](https://codebeat.co/badges/cffb6fb5-1852-4ee0-8376-611636ce6e54)](https://codebeat.co/projects/github-com-reisene-hulajdusza-serwis-main)
+[![codebeat badge](https://codebeat.co/badges/cffb6fb5-1852-4ee0-8376-611636ce6e54)](https://codebeat.co/projects/github-com-reisene-hulajdusza-serwis-main) [![DeepSource](https://app.deepsource.com/gh/reisene/HulajDusza-serwis.svg/?label=code+coverage&show_trend=true&token=2ofIDvThFe6rDqkioEg-Znl9)](https://app.deepsource.com/gh/reisene/HulajDusza-serwis/)
 
 # HulajDusza-serwis
 
@@ -7,6 +7,7 @@
 Jest to ogólny projekt strony wraz ze wszystkimi dodatkowymi plikami, które są potrzebne do stworzenia w pełni funkcjonalnej strony.
 
 - **Zawartość:**
+
   - Kod źródłowy
   - Pliki stylów CSS
   - Skrypty JavaScript
@@ -21,6 +22,7 @@ Jest to ogólny projekt strony wraz ze wszystkimi dodatkowymi plikami, które s�
 This is a general site design with all the additional files needed to create a fully functional site.
 
 - **Content:**
+
   - Source code
   - CSS Stylesheets
   - JavaScript Scripts
