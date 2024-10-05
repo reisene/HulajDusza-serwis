@@ -9,29 +9,29 @@
  * color scheme.
  */
 
-function displayNotification (message, type) {
-  const notification = document.getElementById('notification')
-  const notificationMessage = document.getElementById('notification-message')
+function displayNotification(message, type) {
+  const notification = document.getElementById("notification");
+  const notificationMessage = document.getElementById("notification-message");
 
   // Make sure notification exists before attempting to modify it
   if (!notification || !notificationMessage) {
-    console.error('Elementy notification lub notificationMessage nie istnieją')
-    return
+    console.error("Elementy notification lub notificationMessage nie istnieją");
+    return;
   }
 
   // Make sure notification exists before attempting to modify it
   if (notification && notificationMessage) {
-    notification.classList.add(type, 'show')
-    notificationMessage.textContent = message
+    notification.classList.add(type, "show");
+    notificationMessage.textContent = message;
 
     // Notify screen readers
-    notification.setAttribute('aria-live', 'assertive')
+    notification.setAttribute("aria-live", "assertive");
 
     setTimeout(() => {
       // Waits then removes classes.
-      notification.classList.remove('show', 'success', 'error')
-    }, 5000)
+      notification.classList.remove("show", "success", "error");
+    }, 5000);
   }
 }
 
-export default displayNotification
+export default displayNotification;

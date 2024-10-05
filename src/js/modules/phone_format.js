@@ -3,22 +3,22 @@
  * separating digits every three characters with spaces. It achieves this by listening
  * for input changes and modifying the formatted value accordingly.
  */
-function phoneFormatter () {
+function phoneFormatter() {
   // Formats phone input.
-  $('#phone').on('input', function phoneInput () {
+  $("#phone").on("input", function phoneInput() {
     // Formats phone numbers as user types.
-    const value = $(this).val().replace(/\D/g, '') // Remove all non-digit characters
+    const value = $(this).val().replace(/\D/g, ""); // Remove all non-digit characters
     if (value.length === 9) {
-      let formattedValue = ''
+      let formattedValue = "";
       for (let i = 0; i < value.length; i++) {
         if (i > 0 && i % 3 === 0) {
-          formattedValue += ' '
+          formattedValue += " ";
         }
-        formattedValue += value[i]
+        formattedValue += value[i];
       }
-      $(this).val(formattedValue)
+      $(this).val(formattedValue);
     }
-  })
+  });
 }
 
-export default phoneFormatter
+export default phoneFormatter;

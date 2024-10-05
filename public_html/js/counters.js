@@ -5,10 +5,10 @@
  */
 $(document).ready(function () {
   // Initializes counter elements with animation upon scrolling or loading.
-  $('.timer').counterUp({
+  $(".timer").counterUp({
     delay: 10,
-    time: 1000
-  })
+    time: 1000,
+  });
 
   /**
    * @description Initializes and starts a timer on every element with class `timer`.
@@ -17,28 +17,28 @@ $(document).ready(function () {
    * every 100 milliseconds.
    */
   const initCounters = () => {
-    $('.timer').each(function () {
+    $(".timer").each(function () {
       // Initializes a timer.
 
-      const countTo = parseInt($(this).attr('data-to'))
-      const speed = parseInt($(this).attr('data-speed'))
-      let count = 0
-      const increment = countTo / (speed / 100) // increment per step
+      const countTo = parseInt($(this).attr("data-to"));
+      const speed = parseInt($(this).attr("data-speed"));
+      let count = 0;
+      const increment = countTo / (speed / 100); // increment per step
 
-      const $this = $(this)
+      const $this = $(this);
       var counter = setInterval(function () {
         // Increments and updates text every second, stopping at a certain value.
-        count += increment
+        count += increment;
         if (count >= countTo) {
-          count = countTo
-          clearInterval(counter)
+          count = countTo;
+          clearInterval(counter);
         }
-        $this.text(Math.floor(count))
-      }, 100)
-    })
-  }
+        $this.text(Math.floor(count));
+      }, 100);
+    });
+  };
 
-  const countersInitialized = new Set()
+  const countersInitialized = new Set();
 
   /**
    * @description Iterates over elements with class "counter". It checks if each element
@@ -47,15 +47,15 @@ $(document).ready(function () {
    * status.
    */
   const handleCounters = () => {
-    $('.counter').each(function () {
+    $(".counter").each(function () {
       // Checks for elements in view and initializes them if not already initialized.
 
       if (isElementInView(this) && !countersInitialized.has(this)) {
-        initCounters()
-        countersInitialized.add(this)
+        initCounters();
+        countersInitialized.add(this);
       }
-    })
-  }
+    });
+  };
 
   /**
    * @description Triggers an execution of the `handleCounters` function every time a
@@ -63,12 +63,12 @@ $(document).ready(function () {
    * on scrolling activity.
    */
   const handleScroll = () => {
-    handleCounters()
-  }
+    handleCounters();
+  };
 
-  $(window).scroll(handleScroll)
-  handleScroll() // Initialize scroll animations and counters on load
-})
+  $(window).scroll(handleScroll);
+  handleScroll(); // Initialize scroll animations and counters on load
+});
 
 /**
  * @description Checks if a given HTML element is currently visible within its parent's
@@ -81,13 +81,13 @@ $(document).ready(function () {
  * @returns {boolean} True if the element is currently visible within the viewport
  * and false otherwise.
  */
-function isElementInView (element) {
-  const rect = element.getBoundingClientRect()
+function isElementInView(element) {
+  const rect = element.getBoundingClientRect();
   return (
     rect.top >= 0 &&
     rect.left >= 0 &&
     rect.bottom <=
       (window.innerHeight || document.documentElement.clientHeight) &&
     rect.right <= (window.innerWidth || document.documentElement.clientWidth)
-  )
+  );
 }
