@@ -2,7 +2,7 @@ require ('./instruments.js');
 
 const gulp = require('gulp');
 const fileInclude = require('gulp-file-include');
-const uglify = require('gulp-uglify');
+const uglify = require('gulp-uglify-js');
 const path = require('path');
 const ignore = require('gulp-ignore');
 const postcss = require('gulp-postcss');
