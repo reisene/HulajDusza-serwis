@@ -1,5 +1,6 @@
 require ('./instruments.js');
 
+const Sentry = require('@sentry/node')
 const gulp = require('gulp');
 const fileInclude = require('gulp-file-include');
 const uglify = require('gulp-uglify-js');
@@ -63,10 +64,14 @@ gulp.task('watchPosts', async function() {
   await fs.copyFile('src/js/modules/post-paths.js', 'public_html/js/modules/post-paths.js');
 });
 
-gulp.task('js', () => {
-  return gulp.src(paths.js)
-    .pipe(uglify())
-    .pipe(gulp.dest(path.join(paths.dest, 'js')));
+gulp.task('js', function () {
+  try {
+    return gulp.src([paths.js])
+      .pipe(uglify())
+      .pipe(gulp.dest(path.join(paths.dest, 'js')));
+  } catch (error) {
+    Sentry.captureException(error);
+  }
 });
 
 gulp.task('watch', function() {
