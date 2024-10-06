@@ -4,7 +4,7 @@ const Sentry = require('@sentry/node');
 
 const gulp = require('gulp');
 const fileInclude = require('gulp-file-include');
-const uglify = require('gulp-uglify-js');
+const uglify = require('gulp-uglify');
 const path = require('path');
 const ignore = require('gulp-ignore');
 const postcss = require('gulp-postcss');
@@ -68,9 +68,7 @@ gulp.task('watchPosts', async function() {
 gulp.task('js', function () {
   try {
     return gulp.src(paths.js)
-      .pipe(sourcemaps.init())
       .pipe(uglify())
-      .pipe(sourcemaps.write('.'))
       .pipe(gulp.dest(path.join(paths.dest, 'js')));
   } catch (error) {
     Sentry.captureException(error);
@@ -88,4 +86,4 @@ gulp.task('watch', function() {
   gulp.watch(paths.posts, '*.html', gulp.series('watchPosts'));
 });
 
-gulp.task('default', gulp.series('html', 'css', 'watchPosts', 'js'));
+gulp.task('default', gulp.series('html', 'css', 'watchPosts', gulp.series('js')));
