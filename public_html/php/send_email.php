@@ -1,4 +1,16 @@
 <?php
+if (!isset($_SESSION)) {
+    session_start();
+}
+
+$csrfToken = $_POST['csrf_token'];
+
+// Porównaj token CSRF z tokenem CSRF przechowywanym w sesji
+if ($csrfToken !== $_SESSION['csrf_token']) {
+    echo json_encode(['success' => false, 'message' => 'Błąd CSRF']);
+    exit;
+}
+
 // Dane do Airtable
 $airtable_api_url = "https://api.airtable.com/v0/appx76Q9YSMyuLxYF/Submissions";
 $airtable_api_key = "patmmJVUgqZQmCvW3.b591c3a621807ac2d784c5c8afbff6612af7c0d2624e6131df6c0e3946dea5af";

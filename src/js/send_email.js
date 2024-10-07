@@ -10,9 +10,36 @@ import phoneFormatter from './modules/phone_format.js';
 import initButtonAnimation from './modules/button-animation.js';
 
 phoneFormatter();
+
 const { animateButton, resetButton } = initButtonAnimation();
 
 const form = document.getElementById("my-form");
+
+// Pobierz token z generate-token.php
+fetch('/php/generate-token.php')
+  .then(response => response.text())
+  .then(csrfToken => {
+    // Zapisz token w lokalnym storage
+    localStorage.setItem('csrf_token', csrfToken);
+
+    // Dodaj token do formularza
+    const csrfInput = document.createElement('input');
+    csrfInput.type = 'hidden';
+    csrfInput.name = 'csrf_token';
+    csrfInput.value = csrfToken;
+    form.appendChild(csrfInput);
+  })
+  .catch(error => {
+    const errorData = {
+      message: 'Błąd pobierania tokena',
+      url: '/php/generate-token.php',
+      method: 'GET',
+    };
+    Sentry.captureException(new Error(errorData.message), {
+      extra: errorData,
+    });
+    console.error('Błąd pobierania tokena:', error)
+  });
 
 /**
  * @description Processes a form submission, validating user input and sending it to
@@ -50,6 +77,8 @@ async function handleSubmit(event, token) {
 
   const uniqueID = `${Date.now()}${Math.floor(Math.random() * 1000000).toString(36)}`;
 
+  const csrfToken = localStorage.getItem('csrf_token');
+
   // Prepare data for sending
   const data = new FormData();
   data.append('name', formData.name);
@@ -58,8 +87,13 @@ async function handleSubmit(event, token) {
   data.append('message', formData.message);
   data.append('g-recaptcha-response', token);
   data.append('uniqueID', uniqueID);
+  data.append('csrf_token', csrfToken);
 
-  await sendDataToServer(submitButton, data);
+  const file = new File([JSON.stringify(formData)], 'form_data.json', {
+    type: 'application/json',
+  });
+
+  await sendDataToServer(submitButton, data, file);
 }
 
 form.addEventListener("submit", (event) => {
@@ -123,13 +157,17 @@ function validateFormData(formData) {
  * @param {FormData} data - An object containing form data to be sent to the server.
  * @returns {Promise<void>}
  */
-async function sendDataToServer(submitButton, data) {
+async function sendDataToServer(submitButton, data, file) {
   try {
     const response = await fetch('/php/send_email.php', {
       method: 'POST',
       body: data,
     });
-  
+
+    if (!response.ok) {
+      throw new Error(`Błąd ${response.status}: ${response.statusText}`);
+    }
+
     const result = await response.json();
   
     if (result.success) {
@@ -151,7 +189,7 @@ async function sendDataToServer(submitButton, data) {
     }
   } catch (error) {
     console.error("Form submission error:", error.message, error.stack);
-    handleError(data, error);
+    handleError(file, error);
   } finally {
     // Re-enable the submit button
     submitButton.disabled = false;
@@ -177,15 +215,22 @@ async function sendDataToServer(submitButton, data) {
  * @tags {Object} tags - Tags to categorize the error.
  * @tags.form-name {string} 'kontakt' - The name of the form that triggered the error, aiding in filtering and analysis.
  */
-function handleError(data, error) {
+function handleError(file, error) {
   Sentry.captureException(error, {
-    extra: {
-      formData: data,
-    },
+    attachments: [
+      {
+        filename: 'form_data.json',
+        data: file,
+        contentType: 'application/json',
+      },
+    ],  
     tags: {
       'form-name': 'kontakt',
     },
   });
-  // Wyświetl komunikat błędu użytkownikowi
-  displayNotification('Wystąpił błąd. Proszę spróbować ponownie.', 'error');
+ if (error.message.includes('Błąd')) {
+    displayNotification('Wystąpił błąd. Proszę spróbować ponownie.', 'error');
+  } else {
+    displayNotification('Wystąpił nieoczekiwany błąd. Proszę skontaktować się z administratorem.', 'error');
+  }
 }
