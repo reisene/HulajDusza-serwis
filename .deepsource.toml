@@ -24,7 +24,8 @@ name = "javascript"
   [analyzers.meta]
   environment = [
     "jquery",
-    "browser"
+    "browser",
+    "nodejs"
   ]
 
 [[analyzers]]
