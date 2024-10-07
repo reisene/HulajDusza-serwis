@@ -5,7 +5,7 @@ function phoneFormatter() {
   phoneInput.addEventListener('input', () => {
     // Formats phone numbers as user types.
     const value = phoneInput.value.replace(/\D/g, ''); // Remove all non-digit characters
-    if (value.length === 9) {
+    if (value.length >= 3) {
 
       let formattedValue = '';
       for (let i = 0; i < value.length; i++) {

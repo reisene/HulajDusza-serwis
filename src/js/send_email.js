@@ -1,16 +1,100 @@
+/**
+ * Handles form submission, validates input, and sends data to the server using AJAX.
+ *
+ * @param {Event} event - The submit event triggered by the form.
+ * @param {string} token - The reCAPTCHA token obtained after user interaction.
+ * @returns {void}
+ */
 import displayNotification from './modules/notification.js';
 import phoneFormatter from './modules/phone_format.js';
 import initButtonAnimation from './modules/button-animation.js';
 
 phoneFormatter();
-
 const { animateButton, resetButton } = initButtonAnimation();
 
 const form = document.getElementById("my-form");
 
+/**
+ * @description Processes a form submission, validating user input and sending it to
+ * a PHP script via an AJAX request. It also displays notifications, resets the form
+ * after success, and re-enables the submit button upon completion or failure.
+ *
+ * @param {Event} event - Used to prevent default form submission behavior.
+ *
+ * @param {string} token - Used to authenticate reCAPTCHA responses.
+ */
+async function handleSubmit(event, token) {
+  event.preventDefault();
+  // Check if form exists before continuing
+  if (!form) {
+    console.error("Form not found.");
+    return;
+  }
+  
+  // Get form data
+  const formData = {
+    email: document.getElementById("email").value,
+    phone: document.getElementById("phone").value.replace(/\D/g, ''),
+    name: document.getElementById("name").value,
+    message: document.getElementById("message").value
+  };
+
+  if (!validateFormData(formData)) {
+    return;
+  }
+
+  const submitButton = form.querySelector('button[type="submit"]');
+  if (submitButton) {
+      submitButton.disabled = true;
+  }
+
+  const uniqueID = `${Date.now()}${Math.floor(Math.random() * 1000000).toString(36)}`;
+
+  // Prepare data for sending
+  const data = new FormData();
+  data.append('name', formData.name);
+  data.append('email', formData.email);
+  data.append('phone', formData.phone);
+  data.append('message', formData.message);
+  data.append('g-recaptcha-response', token);
+  data.append('uniqueID', uniqueID);
+
+  await sendDataToServer(submitButton, data);
+}
+
+form.addEventListener("submit", (event) => {
+  // Handles form submission events.
+  event.preventDefault();
+  grecaptcha.ready(() => {
+      // Executes reCAPTCHA and handles its response.
+      grecaptcha.execute('6LeTFCAqAAAAAKlvDJZjZnVCdtD76hc3YZiIUs_Q', {action: 'submit'})
+      .then((token) => {
+          // Handles ReCAPTCHA responses.
+          if (token) {
+              handleSubmit(event, token);
+          } else {
+              displayNotification("ReCAPTCHA verification failed. Please try again.", 'error');
+          }
+      })
+      .catch((error) => {
+          // Catches ReCAPTCHA errors.
+          console.error("ReCAPTCHA error:", error);
+          displayNotification("ReCAPTCHA verification failed. Please try again.", 'error');
+      });
+  });
+})
+
+/**
+ * Validates form data before sending it to the server.
+ *
+ * @param {Object} formData - Object containing form data.
+ *
+ * @returns {boolean} - Returns true if form data is valid, false otherwise.
+ */
+
 function validateFormData(formData) {
   const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-  const mobilePhonePattern = /^[0-9]{9}$/;
+  const mobilePhonePattern = /^[0-9]{9}$/; // Polish mobile phone pattern: 9 digits
 
   if (!formData.email && !formData.phone) {
     displayNotification("Proszę podać adres email lub numer telefonu.", 'error');
@@ -26,101 +110,82 @@ function validateFormData(formData) {
     displayNotification("Proszę podać prawidłowy numer telefonu (9 cyfr).", 'error');
     return false;
   }
-
   return true;
 }
 
-function prepareFormData() {
-  const formData = {
-    email: document.getElementById("email").value,
-    phone: document.getElementById("phone").value.replace(/\D/g, ''), // Usuń wszystkie niecyfrowe znaki z numeru telefonu,
-    name: document.getElementById("name").value,
-    message: document.getElementById("message").value
-  };
-
-  return formData;
-}
-
-function prepareDataForSending(formData, token) {
-  const data = new FormData();
-  data.append('name', formData.name);
-  data.append('email', formData.email);
-  data.append('phone', formData.phone);
-  data.append('message', formData.message);
-  data.append('g-recaptcha-response', token);
-  data.append('uniqueID', `${Date.now()}${Math.floor(Math.random() * 1000000).toString(36)}`);
-
-  return data;
-}
-
-function sendFormData(data) {
-  fetch('/php/send_email.php', {
-    method: 'POST',
-    body: data,
-  })
-  .then(response => response.json())
-  .then(result => {
+/**
+ * @description Sends form data to a PHP script using the Fetch API. It processes
+ * the response, displaying notifications based on the result. It also resets the
+ * form after success, re-enables the submit button upon completion, and handles
+ * errors gracefully.
+ *
+ * @param {HTMLElement} submitButton - The form's submit button element.
+ * @param {FormData} data - An object containing form data to be sent to the server.
+ * @returns {Promise<void>}
+ */
+async function sendDataToServer(submitButton, data) {
+  try {
+    const response = await fetch('/php/send_email.php', {
+      method: 'POST',
+      body: data,
+    });
+  
+    const result = await response.json();
+  
     if (result.success) {
       displayNotification(result.message, 'success');
-      animateButton('success');
       setTimeout(() => {
-        form.reset();
-      }, 5000);
+        // Calls animateButton with 'success'.
+        animateButton('success');
+      }, 0);
+      setTimeout(() => {
+        // Calls form.reset() with a delay.
+        form.reset(); // Reset the form after success
+      }, 5000); // Delaying reset after success message
     } else {
       displayNotification(result.message, 'error');
-      animateButton('error');
+      setTimeout(() => {
+        // Immediately invokes itself.
+        animateButton('error');
+      }, 0);
     }
-  })
-  .catch(error => {
+  } catch (error) {
     console.error("Form submission error:", error.message, error.stack);
-    displayNotification("Ups! Wystąpił problem z przesłaniem formularza", 'error');
-  })
-  .finally(() => {
-    resetButton();
+    handleError(data, error);
+  } finally {
+    // Re-enable the submit button
+    submitButton.disabled = false;
+    setTimeout(() => {
+      // Calls `resetButton` after 5 seconds delay.
+      resetButton ();
+    }, 5000);
+  }
+}
+
+/**
+ * Captures and handles errors by reporting them to Sentry and notifying the user.
+ *
+ * This function utilizes Sentry's `captureException` to log the provided error along with 
+ * additional context, such as form data and specific tags. It also displays a user-friendly 
+ * error message to inform the user of the encountered issue.
+ *
+ * @param {Error} error - The error object to be captured and reported.
+ * @param {Object} data - The form data associated with the error (should be defined in the scope).
+ * @param {Object} [options] - Optional parameters for additional context.
+ * @param {string} options.formName - The name of the form where the error occurred, used for tagging.
+ * 
+ * @tags {Object} tags - Tags to categorize the error.
+ * @tags.form-name {string} 'kontakt' - The name of the form that triggered the error, aiding in filtering and analysis.
+ */
+function handleError(data, error) {
+  Sentry.captureException(error, {
+    extra: {
+      formData: data,
+    },
+    tags: {
+      'form-name': 'kontakt',
+    },
   });
-}
-
-function handleButtonState(submitButton) {
-  submitButton.disabled = true;
-  setTimeout(() => {
-    resetButton();
-  }, 5000);
-}
-
-function handleReCAPTCHA(token) {
-  if (token) {
-    handleSubmit(token);
-  } else {
-    displayNotification("ReCAPTCHA verification failed. Please try again.", 'error');
-  }
-}
-
-form.addEventListener("submit", function(event) {
-  event.preventDefault();
-  grecaptcha.ready(function() {
-    grecaptcha.execute('6LeTFCAqAAAAAKlvDJZjZnVCdtD76hc3YZiIUs_Q', {action: 'submit'})
-    .then(function(token) {
-      handleReCAPTCHA(token);
-    })
-    .catch(function(error) {
-      console.error("ReCAPTCHA error:", error);
-      displayNotification("ReCAPTCHA verification failed. Please try again.", 'error');
-    });
-  });
-})
-
-async function handleSubmit(token) {
-  const formData = prepareFormData();
-
-  if (!validateFormData(formData)) {
-    return;
-  }
-
-  const submitButton = form.querySelector('button[type="submit"]');
-  if (submitButton) {
-    handleButtonState(submitButton);
-  }
-
-  const data = prepareDataForSending(formData, token);
-  sendFormData(data);
+  // Wyświetl komunikat błędu użytkownikowi
+  displayNotification('Wystąpił błąd. Proszę spróbować ponownie.', 'error');
 }
