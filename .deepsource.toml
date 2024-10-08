@@ -33,9 +33,6 @@ enabled = true
 [[analyzers]]
 name = "php"
 
-[[transformers]]
-name = "prettier"
-
 [[analyzers]]
 name = "test-coverage"
 enabled = true
