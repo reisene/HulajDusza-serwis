@@ -30,6 +30,3 @@ name = "javascript"
 
 [[analyzers]]
 name = "php"
-
-[[transformers]]
-name = "prettier"
