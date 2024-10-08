@@ -3,13 +3,19 @@ if (!isset($_SESSION)) {
     session_start();
 }
 
-$csrfToken = $_POST['csrf_token'];
-
-// Porównaj token CSRF z tokenem CSRF przechowywanym w sesji
-if ($csrfToken !== $_SESSION['csrf_token']) {
-    echo json_encode(['success' => false, 'message' => 'Błąd CSRF']);
-    exit;
+function verifyCsrfToken($csrfToken) {
+    if ($_SERVER['HTTP_USER_AGENT'] !== $_SESSION['user_agent']) {
+        echo json_encode(['success' => false, 'message' => 'Błąd CSRF']);
+        exit;
+    }
+    if ($csrfToken !== $_SESSION['csrf_token'] || $csrfToken !== $_COOKIE['csrf_token']) {
+        echo json_encode(['success' => false, 'message' => 'Błąd CSRF']);
+        exit;
+    }
 }
+
+$csrfToken = $_POST['csrf_token'];
+verifyCsrfToken($csrfToken);
 
 // Dane do Airtable
 $airtable_api_url = "https://api.airtable.com/v0/appx76Q9YSMyuLxYF/Submissions";

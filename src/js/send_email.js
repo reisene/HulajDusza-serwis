@@ -28,6 +28,7 @@ fetch('/php/generate-token.php')
     csrfInput.name = 'csrf_token';
     csrfInput.value = csrfToken;
     form.appendChild(csrfInput);
+
   })
   .catch(error => {
     const errorData = {

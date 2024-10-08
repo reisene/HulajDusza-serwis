@@ -22,4 +22,5 @@
     "peacock.color": "#AC2A21",
     "liveServer.settings.port": 5502,
     "codeQL.createQuery.qlPackLocation": "d:\\Hd serwis",
+    "php.version": "8.3",
 }
