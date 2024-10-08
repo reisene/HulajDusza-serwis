@@ -1,100 +1,119 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pl">
-    <head>
-        <title>O nas</title>
-        @@include('head.html')
-        <script src="/js/counters.js"></script>
-    </head>
+  <head>
+    <title>O nas</title>
+    @@include('head.html')
+    <script src="/js/counters.js"></script>
+  </head>
 
-    <body>
-        <!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WZLT4R8J"
-    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript
+      ><iframe
+        src="https://www.googletagmanager.com/ns.html?id=GTM-WZLT4R8J"
+        height="0"
+        width="0"
+        style="display: none; visibility: hidden"
+      ></iframe
+    ></noscript>
     <!-- End Google Tag Manager (noscript) -->
-        <header>
-            @@include('header.html')
-        </header>
+    <header>@@include('header.html')</header>
 
-        <nav aria-label="breadcrumb">
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="index.html">Strona Główna</a></li>
-                <li class="breadcrumb-item active" aria-current="page">O nas</li>
-            </ol>
-        </nav>
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="index.html">Strona Główna</a></li>
+        <li class="breadcrumb-item active" aria-current="page">O nas</li>
+      </ol>
+    </nav>
 
-        <main>
-            <!-- Hero Section -->
-            <section class="about-hero">
-                <div class="about-container">
-                    <h1>O nas</h1>
-                    <p>Jesteśmy pasjonatami hulajnóg elektrycznych, gotowymi zadbać o Twoje pojazdy.</p>
+    <main>
+      <!-- Hero Section -->
+      <section class="about-hero">
+        <div class="about-container">
+          <h1>O nas</h1>
+          <p>
+            Jesteśmy pasjonatami hulajnóg elektrycznych, gotowymi zadbać o Twoje
+            pojazdy.
+          </p>
+        </div>
+      </section>
+
+      <!-- About Us Section -->
+      <section class="about-team">
+        <div class="about-container">
+          <h2>Poznaj nasz zespół</h2>
+          <div class="about-content">
+            <div class="about-item">
+              <img src="img/katarzyna.jpg" alt="Katarzyna Pawłowska-Malesa" />
+              <div class="about-text">
+                <h3>Katarzyna</h3>
+                <p>
+                  Założycielka, Dyrektorka operacyjna i główna mechanik.
+                  Pasjonatka hulajnóg elektrycznych. Codziennie daje z siebie
+                  wszystko, aby hulajnogi klientów były sprawne.
+                </p>
+              </div>
+            </div>
+            <div class="about-item">
+              <img src="img/maciej.jpg" alt="Maciej Bujoczek" />
+              <div class="about-text">
+                <h3>Maciej</h3>
+                <p>
+                  Partner i komandytariusz spółki. Współpracuje przy prowadzeniu
+                  serwisu oraz naprawach. Razem z Katarzyną tworzą zgrany
+                  zespół, który codziennie dba o sprawność hulajnóg klientów.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Counter Section -->
+      <!--TODO zmienić liczby -->
+      <section class="space-ptb overflow-hidden">
+        <div class="about-container position-relative">
+          <div class="bg-primary-gradient py-5">
+            <div class="text-center">
+              <h2>Liczby, z których jesteśmy dumni:</h2>
+            </div>
+            <div class="numbers-container">
+              <div class="counter">
+                <div class="counter-content">
+                  <span class="timer" data-to="1790" data-speed="1000"
+                    >1790</span
+                  >
+                  <label>Uśmiechów w firmie</label>
                 </div>
-            </section>
-
-            <!-- About Us Section -->
-            <section class="about-team">
-                <div class="about-container ">
-                    <h2>Poznaj nasz zespół</h2>
-                    <div class="about-content">
-                        <div class="about-item ">
-                            <img src="img/katarzyna.jpg" alt="Katarzyna Pawłowska-Malesa">
-                            <div class="about-text">
-                                <h3>Katarzyna</h3>
-                                <p>Założycielka, Dyrektorka operacyjna i główna mechanik. Pasjonatka hulajnóg elektrycznych. Codziennie daje z siebie wszystko, aby hulajnogi klientów były sprawne.</p>
-                            </div>
-                        </div>
-                        <div class="about-item ">
-                            <img src="img/maciej.jpg" alt="Maciej Bujoczek">
-                            <div class="about-text">
-                                <h3>Maciej</h3>
-                                <p>Partner i komandytariusz spółki. Współpracuje przy prowadzeniu serwisu oraz naprawach. Razem z Katarzyną tworzą zgrany zespół, który codziennie dba o sprawność hulajnóg klientów.</p>
-                            </div>
-                        </div>
-                    </div>
+              </div>
+              <div class="counter">
+                <div class="counter-content">
+                  <span class="timer" data-to="953" data-speed="1500">953</span>
+                  <label>Produktów w bazie</label>
                 </div>
-            </section>
-
-            <!-- Counter Section -->
-             <!--TODO zmienić liczby -->
-             <section class="space-ptb overflow-hidden ">
-                <div class="about-container position-relative">
-                    <div class="bg-primary-gradient py-5">
-                        <div class="text-center">
-                            <h2>Liczby, z których jesteśmy dumni:</h2>
-                        </div>
-                        <div class="numbers-container">
-                            <div class="counter">
-                                <div class="counter-content">
-                                    <span class="timer" data-to="1790" data-speed="1000">1790</span>
-                                    <label>Uśmiechów w firmie</label>
-                                </div>
-                            </div>
-                            <div class="counter">
-                                <div class="counter-content">
-                                    <span class="timer" data-to="953" data-speed="1500">953</span>
-                                    <label>Produktów w bazie</label>
-                                </div>
-                            </div>
-                            <div class="counter">
-                                <div class="counter-content">
-                                    <span class="timer" data-to="8780" data-speed="2200">8780</span>
-                                    <label>Zadowolonych klientów</label>
-                                </div>
-                            </div>
-                            <div class="counter">
-                                <div class="counter-content">
-                                    <span class="timer" data-to="6381" data-speed="3000">6381</span>
-                                    <label>Wypitych filiżanek kaw</label>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+              </div>
+              <div class="counter">
+                <div class="counter-content">
+                  <span class="timer" data-to="8780" data-speed="2200"
+                    >8780</span
+                  >
+                  <label>Zadowolonych klientów</label>
                 </div>
-            </section>
-            
-        </main>
+              </div>
+              <div class="counter">
+                <div class="counter-content">
+                  <span class="timer" data-to="6381" data-speed="3000"
+                    >6381</span
+                  >
+                  <label>Wypitych filiżanek kaw</label>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
 
-        @@include('footer.html')
-
-    </body>
+    @@include('footer.html')
+  </body>
 </html>
