@@ -1,3 +1,4 @@
 node.DMP
 node_modules/
 generate-token.php
+__tests__/

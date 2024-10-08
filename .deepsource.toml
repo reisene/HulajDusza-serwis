@@ -20,12 +20,15 @@ exclude_patterns = [
 
 [[analyzers]]
 name = "javascript"
+enabled = true
 
   [analyzers.meta]
   environment = [
     "jquery",
     "browser"
   ]
+  module_system = "es-modules"
+  dialect = "flow"
 
 [[analyzers]]
 name = "php"
