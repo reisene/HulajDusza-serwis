@@ -1,128 +1,133 @@
 /* Unikalne style dla strony services.html */
 
 .services-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
-    position: relative;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  position: relative;
 }
 
 .services-hero {
-    background: linear-gradient(to right, #ac2a21, #333);
-    color: #fff;
-    padding: 60px 0;
-    text-align: center;
-    border-radius: 15px; /* Rounded corners */
-    margin: 20px;
+  background: linear-gradient(to right, #ac2a21, #333);
+  color: #fff;
+  padding: 60px 0;
+  text-align: center;
+  border-radius: 15px; /* Rounded corners */
+  margin: 20px;
 }
 
 .services-hero h2 {
-    margin: 0;
-    font-size: 2.5em;
-    color: #ffffffa6;
+  margin: 0;
+  font-size: 2.5em;
+  color: #ffffffa6;
 }
 
 .services-hero p {
-    margin: 10px 30px 0;
-    font-size: 1.2em;
+  margin: 10px 30px 0;
+  font-size: 1.2em;
 }
 
 .services-overview,
 .service-details {
-    padding: 20px 0;
-    background: transparent;
+  padding: 20px 0;
+  background: transparent;
 }
 
 .services-overview .services-container,
 .service-details .services-container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
 }
 
 .service-item,
 .service-detail-item {
-    background-color: #fff;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    padding: 15px;
-    flex: 1;
-    min-width: 200px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    text-align: center;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 15px;
+  flex: 1;
+  min-width: 200px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
 }
 
 .service-item h3,
 .service-detail-item h3 {
-    color: #333;
+  color: #333;
 }
 
 .service-item p,
 .service-detail-item p {
-    color: #555;
+  color: #555;
 }
 
 /* CTA i CTA-pricing */
 .cta-container {
-    display: flex;
-    justify-content: space-between;
-    gap: 20px;
-    margin: 20px;
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  margin: 20px;
 }
 
-.cta, .cta-pricing {
-    flex: 1;
-    background: linear-gradient(to right, #ac2a21, #333);
-    color: #fff;
-    padding: 20px;
-    text-align: center;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 15px;
+.cta,
+.cta-pricing {
+  flex: 1;
+  background: linear-gradient(to right, #ac2a21, #333);
+  color: #fff;
+  padding: 20px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 15px;
 }
 
 .cta-content {
-    max-width: 500px;
-    margin: 0 auto;
+  max-width: 500px;
+  margin: 0 auto;
 }
 
-.cta h2, .cta-pricing h2 {
-    margin: 0;
-    font-size: 1.8em;
-    color: #ffffffa6;
+.cta h2,
+.cta-pricing h2 {
+  margin: 0;
+  font-size: 1.8em;
+  color: #ffffffa6;
 }
 
-.cta p, .cta-pricing p {
-    margin: 10px 0 20px;
-    font-size: 18px;
+.cta p,
+.cta-pricing p {
+  margin: 10px 0 20px;
+  font-size: 18px;
 }
 
-.cta .btn, .cta-pricing .btn {
-    padding: 10px 20px;
-    background-color: #fff;
-    color: #ac2a21;
-    font-weight: bold;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    text-decoration: none;
-    font-size: 16px;
+.cta .btn,
+.cta-pricing .btn {
+  padding: 10px 20px;
+  background-color: #fff;
+  color: #ac2a21;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  text-decoration: none;
+  font-size: 16px;
 }
 
-.cta .btn:hover, .cta-pricing .btn:hover {
-    background-color: #f4f4f4;
+.cta .btn:hover,
+.cta-pricing .btn:hover {
+  background-color: #f4f4f4;
 }
 
 @media (max-width: 768px) {
-    .services-overview .services-container,
-    .service-details .services-container {
-        flex-direction: column;
-    }
+  .services-overview .services-container,
+  .service-details .services-container {
+    flex-direction: column;
+  }
 
-    .cta-container {
-        flex-direction: column;
-    }
+  .cta-container {
+    flex-direction: column;
+  }
 }
 
 /*# sourceMappingURL=services.css.map */
