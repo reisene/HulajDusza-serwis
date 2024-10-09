@@ -1,127 +1,199 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pl">
-    <head>
-        <title>Kontakt</title>
-        
-        @@include('head.html')
+  <head>
+    <title>Kontakt</title>
 
-        <!-- Form scripts -->
-        <script type="module" src="js/send_email.js" defer></script>
-    </head>
+    @@include('head.html')
 
-    <body>
-        <!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WZLT4R8J"
-    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- Form scripts -->
+    <script type="module" src="js/send_email.js" defer></script>
+  </head>
+
+  <body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript
+      ><iframe
+        src="https://www.googletagmanager.com/ns.html?id=GTM-WZLT4R8J"
+        height="0"
+        width="0"
+        style="display: none; visibility: hidden"
+      ></iframe
+    ></noscript>
     <!-- End Google Tag Manager (noscript) -->
-        <header>
-            @@include('header.html')
-        </header>
+    <header>@@include('header.html')</header>
 
-        <nav aria-label="breadcrumb">
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="index.html">Strona Główna</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Kontakt</li>
-            </ol>
-        </nav>
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="index.html">Strona Główna</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Kontakt</li>
+      </ol>
+    </nav>
 
-        <main>
+    <main>
+      <!-- GOOGLE MAPS --->
+      <section class="map-container">
+        <h2 id="location">Nasza lokalizacja</h2>
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2551.4453021158115!2d18.99224926929733!3d50.24626694637051!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4716ce60a8559e0f%3A0xfac9dc82247cd9df!2sWincentego%20Pola%2020%2C%2040-596%20Katowice!5e0!3m2!1spl!2spl!4v1721823585135!5m2!1spl!2spl"
+          width="600"
+          height="450"
+          style="border: 0"
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+        ></iframe>
+      </section>
 
-<!-- GOOGLE MAPS --->
-            <section class="map-container ">
-                <h2 id="location">Nasza lokalizacja</h2>
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2551.4453021158115!2d18.99224926929733!3d50.24626694637051!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4716ce60a8559e0f%3A0xfac9dc82247cd9df!2sWincentego%20Pola%2020%2C%2040-596%20Katowice!5e0!3m2!1spl!2spl!4v1721823585135!5m2!1spl!2spl" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-            </section>
+      <!-- CONTACT US -->
+      <section class="container">
+        <h2 class="contact-with-us">Skontaktuj się z nami</h2>
 
-<!-- CONTACT US -->
-            <section class="container ">
-                <h2 class="contact-with-us">Skontaktuj się z nami</h2>
-                
-                <div class="contact-container">
+        <div class="contact-container">
+          <!-- CONTACT DETAILS -->
+          <div class="contact-details">
+            <h3>Dane kontaktowe</h3>
+            <p style="font-weight: bold">
+              HulajDusza Serwis hulajnóg elektrycznych
+            </p>
+            <p class="icon-title">
+              <i class="fa-solid fa-location-dot icon icon"></i>Adres
+            </p>
+            <p>ul. Wincentego Pola 20/1, 40-596 Katowice</p>
+            <p class="icon-title">
+              <i class="fa-regular fa-envelope icon"></i>Email
+            </p>
+            <p>
+              <a
+                href="mailto:hulajduszaserwishulajnog@gmail.com"
+                target="_blank"
+              >
+                hulajduszaserwishulajnog@gmail.com
+              </a>
+            </p>
+            <p class="icon-title">
+              <i class="fa-solid fa-phone icon"></i>Telefon
+            </p>
+            <p>
+              <a href="tel:+48 539 498 832" target="_blank">
+                +48 539 498 832
+              </a>
+            </p>
+          </div>
 
-                <!-- CONTACT DETAILS -->
-                <div class="contact-details">
-                    <h3>Dane kontaktowe</h3>
-                    <p style="font-weight: bold;">HulajDusza Serwis hulajnóg elektrycznych</p>
-                    <p class="icon-title"><i class="fa-solid fa-location-dot icon icon"></i>Adres</p>
-                    <p>
-                        ul. Wincentego Pola 20/1, 40-596 Katowice
-                    </p>
-                    <p class="icon-title"><i class="fa-regular fa-envelope icon"></i>Email</p>
-                    <p>
-                        <a href="mailto:hulajduszaserwishulajnog@gmail.com" target="_blank">
-                            hulajduszaserwishulajnog@gmail.com
-                        </a>
-                    </p>
-                    <p class="icon-title"><i class="fa-solid fa-phone icon"></i>Telefon</p>
-                    <p>
-                        <a href="tel:+48 539 498 832" target="_blank">
-                            +48 539 498 832
-                        </a></p>
-                </div>
+          <!-- SOCIAL LINKS -->
+          <div class="social-links">
+            <h3>Social Media</h3>
+            <a
+              href="https://www.facebook.com"
+              target="_blank"
+              title="Odwiedź nas na Facebooku"
+            >
+              <i class="fa-brands fa-facebook fa-xl" aria-hidden="true"></i>
+              HulajDusza Katowice </a
+            ><br />
+            <a
+              href="https://www.messenger.com"
+              target="_blank"
+              title="Skontaktuj się z nami przez Messenger"
+            >
+              <i
+                class="fa-brands fa-facebook-messenger fa-xl"
+                aria-hidden="true"
+              ></i>
+              HulajDusza Katowice </a
+            ><br />
+            <a
+              href="https://wa.me/48539498832"
+              target="_blank"
+              title="Napisz do nas na WhatsApp"
+            >
+              <i class="fa-brands fa-whatsapp fa-xl" aria-hidden="true"></i>
+              HulajDusza </a
+            ><br />
+            <a
+              href="https://www.tiktok.com"
+              target="_blank"
+              title="Obserwuj nas na TikToku"
+            >
+              <i class="fa-brands fa-tiktok fa-xl" aria-hidden="true"></i>
+              HulajDusza Katowice
+            </a>
+          </div>
 
-                <!-- SOCIAL LINKS -->
-                <div class="social-links">
-                    <h3>Social Media</h3>
-                    <a href="https://www.facebook.com" target="_blank" title="Odwiedź nas na Facebooku">
-                        <i class="fa-brands fa-facebook fa-xl" aria-hidden="true"></i>
-                            HulajDusza Katowice
-                        </a><br>
-                        <a href="https://www.messenger.com" target="_blank" title="Skontaktuj się z nami przez Messenger">
-                            <i class="fa-brands fa-facebook-messenger fa-xl" aria-hidden="true"></i>
-                                HulajDusza Katowice
-                        </a><br>
-                        <a href="https://wa.me/48539498832" target="_blank" title="Napisz do nas na WhatsApp">
-                            <i class="fa-brands fa-whatsapp fa-xl" aria-hidden="true"></i>
-                                HulajDusza
-                        </a><br>
-                        <a href="https://www.tiktok.com" target="_blank" title="Obserwuj nas na TikToku">
-                            <i class="fa-brands fa-tiktok fa-xl" aria-hidden="true"></i>
-                                HulajDusza Katowice
-                        </a>
-                </div>
-                 
-                <!-- CONTACT FORM -->
-                <div class="contact-form">
-                    <h3>Wyślij wiadomość</h3>
-                    <p>Masz pytania? Skontaktuj się z nami!<br>Zapraszamy do kontaktu poprzez czat online, jak również poprzez formularz.</p>
-                    <div class="notification" id="notification">
-                        <p id="notification-message"></p>
-                    </div>
-                    <form id="my-form">
-                        <fieldset id="my-form-inputs">
-                            <label for="name">Imię:<span class="required">*</span></label>
-                            <input type="text" id="name" name="name" placeholder="Imię" autocomplete="name" required />
-                            <br>
-                            <div class="form-row">
-                                <div class="form-group">
-                                    <label for="email">Email:<span class="required">*</span></label>
-                                    <input type="email" id="email" name="email" placeholder="twój@email.com" autocomplete="email" />
-                                </div>
-                                <div class="form-group">
-                                    <label for="phone">Numer Telefonu:</label>
-                                    <input type="tel" id="phone" name="phone" placeholder="500 123 456" autocomplete="tel" />
-                                </div>
-                            </div>
-                            <label for="message">Wiadomość:<span class="required">*</span></label>
-                            <textarea id="message" name="message" rows="5" placeholder="Jak możemy pomóc?"></textarea>
-                        </fieldset>
-                        <div class="form-actions">
-                            <button id="my-form-button" class="submit" type="submit">
-                                <i class="fa fa-paper-plane" aria-hidden="true"></i>
-                                <i class="fa fa-spinner fa-spin hidden" aria-hidden="true"></i>
-                                <i class="fa fa-check hidden" aria-hidden="true"></i>
-                                <i class="fa fa-times hidden" aria-hidden="true"></i>
-                                <span class="send-form">Wyślij</span>
-                            </button>
-                        </div>
-                    </form>
-                </div>
+          <!-- CONTACT FORM -->
+          <div class="contact-form">
+            <h3>Wyślij wiadomość</h3>
+            <p>
+              Masz pytania? Skontaktuj się z nami!<br />Zapraszamy do kontaktu
+              poprzez czat online, jak również poprzez formularz.
+            </p>
+            <div class="notification" id="notification">
+              <p id="notification-message"></p>
             </div>
-        </section>
+            <form id="my-form">
+              <fieldset id="my-form-inputs">
+                <label for="name">Imię:<span class="required">*</span></label>
+                <input
+                  type="text"
+                  id="name"
+                  name="name"
+                  placeholder="Imię"
+                  autocomplete="name"
+                  required
+                />
+                <br />
+                <div class="form-row">
+                  <div class="form-group">
+                    <label for="email"
+                      >Email:<span class="required">*</span></label
+                    >
+                    <input
+                      type="email"
+                      id="email"
+                      name="email"
+                      placeholder="twój@email.com"
+                      autocomplete="email"
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label for="phone">Numer Telefonu:</label>
+                    <input
+                      type="tel"
+                      id="phone"
+                      name="phone"
+                      placeholder="500 123 456"
+                      autocomplete="tel"
+                    />
+                  </div>
+                </div>
+                <label for="message"
+                  >Wiadomość:<span class="required">*</span></label
+                >
+                <textarea
+                  id="message"
+                  name="message"
+                  rows="5"
+                  placeholder="Jak możemy pomóc?"
+                ></textarea>
+              </fieldset>
+              <div class="form-actions">
+                <button id="my-form-button" class="submit" type="submit">
+                  <i class="fa fa-paper-plane" aria-hidden="true"></i>
+                  <i
+                    class="fa fa-spinner fa-spin hidden"
+                    aria-hidden="true"
+                  ></i>
+                  <i class="fa fa-check hidden" aria-hidden="true"></i>
+                  <i class="fa fa-times hidden" aria-hidden="true"></i>
+                  <span class="send-form">Wyślij</span>
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </section>
     </main>
 
     @@include('footer.html')
-
-    </body>
+  </body>
 </html>

@@ -13,10 +13,10 @@ class Menu {
    * - `closeIcon`: an icon to close the menu.
    */
   constructor() {
-    this.menu = $('nav.menu ul');
-    this.menuToggle = $('.menu-toggle');
-    this.menuIcon = $('.menu-icon');
-    this.closeIcon = $('.close-icon');
+    this.menu = $("nav.menu ul");
+    this.menuToggle = $(".menu-toggle");
+    this.menuIcon = $(".menu-icon");
+    this.closeIcon = $(".close-icon");
   }
 
   /**
@@ -30,29 +30,39 @@ class Menu {
     this.handleWindowResize();
     this.addActiveClassToMenuItem();
   }
-  
+
   handleMenuToggle() {
     this.menuToggle.click(() => {
-      if (!this.menu.hasClass('active')) {
-        this.menu.addClass('active').css('animation','menu-opacityup 0.2s ease-in-out forwards');
+      if (!this.menu.hasClass("active")) {
+        this.menu
+          .addClass("active")
+          .css("animation", "menu-opacityup 0.2s ease-in-out forwards");
       } else {
-        this.menu.css('animation', 'menu-opacitydown 0.2s ease-in-out forwards');
+        this.menu.css(
+          "animation",
+          "menu-opacitydown 0.2s ease-in-out forwards",
+        );
         setTimeout(() => {
-          this.menu.removeClass('active');
+          this.menu.removeClass("active");
         }, 200); // Adjust to animation duration
       }
       this.menuIcon.toggle();
       this.closeIcon.toggle();
     });
   }
-  
+
   handleDocumentClick() {
     $(document).click((event) => {
-      if (!this.menu.is(event.target) && this.menu.has(event.target).length === 0 &&
-          !this.menuToggle.is(event.target) && this.menuToggle.has(event.target).length === 0 &&this.menu.hasClass('active')) {
-        this.menu.css('animation', 'menu-opacitydown 0.2sease-in-out forwards');
+      if (
+        !this.menu.is(event.target) &&
+        this.menu.has(event.target).length === 0 &&
+        !this.menuToggle.is(event.target) &&
+        this.menuToggle.has(event.target).length === 0 &&
+        this.menu.hasClass("active")
+      ) {
+        this.menu.css("animation", "menu-opacitydown 0.2sease-in-out forwards");
         setTimeout(() => {
-          this.menu.removeClass('active');
+          this.menu.removeClass("active");
           this.closeIcon.hide();
           if ($(window).width() <= 768) {
             this.menuIcon.show();
@@ -61,30 +71,34 @@ class Menu {
       }
     });
   }
-  
+
   handleWindowResize() {
     $(window).resize(() => {
       if ($(window).width() > 768) {
         this.menuIcon.hide();
         this.closeIcon.hide();
-      } else if (!this.menu.hasClass('active')) {
+      } else if (!this.menu.hasClass("active")) {
         this.menuIcon.show();
       }
     });
   }
-  
+
   addActiveClassToMenuItem() {
     const currentUrl = window.location.href;
     const baseUrl = window.location.origin; // Get thebase URL
-  
-    $('nav.menu ul li a').each((index, element) => {
+
+    $("nav.menu ul li a").each((index, element) => {
       const linkUrl = element.href;
-  
+
       // Check if the link is to the homepage
-      if (linkUrl === currentUrl ||
-          (linkUrl === `${baseUrl}/` && currentUrl === `${baseUrl}/`) ||
-          (linkUrl === `${baseUrl}/index.html` && (currentUrl === `${baseUrl}/` || currentUrl === `${baseUrl}/index.html`))) {
-          $(element).parent().addClass('active');
+      if (
+        linkUrl === currentUrl ||
+        (linkUrl === `${baseUrl}/` && currentUrl === `${baseUrl}/`) ||
+        (linkUrl === `${baseUrl}/index.html` &&
+          (currentUrl === `${baseUrl}/` ||
+            currentUrl === `${baseUrl}/index.html`))
+      ) {
+        $(element).parent().addClass("active");
       }
     });
   }
