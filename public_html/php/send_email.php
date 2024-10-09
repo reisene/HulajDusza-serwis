@@ -60,29 +60,13 @@ $airtable_api_key = "patmmJVUgqZQmCvW3.b591c3a621807ac2d784c5c8afbff6612af7c0d26
 // Dane do reCAPTCHA
 $recaptcha_secret = "6LeTFCAqAAAAAL0kZ98HDceJdvN0_6GImtVvfMjg";
 
-if (!isset($_POST['name']) || !isset($_POST['email']) || !isset($_POST['message']) ||
-    empty($_POST['name']) || empty($_POST['email']) || empty($_POST['message'])) {
-    echo 'Error: Invalid or missing POST data.';
-    exit;
-}
-
 // Odbierz dane POST z formularza
 $name = $_POST['name'];
-$email = filter_var(value: $_POST['email'], filter: FILTER_VALIDATE_EMAIL);
-if (!$email) {
-    echo json_encode(['success' => false, 'message' => 'Invalid email address']);
-    exit;
-}
-$phone = filter_var(value: $_POST['phone'], filter: FILTER_SANITIZE_NUMBER_INT);
-if (!$phone) {
-    echo json_encode(['success' => false, 'message' => 'Invalid phone number']);
-    exit;
-}
+$email = $_POST['email'];
+$phone = $_POST['phone'];
 $message = $_POST['message'];
 $recaptcha_response = $_POST['g-recaptcha-response'];
 $uniqueID = $_POST['uniqueID'];
-
-
 
 // Sprawdź reCAPTCHA
 $recaptcha_url = 'https://www.google.com/recaptcha/api/siteverify';
@@ -104,7 +88,8 @@ $recaptcha_verify = file_get_contents(filename: $recaptcha_url, use_include_path
 $recaptcha_success = json_decode(json: $recaptcha_verify);
 
 if ($recaptcha_success->success) {
-   
+    // Jeśli reCAPTCHA się powiodła, wyślij do Formspree
+
     // Wysłanie do Airtable
     $airtable_data = json_encode(value: array(
         'fields' => array(
@@ -127,9 +112,8 @@ if ($recaptcha_success->success) {
 
     $airtable_context = stream_context_create(options: $airtable_options);
     $airtable_response = file_get_contents(filename: $airtable_api_url, use_include_path: false, context: $airtable_context);
-    $airtable_json = json_decode(json: $airtable_response, associative: true);
 
-    if ($airtable_json && $airtable_json['success']) {
+    if ($airtable_response) {
         // Zgłoszenie zakończone sukcesem
         echo json_encode(value: ['success' => true, 'message' => 'Dziękujemy za zgłoszenie!']);
     } else {
