@@ -4,6 +4,7 @@ const { nodeProfilingIntegration } = require("@sentry/profiling-node");
 
 Sentry.init({
   environment: "development",
+  release: "dev",
   dsn: "https://63e2bb53c6fbdeb59c0b5430398260e9@o4507719861075968.ingest.de.sentry.io/4507719884144720",
   integrations: [
     nodeProfilingIntegration(),
@@ -13,12 +14,4 @@ Sentry.init({
 
   // Set sampling rate for profiling - this is relative to tracesSampleRate
   profilesSampleRate: 1.0,
-
-  beforeSend(event, hint) {
-    // Check if it is an exception, and if so, show the report dialog
-    if (event.exception && event.event_id) {
-      Sentry.showReportDialog({ eventId: event.event_id });
-    }
-    return event;
-  },
 });

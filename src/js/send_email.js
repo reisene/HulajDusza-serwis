@@ -172,7 +172,7 @@ function validateFormData(formData) {
  */
 async function sendDataToServer(submitButton, data, file) {
   try {
-    const response = await fetch('/php/send_email.php', {
+    const response = await fetch('../php/send_email.php', {
       method: 'POST',
       body: data,
     });

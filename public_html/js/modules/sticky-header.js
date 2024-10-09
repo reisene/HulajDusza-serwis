@@ -1,1 +1,2 @@
 class StickyHeader{constructor(){this.stickyHeader=$("header"),this.stickyMenu=$("nav.menu"),this.logo=$(".header-left img")}makeSticky(){var t=this.stickyHeader.offset().top,s=$(window).scrollTop(),t=t<s?"sticky":"",t=(this.stickyHeader.addClass(t),this.stickyMenu.addClass(t),150-s/300*50),t=Math.max(t,100),t=(this.logo.css("width",t+"px"),10-s/300*5),t=Math.max(t,5);this.stickyHeader.css("padding",t+"px 20px")}init(){$(window).scroll(()=>this.makeSticky())}}export default()=>(new StickyHeader).init();
+//# sourceMappingURL=sticky-header.js.map

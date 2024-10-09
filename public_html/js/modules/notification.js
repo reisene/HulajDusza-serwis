@@ -1,1 +1,2 @@
 function displayNotification(t,e){let i=document.getElementById("notification");var n=document.getElementById("notification-message");i&&n?i&&n&&(i.classList.add(e,"show"),n.textContent=t,i.setAttribute("aria-live","assertive"),setTimeout(()=>{i.classList.remove("show","success","error")},5e3)):(console.error("Elementy notification lub notificationMessage nie istnieją"),Sentry.captureException(new Error("Elementy notification lub notificationMessage nie istnieją")))}export default displayNotification;
+//# sourceMappingURL=notification.js.map

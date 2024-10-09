@@ -1,1 +1,2 @@
 function sortPosts(d,t){var e=$(".post-article").get();e.sort((t,e)=>{var r=$(t).find("h2").text().toUpperCase(),s=$(e).find("h2").text().toUpperCase(),a=new Date($(t).find(".post-date").text().trim()),n=new Date($(e).find(".post-date").text().trim());switch(d){case"date-asc":return a-n;case"date-desc":return n-a;case"title-asc":return s<r?1:-1;case" title-desc":return r<s?1:-1;default:return 0}}),t.empty().append(e)}export default sortPosts;
+//# sourceMappingURL=post-sorter.js.map

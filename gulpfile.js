@@ -68,7 +68,9 @@ gulp.task('watchPosts', async function() {
 gulp.task('js', function () {
   try {
     return gulp.src(paths.js)
+      .pipe(sourcemaps.init())
       .pipe(uglify())
+      .pipe(sourcemaps.write('.'))
       .pipe(gulp.dest(path.join(paths.dest, 'js')));
   } catch (error) {
     Sentry.captureException(error);

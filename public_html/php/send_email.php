@@ -3,6 +3,11 @@ $config = json_decode(json: file_get_contents(filename: '../config.json'), assoc
 $secret_key = base64_decode(string: $config['secret_key']);
 $iv = base64_decode(string: $config['iv']);
 
+if (!isset($config['secret_key']) || !isset($config['iv']) || !isset($config['airtable-api-url']) || !isset($config['airtable-api-key']) || !isset($config['recaptcha_secret'])) {
+    echo 'Błąd: plik config.json nie zawiera wymaganych danych.';
+    exit;
+}
+
 if (!isset($_SESSION)) {
     session_start();
 }
@@ -54,11 +59,11 @@ function verifyCsrfToken($secret_key, $iv) {
 
 
 // Dane do Airtable
-$airtable_api_url = "https://api.airtable.com/v0/appx76Q9YSMyuLxYF/Submissions";
-$airtable_api_key = "patmmJVUgqZQmCvW3.b591c3a621807ac2d784c5c8afbff6612af7c0d2624e6131df6c0e3946dea5af";
+$airtable_api_url = $config['airtable-api-url'];
+$airtable_api_key = $config['airtable-api-key'];
 
 // Dane do reCAPTCHA
-$recaptcha_secret = "6LeTFCAqAAAAAL0kZ98HDceJdvN0_6GImtVvfMjg";
+$recaptcha_secret = $config['recaptcha_secret'];
 
 // Odbierz dane POST z formularza
 $name = $_POST['name'];
