@@ -1,21 +1,57 @@
 <?php
+$config = json_decode(json: file_get_contents(filename: '../config.json'), associative: true);
+$secret_key = base64_decode(string: $config['secret_key']);
+$iv = base64_decode(string: $config['iv']);
+
 if (!isset($_SESSION)) {
     session_start();
 }
 
-function verifyCsrfToken($csrfToken) {
-    if ($_SERVER['HTTP_USER_AGENT'] !== $_SESSION['user_agent']) {
+
+verifyCsrfToken(secret_key: $secret_key, iv: $iv);
+
+function verifyCsrfToken($secret_key, $iv) {
+    // Get the encrypted token and IV from the session
+    $encryptedToken = $_SESSION['csrf_token'];
+    $csrfToken = $_POST['csrf_token'];
+    $cipher = "AES-256-CBC";
+    $decryptedCsrfToken = openssl_decrypt(data: $csrfToken, cipher_algo: $cipher, passphrase: $secret_key, options: 0, iv: $iv);
+    if ($decryptedCsrfToken === false) {
+        echo json_encode(['success' => false, 'message' => 'Błąd dekodowania tokena CSRF']);
+        exit;
+    }
+
+    // Decrypt the token using OpenSSL
+    
+    $decryptedToken = openssl_decrypt(data: $encryptedToken, cipher_algo: $cipher, passphrase: $secret_key, options: 0, iv: $iv);
+
+    // Verify the decrypted token
+    if (!hash_equals(known_string: $decryptedToken, user_string: $decryptedCsrfToken)) {
         echo json_encode(['success' => false, 'message' => 'Błąd CSRF']);
         exit;
     }
-    if ($csrfToken !== $_SESSION['csrf_token'] || $csrfToken !== $_COOKIE['csrf_token']) {
-        echo json_encode(['success' => false, 'message' => 'Błąd CSRF']);
+
+    if (!isset($_SESSION['csrf_token']) || empty($csrfToken)) {
+        echo json_encode(['success' => false, 'message' => 'Brak ciasteczka lub tokena']);
+        exit;
+    }
+
+    if (!hash_equals(known_string: $_SESSION['csrf_token'], user_string: $csrfToken)) {
+        echo json_encode(['success' => false, 'message' => 'Błąd CSRF ses']);
+        exit;
+    }
+
+    if ($_SERVER['HTTP_USER_AGENT'] !== $_SESSION['user_agent']) {
+        echo json_encode(['success' => false, 'message' => 'Błąd User Agent']);
+        exit;
+    }
+
+    if (!isset($_COOKIE['PHPSESSID']) || $_COOKIE['PHPSESSID'] !== session_id()) {
+        echo json_encode(['success' => false, 'message' => 'Błąd sesji']);
         exit;
     }
 }
 
-$csrfToken = $_POST['csrf_token'];
-verifyCsrfToken($csrfToken);
 
 // Dane do Airtable
 $airtable_api_url = "https://api.airtable.com/v0/appx76Q9YSMyuLxYF/Submissions";
@@ -24,13 +60,29 @@ $airtable_api_key = "patmmJVUgqZQmCvW3.b591c3a621807ac2d784c5c8afbff6612af7c0d26
 // Dane do reCAPTCHA
 $recaptcha_secret = "6LeTFCAqAAAAAL0kZ98HDceJdvN0_6GImtVvfMjg";
 
+if (!isset($_POST['name']) || !isset($_POST['email']) || !isset($_POST['message']) ||
+    empty($_POST['name']) || empty($_POST['email']) || empty($_POST['message'])) {
+    echo 'Error: Invalid or missing POST data.';
+    exit;
+}
+
 // Odbierz dane POST z formularza
 $name = $_POST['name'];
-$email = $_POST['email'];
-$phone = $_POST['phone'];
+$email = filter_var(value: $_POST['email'], filter: FILTER_VALIDATE_EMAIL);
+if (!$email) {
+    echo json_encode(['success' => false, 'message' => 'Invalid email address']);
+    exit;
+}
+$phone = filter_var(value: $_POST['phone'], filter: FILTER_SANITIZE_NUMBER_INT);
+if (!$phone) {
+    echo json_encode(['success' => false, 'message' => 'Invalid phone number']);
+    exit;
+}
 $message = $_POST['message'];
 $recaptcha_response = $_POST['g-recaptcha-response'];
 $uniqueID = $_POST['uniqueID'];
+
+
 
 // Sprawdź reCAPTCHA
 $recaptcha_url = 'https://www.google.com/recaptcha/api/siteverify';
@@ -47,15 +99,14 @@ $options = array(
     ),
 );
 
-$context  = stream_context_create($options);
-$recaptcha_verify = file_get_contents($recaptcha_url, false, $context);
-$recaptcha_success = json_decode($recaptcha_verify);
+$context  = stream_context_create(options: $options);
+$recaptcha_verify = file_get_contents(filename: $recaptcha_url, use_include_path: false, context: $context);
+$recaptcha_success = json_decode(json: $recaptcha_verify);
 
 if ($recaptcha_success->success) {
-    // Jeśli reCAPTCHA się powiodła, wyślij do Formspree
-
+   
     // Wysłanie do Airtable
-    $airtable_data = json_encode(array(
+    $airtable_data = json_encode(value: array(
         'fields' => array(
             'id' => $uniqueID,
             'name' => $name,
@@ -74,18 +125,19 @@ if ($recaptcha_success->success) {
         ),
     );
 
-    $airtable_context = stream_context_create($airtable_options);
-    $airtable_response = file_get_contents($airtable_api_url, false, $airtable_context);
+    $airtable_context = stream_context_create(options: $airtable_options);
+    $airtable_response = file_get_contents(filename: $airtable_api_url, use_include_path: false, context: $airtable_context);
+    $airtable_json = json_decode(json: $airtable_response, associative: true);
 
-    if ($airtable_response) {
+    if ($airtable_json && $airtable_json['success']) {
         // Zgłoszenie zakończone sukcesem
-        echo json_encode(['success' => true, 'message' => 'Dziękujemy za zgłoszenie!']);
+        echo json_encode(value: ['success' => true, 'message' => 'Dziękujemy za zgłoszenie!']);
     } else {
         // Wystąpił problem
-        echo json_encode(['success' => false, 'message' => 'Błąd podczas wysyłania formularza.']);
+        echo json_encode(value: ['success' => false, 'message' => 'Błąd podczas wysyłania formularza.']);
     }
 } else {
     // Błąd weryfikacji reCAPTCHA
-    echo json_encode(['success' => false, 'message' => 'Błąd weryfikacji reCAPTCHA.']);
+    echo json_encode(value: ['success' => false, 'message' => 'Błąd weryfikacji reCAPTCHA.']);
 }
 ?>

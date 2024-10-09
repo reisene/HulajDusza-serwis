@@ -15,6 +15,18 @@ const { animateButton, resetButton } = initButtonAnimation();
 
 const form = document.getElementById("my-form");
 
+if (!form) {
+  console.error("Formularz nie istnieje.");
+  Sentry.captureException(error, {
+    extra: {
+      url: window.location.href,
+      referrer: document.referrer,
+      userAgent: navigator.userAgent,
+      formData: file,
+    },
+  });
+}
+
 // Pobierz token z generate-token.php
 fetch('/php/generate-token.php')
   .then(response => response.text())
@@ -90,8 +102,8 @@ async function handleSubmit(event, token) {
   data.append('uniqueID', uniqueID);
   data.append('csrf_token', csrfToken);
 
-  const file = new File([JSON.stringify(formData)], 'form_data.json', {
-    type: 'application/json',
+  const file = new File([JSON.stringify(formData)], 'form_data.txt', {
+    type: 'text/plain',
   });
 
   await sendDataToServer(submitButton, data, file);
@@ -220,13 +232,19 @@ function handleError(file, error) {
   Sentry.captureException(error, {
     attachments: [
       {
-        filename: 'form_data.json',
+        filename: 'form_data.txt',
         data: file,
-        contentType: 'application/json',
+        contentType: 'text/plain',
       },
     ],  
     tags: {
       'form-name': 'kontakt',
+    },
+    extra: {
+      url: window.location.href,
+      referrer: document.referrer,
+      userAgent: navigator.userAgent,
+      formData: file,
     },
   });
  if (error.message.includes('Błąd')) {
