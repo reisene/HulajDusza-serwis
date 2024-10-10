@@ -12,7 +12,6 @@ const autoprefixer = require('autoprefixer');
 const postcssPresetEnv = require('postcss-preset-env');
 const sourcemaps = require('gulp-sourcemaps');
 const fs = require('fs').promises;
-const babel = require('gulp-babel');
 
 const paths = {
   src: 'src/',
@@ -62,10 +61,9 @@ gulp.task('watchPosts', async function() {
   });
   const content = `export default [\n${postPaths.map(path => `  '${path}'`).join(',\n')}\n];`;
   await fs.writeFile('src/js/modules/post-paths.js', content, 'utf8');
-  await fs.copyFile('src/js/modules/post-paths.js', 'public_html/js/modules/post-paths.js');
 });
 
-gulp.task('js', function () {
+gulp.task('js', () => {
   try {
     return gulp.src(paths.js)
       .pipe(sourcemaps.init())
@@ -85,7 +83,7 @@ gulp.task('watch', function() {
     ], gulp.series('html'));
   gulp.watch(paths.css, gulp.series('css')); // Monitoruje zmiany w plikach CSS
   gulp.watch(paths.js, gulp.series('js'));
-  gulp.watch(paths.posts, '*.html', gulp.series('watchPosts'));
+  gulp.watch(paths.posts, '*.html', gulp.series('watchPosts') );
 });
 
-gulp.task('default', gulp.series('html', 'css', 'watchPosts', gulp.series('js')));
+gulp.task('default', gulp.series('html', 'css', 'watchPosts', 'js'));

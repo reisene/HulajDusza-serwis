@@ -9,23 +9,10 @@ import displayNotification from './modules/notification.js';
 import phoneFormatter from './modules/phone_format.js';
 import initButtonAnimation from './modules/button-animation.js';
 
-phoneFormatter();
+const form = document.getElementById("my-form");
 
 const { animateButton, resetButton } = initButtonAnimation();
 
-const form = document.getElementById("my-form");
-
-if (!form) {
-  console.error("Formularz nie istnieje.");
-  Sentry.captureException(error, {
-    extra: {
-      url: window.location.href,
-      referrer: document.referrer,
-      userAgent: navigator.userAgent,
-      formData: file,
-    },
-  });
-}
 
 // Pobierz token z generate-token.php
 fetch('/php/generate-token.php')
@@ -68,8 +55,18 @@ async function handleSubmit(event, token) {
   // Check if form exists before continuing
   if (!form) {
     console.error("Form not found.");
+    Sentry.captureException(error, {
+      extra: {
+        url: window.location.href,
+        referrer: document.referrer,
+        userAgent: navigator.userAgent,
+        formData: file,
+      },
+    });
     return;
   }
+
+  phoneFormatter();
   
   // Get form data
   const formData = {
@@ -170,7 +167,10 @@ function validateFormData(formData) {
  * @param {FormData} data - An object containing form data to be sent to the server.
  * @returns {Promise<void>}
  */
+
 async function sendDataToServer(submitButton, data, file) {
+
+
   try {
     const response = await fetch('../php/send_email.php', {
       method: 'POST',
@@ -253,3 +253,5 @@ function handleError(file, error) {
     displayNotification('Wystąpił nieoczekiwany błąd. Proszę skontaktować się z administratorem.', 'error');
   }
 }
+
+export { handleSubmit, validateFormData, sendDataToServer, handleError };
