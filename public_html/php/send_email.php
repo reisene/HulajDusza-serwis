@@ -8,10 +8,13 @@ if (!isset($config['secret_key']) || !isset($config['iv']) || !isset($config['ai
     exit;
 }
 
-if (!isset($_SESSION)) {
-    session_start();
+if (!isset($_COOKIE['PHPSESSID'])) {
+    echo json_encode(value: ['success' => false, 'message' => 'Sesja nie jest zainicjowana. Proszę odświeżyć stronę i spróbować ponownie.']);
+    exit;
 }
 
+session_id(id: $_COOKIE['PHPSESSID']);
+session_start();
 
 verifyCsrfToken(secret_key: $secret_key, iv: $iv);
 
@@ -32,27 +35,27 @@ function verifyCsrfToken($secret_key, $iv) {
 
     // Verify the decrypted token
     if (!hash_equals(known_string: $decryptedToken, user_string: $decryptedCsrfToken)) {
-        echo json_encode(['success' => false, 'message' => 'Błąd CSRF']);
+        echo json_encode(value: ['success' => false, 'message' => 'Błąd CSRF']);
         exit;
     }
 
     if (!isset($_SESSION['csrf_token']) || empty($csrfToken)) {
-        echo json_encode(['success' => false, 'message' => 'Brak ciasteczka lub tokena']);
+        echo json_encode(value: ['success' => false, 'message' => 'Brak ciasteczka lub tokena']);
         exit;
     }
 
     if (!hash_equals(known_string: $_SESSION['csrf_token'], user_string: $csrfToken)) {
-        echo json_encode(['success' => false, 'message' => 'Błąd CSRF ses']);
+        echo json_encode(value: ['success' => false, 'message' => 'Błąd CSRF ses']);
         exit;
     }
 
     if ($_SERVER['HTTP_USER_AGENT'] !== $_SESSION['user_agent']) {
-        echo json_encode(['success' => false, 'message' => 'Błąd User Agent']);
+        echo json_encode(value: ['success' => false, 'message' => 'Błąd User Agent']);
         exit;
     }
 
     if (!isset($_COOKIE['PHPSESSID']) || $_COOKIE['PHPSESSID'] !== session_id()) {
-        echo json_encode(['success' => false, 'message' => 'Błąd sesji']);
+        echo json_encode(value: ['success' => false, 'message' => 'Błąd sesji']);
         exit;
     }
 }
@@ -93,8 +96,6 @@ $recaptcha_verify = file_get_contents(filename: $recaptcha_url, use_include_path
 $recaptcha_success = json_decode(json: $recaptcha_verify);
 
 if ($recaptcha_success->success) {
-    // Jeśli reCAPTCHA się powiodła, wyślij do Formspree
-
     // Wysłanie do Airtable
     $airtable_data = json_encode(value: array(
         'fields' => array(
