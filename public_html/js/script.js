@@ -1,7 +1,7 @@
 // script.js
 
-import Menu from './modules/menu.js';
-import initStickyHeader from './modules/sticky-header.js';
+import Menu from "./modules/menu.js";
+import initStickyHeader from "./modules/sticky-header.js";
 
 /**
  * @description Initializes and configures various components and services of a web
@@ -62,13 +62,16 @@ class App {
     const scrollToTopBtn = $("#scrollToTopBtn");
 
     // Smooth scroll functionality for navigation links
-    $('.smooth-scroll').click((event) => {
+    $(".smooth-scroll").click((event) => {
       // Handles a click event on an element with the class 'smooth-scroll'.
       event.preventDefault();
-      const target = $(event.target).attr('href');
-      $('html, body').animate({
-        scrollToTopBtn: $(target).offset().top
-      }, 800);
+      const target = $(event.target).attr("href");
+      $("html, body").animate(
+        {
+          scrollToTopBtn: $(target).offset().top,
+        },
+        800,
+      );
     });
 
     $(window).scroll(() => {
@@ -82,9 +85,12 @@ class App {
 
     scrollToTopBtn.click(() => {
       // Scrolls the webpage to the top smoothly.
-      $('html, body').animate({
-        scrollTop: 0
-      }, 'smooth');
+      $("html, body").animate(
+        {
+          scrollTop: 0,
+        },
+        "smooth",
+      );
     });
   }
 
@@ -95,22 +101,22 @@ class App {
    * API.
    */
   initIntersectionObserver() {
-    const scrollElements = $('.fade-in');
+    const scrollElements = $(".fade-in");
     const observerOptions = {
-      threshold: 0.25
+      threshold: 0.25,
     };
 
     const observer = new IntersectionObserver((entries, observer) => {
-      entries.forEach(entry => {
+      entries.forEach((entry) => {
         // Executes when an entry intersects with the viewport.
         if (entry.isIntersecting) {
-          $(entry.target).addClass('visible');
+          $(entry.target).addClass("visible");
           observer.unobserve(entry.target);
         }
       });
     }, observerOptions);
 
-    scrollElements.each(element => {
+    scrollElements.each((element) => {
       // Observes each element in the scrollElements array.
       observer.observe(element);
     });
@@ -122,8 +128,8 @@ class App {
    * method.
    */
   initServiceWorker() {
-    if ('serviceWorker' in navigator) {
-      window.addEventListener('load', this.registerServiceWorker);
+    if ("serviceWorker" in navigator) {
+      window.addEventListener("load", this.registerServiceWorker);
     }
   }
 
@@ -133,14 +139,14 @@ class App {
    * Sentry, providing additional context in the error report.
    */
   registerServiceWorker() {
-    const swUrl = '/js/service-worker.js';
-    navigator.serviceWorker
-      .register(swUrl)
-      .catch((error) => Sentry.captureException(error, {
+    const swUrl = "/js/service-worker.js";
+    navigator.serviceWorker.register(swUrl).catch((error) =>
+      Sentry.captureException(error, {
         extra: {
-          foo: 'bar',
+          foo: "bar",
         },
-      }));
+      }),
+    );
   }
 
   /**
@@ -149,13 +155,15 @@ class App {
    * from a CDN to improve page load times.
    */
   initTawkTo() {
-    var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
-    (function(){
-      var s1 = document.createElement("script"), s0 = document.getElementsByTagName("script")[0];
+    var Tawk_API = Tawk_API || {},
+      Tawk_LoadStart = new Date();
+    (function () {
+      var s1 = document.createElement("script"),
+        s0 = document.getElementsByTagName("script")[0];
       s1.async = true;
-      s1.src = 'https://embed.tawk.to/66ae13d81601a2195ba058ee/1i4bvr1p7';
-      s1.charset = 'UTF-8'; //charset depreciated, only for compatibility
-      s1.setAttribute('crossorigin', '*');
+      s1.src = "https://embed.tawk.to/66ae13d81601a2195ba058ee/1i4bvr1p7";
+      s1.charset = "UTF-8"; //charset depreciated, only for compatibility
+      s1.setAttribute("crossorigin", "*");
       s0.parentNode.insertBefore(s1, s0);
     })();
   }

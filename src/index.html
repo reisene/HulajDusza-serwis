@@ -1,94 +1,138 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pl">
-    <head>
-        <title>Strona główna</title>
-        @@include('head.html')
-    </head>
-    
-    <body>
-        <!-- Google Tag Manager (noscript) -->
-         <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WZLT4R8J"
-            height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-            <!-- End Google Tag Manager (noscript) -->
-        <header>
-            @@include('header.html')
-        </header>
-        
+  <head>
+    <title>Strona główna</title>
+    @@include('head.html')
+  </head>
 
-        <nav aria-label="breadcrumb">
-            <ol class="breadcrumb">
-              <li class="breadcrumb-item active" aria-current="page">Strona główna</li>
-            </ol>
-          </nav>
+  <body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript
+      ><iframe
+        src="https://www.googletagmanager.com/ns.html?id=GTM-WZLT4R8J"
+        height="0"
+        width="0"
+        style="display: none; visibility: hidden"
+      ></iframe
+    ></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+    <header>@@include('header.html')</header>
 
-        <main>
-            <section id="hero">
-                <div class="hero-content">
-                    <h2>Najlepszy serwis hulajnóg elektrycznych w mieście</h2>
-                    <p>Zapewniamy szybkie i profesjonalne usługi naprawy oraz konserwacji.</p>
-                    <button onclick="window.location.href='services.html'" class="hero-button">Zobacz nasze usługi</button>
-                </div>
-            </section>
-            <section id="services-overview">
-                <h2>Nasze Usługi</h2>
-                <div class="services">
-                    <article class="service">
-                        <h3>Naprawa Hulajnóg</h3>
-                        <p>Oferujemy kompleksowe usługi naprawcze dla wszystkich marek hulajnóg elektrycznych. Niezależnie od problemu, naprawimy Twoją hulajnogę szybko i sprawnie.</p>
-                    </article>
-                    <article class="service">
-                        <h3>Konserwacja i Przeglądy</h3>
-                        <p>Regularna konserwacja jest kluczem do długowieczności Twojej hulajnogi. Oferujemy przeglądy okresowe, wymianę części i pełną diagnostykę.</p>
-                    </article>
-                </div>
-                <button onclick="window.location.href='services.html'" class="more-button">Dowiedz się więcej</button>
-            </section>
-            <section id="why-us">
-                <h2>Dlaczego My?</h2>
-                <div class="reasons">
-                    <article class="reason">
-                        <div class="reason-content">
-                            <div class="text">
-                                <h3>Doświadczenie</h3>
-                                <p>Posiadamy wieloletnie doświadczenie w naprawie i konserwacji hulajnóg elektrycznych. Nasi technicy są wykwalifikowani i zawsze na bieżąco z nowinkami technologicznymi.</p>
-                            </div>
-                            <div class="image">
-                                <img src="img/doświadczenie.png" alt="Doświadczenie" />
-                            </div>
-                        </div>
-                    </article>
-                    <article class="reason">
-                        <div class="reason-content reverse">
-                            <div class="image">
-                                <img src="img/jakość.png" alt="Jakość" />
-                            </div>
-                            <div class="text">
-                                <h3>Jakość</h3>
-                                <p>Używamy tylko oryginalnych części i najwyższej jakości materiałów. Dbamy o każdy szczegół, aby Twoja hulajnoga działała bez zarzutu.</p>
-                            </div>
-                        </div>
-                    </article>
-                    <article class="reason">
-                        <div class="reason-content">
-                            <div class="text">
-                                <h3>Zadowoleni Klienci</h3>
-                                <p>Zadowolenie naszych klientów jest dla nas najważniejsze. Sprawdź nasze opinie i dołącz do grona zadowolonych użytkowników hulajnóg.</p>
-                            </div>
-                            <div class="image">
-                                <img src="img/zadowolenie.png" alt="Zadowoleni Klienci" />
-                            </div>
-                        </div>
-                    </article>
-                </div>
-            </section>
-            <section id="contact-cta">
-                <h2>Masz Pytania?</h2>
-                <p>Skontaktuj się z nami, aby dowiedzieć się więcej o naszych usługach i produktach.</p>
-                <button onclick="window.location.href='contact.html'" class="contact-button">Skontaktuj się z nami</button>
-            </section>
-        </main>
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item active" aria-current="page">
+          Strona główna
+        </li>
+      </ol>
+    </nav>
 
-        @@include('footer.html')
+    <main>
+      <section id="hero">
+        <div class="hero-content">
+          <h2>Najlepszy serwis hulajnóg elektrycznych w mieście</h2>
+          <p>
+            Zapewniamy szybkie i profesjonalne usługi naprawy oraz konserwacji.
+          </p>
+          <button
+            onclick="window.location.href='services.html'"
+            class="hero-button"
+          >
+            Zobacz nasze usługi
+          </button>
+        </div>
+      </section>
+      <section id="services-overview">
+        <h2>Nasze Usługi</h2>
+        <div class="services">
+          <article class="service">
+            <h3>Naprawa Hulajnóg</h3>
+            <p>
+              Oferujemy kompleksowe usługi naprawcze dla wszystkich marek
+              hulajnóg elektrycznych. Niezależnie od problemu, naprawimy Twoją
+              hulajnogę szybko i sprawnie.
+            </p>
+          </article>
+          <article class="service">
+            <h3>Konserwacja i Przeglądy</h3>
+            <p>
+              Regularna konserwacja jest kluczem do długowieczności Twojej
+              hulajnogi. Oferujemy przeglądy okresowe, wymianę części i pełną
+              diagnostykę.
+            </p>
+          </article>
+        </div>
+        <button
+          onclick="window.location.href='services.html'"
+          class="more-button"
+        >
+          Dowiedz się więcej
+        </button>
+      </section>
+      <section id="why-us">
+        <h2>Dlaczego My?</h2>
+        <div class="reasons">
+          <article class="reason">
+            <div class="reason-content">
+              <div class="text">
+                <h3>Doświadczenie</h3>
+                <p>
+                  Posiadamy wieloletnie doświadczenie w naprawie i konserwacji
+                  hulajnóg elektrycznych. Nasi technicy są wykwalifikowani i
+                  zawsze na bieżąco z nowinkami technologicznymi.
+                </p>
+              </div>
+              <div class="image">
+                <img src="img/doświadczenie.png" alt="Doświadczenie" />
+              </div>
+            </div>
+          </article>
+          <article class="reason">
+            <div class="reason-content reverse">
+              <div class="image">
+                <img src="img/jakość.png" alt="Jakość" />
+              </div>
+              <div class="text">
+                <h3>Jakość</h3>
+                <p>
+                  Używamy tylko oryginalnych części i najwyższej jakości
+                  materiałów. Dbamy o każdy szczegół, aby Twoja hulajnoga
+                  działała bez zarzutu.
+                </p>
+              </div>
+            </div>
+          </article>
+          <article class="reason">
+            <div class="reason-content">
+              <div class="text">
+                <h3>Zadowoleni Klienci</h3>
+                <p>
+                  Zadowolenie naszych klientów jest dla nas najważniejsze.
+                  Sprawdź nasze opinie i dołącz do grona zadowolonych
+                  użytkowników hulajnóg.
+                </p>
+              </div>
+              <div class="image">
+                <img src="img/zadowolenie.png" alt="Zadowoleni Klienci" />
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
+      <section id="contact-cta">
+        <h2>Masz Pytania?</h2>
+        <p>
+          Skontaktuj się z nami, aby dowiedzieć się więcej o naszych usługach i
+          produktach.
+        </p>
+        <button
+          onclick="window.location.href='contact.html'"
+          class="contact-button"
+        >
+          Skontaktuj się z nami
+        </button>
+      </section>
+    </main>
 
-    </body>
+    @@include('footer.html')
+  </body>
 </html>
