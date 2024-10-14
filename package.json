@@ -39,7 +39,7 @@
     "@fortawesome/fontawesome-svg-core": "^6.6.0",
     "@ngrok/ngrok": "^1.4.1",
     "@sentry/node": "^8.33.1",
-    "@sentry/profiling-node": "^8.33.1",
+    "@sentry/profiling-node": "^8.34.0",
     "aos": "^3.0.0-beta.6",
     "body-parser": "^1.20.3",
     "bootstrap": "^5.3.3",
