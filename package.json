@@ -38,7 +38,7 @@
     "@fortawesome/fontawesome-free": "^6.6.0",
     "@fortawesome/fontawesome-svg-core": "^6.6.0",
     "@ngrok/ngrok": "^1.4.1",
-    "@sentry/node": "^8.33.1",
+    "@sentry/node": "^8.35.0",
     "@sentry/profiling-node": "^8.33.1",
     "aos": "^3.0.0-beta.6",
     "body-parser": "^1.20.3",
