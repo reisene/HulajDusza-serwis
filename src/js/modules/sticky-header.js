@@ -2,15 +2,15 @@
 
 class StickyHeader {
   constructor() {
-    this.stickyHeader = $('header');
-    this.stickyMenu = $('nav.menu');
-    this.logo = $('.header-left img');
+    this.stickyHeader = $("header");
+    this.stickyMenu = $("nav.menu");
+    this.logo = $(".header-left img");
   }
 
   makeSticky() {
     const sticky = this.stickyHeader.offset().top;
     const scrollTop = $(window).scrollTop();
-    const stickyClass = scrollTop > sticky ? 'sticky' : '';
+    const stickyClass = scrollTop > sticky ? "sticky" : "";
     this.stickyHeader.addClass(stickyClass);
     this.stickyMenu.addClass(stickyClass);
 
@@ -19,17 +19,19 @@ class StickyHeader {
     const minLogoScale = 100; // Reduced width in sticky state
     const maxScroll = 300; // Adjust this value to set when the scaling stops
 
-    let logoWidth = maxLogoScale - (scrollTop / maxScroll) * (maxLogoScale - minLogoScale);
+    let logoWidth =
+      maxLogoScale - (scrollTop / maxScroll) * (maxLogoScale - minLogoScale);
     logoWidth = Math.max(logoWidth, minLogoScale);
-    this.logo.css('width', logoWidth + 'px');
+    this.logo.css("width", logoWidth + "px");
 
     const maxPadding = 10; // Original padding top/bottom
-    const minPadding = 5;  // Reduced padding in sticky state
+    const minPadding = 5; // Reduced padding in sticky state
 
-    let headerPadding = maxPadding - (scrollTop / maxScroll) * (maxPadding - minPadding);
+    let headerPadding =
+      maxPadding - (scrollTop / maxScroll) * (maxPadding - minPadding);
     headerPadding = Math.max(headerPadding, minPadding);
 
-    this.stickyHeader.css('padding', headerPadding + 'px 20px');
+    this.stickyHeader.css("padding", headerPadding + "px 20px");
   }
 
   init() {
