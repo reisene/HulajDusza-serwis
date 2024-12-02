@@ -1,207 +1,209 @@
 /* about.css */
 
 .about-hero {
-    background: linear-gradient(to right, #ac2a21, #333);
-    color: #fff;
-    padding: 60px 0;
-    text-align: center;
-    border-radius: 15px; /* Rounded corners */
-    margin: 20px;
+  background: linear-gradient(to right, #ac2a21, #333);
+  color: #fff;
+  padding: 60px 0;
+  text-align: center;
+  border-radius: 15px; /* Rounded corners */
+  margin: 20px;
 }
 
 .about-hero .about-container {
-    max-width: 900px;
-    margin: auto;
+  max-width: 900px;
+  margin: auto;
 }
 
 .about-hero h1 {
-    font-size: 2.8em;
-    margin-bottom: 20px;
-    color: #ffffffa6;
+  font-size: 2.8em;
+  margin-bottom: 20px;
+  color: #ffffffa6;
 }
 
 .about-hero p {
-    font-size: 1.8em;
+  font-size: 1.8em;
 }
 
 .about-team {
-    padding: 80px 0;
+  padding: 80px 0;
 }
 
 .about-team .about-container {
-    max-width: 1200px;
-    margin: auto;
+  max-width: 1200px;
+  margin: auto;
 }
 
 .about-team h2 {
-    text-align: center;
-    margin-bottom: 40px;
-    font-size: 2.5em;
-    color: #333;
+  text-align: center;
+  margin-bottom: 40px;
+  font-size: 2.5em;
+  color: #333;
 }
 
 .about-content {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 40px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px;
 }
 
 .about-item {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 20px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
 }
 
 .about-item img {
-    border-radius: 50%;
-    width: 150px;
-    height: 150px;
-    margin-bottom: -60px; /* Negative margin to overlap */
-    transition: transform 0.3s ease;
-    border: 1px solid #fff;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-    z-index: 1;
+  border-radius: 50%;
+  width: 150px;
+  height: 150px;
+  margin-bottom: -60px; /* Negative margin to overlap */
+  transition: transform 0.3s ease;
+  border: 1px solid #fff;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  z-index: 1;
 }
 
 .about-item:hover img {
-    transform: translateY(-10px);
+  transform: translateY(-10px);
 }
 
 .about-text {
-    background: #fff;
-    padding: 20px;
-    text-align: center;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    border-radius: 10px;
-    flex: 1;
-    width: 100%;
+  background: #fff;
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  flex: 1;
+  width: 100%;
 }
 
 .about-text h3 {
-    margin: 20px 0 10px;
-    font-size: 1.5em;
-    color: #333;
+  margin: 20px 0 10px;
+  font-size: 1.5em;
+  color: #333;
 }
 
 .about-text p {
-    font-size: 1.1em;
-    color: #666;
+  font-size: 1.1em;
+  color: #666;
 }
 
 /* Counter Section */
 .space-ptb {
-    padding-top: 80px;
-    padding-bottom: 80px;
+  padding-top: 80px;
+  padding-bottom: 80px;
 }
 
 .overflow-hidden {
-    overflow: hidden;
+  overflow: hidden;
 }
 
 .bg-primary-gradient {
-    position: relative;
-    border-radius: 15px;
-    padding: 20px;
-    color: #999;
-    overflow: hidden;
-    background-color: #C73333;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='100%25' viewBox='0 0 2 1'%3E%3Cdefs%3E%3ClinearGradient id='a' gradientUnits='userSpaceOnUse' x1='0' x2='0' y1='0' y2='1'%3E%3Cstop offset='0' stop-color='%23C73333'/%3E%3Cstop offset='1' stop-color='%23AC2A21'/%3E%3C/linearGradient%3E%3ClinearGradient id='b' gradientUnits='userSpaceOnUse' x1='0' y1='0' x2='0' y2='1'%3E%3Cstop offset='0' stop-color='%23333333' stop-opacity='0'/%3E%3Cstop offset='1' stop-color='%23333333' stop-opacity='1'/%3E%3C/linearGradient%3E%3ClinearGradient id='c' gradientUnits='userSpaceOnUse' x1='0' y1='0' x2='2' y2='2'%3E%3Cstop offset='0' stop-color='%23333333' stop-opacity='0'/%3E%3Cstop offset='1' stop-color='%23333333' stop-opacity='1'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect x='0' y='0' fill='url(%23a)' width='2' height='1'/%3E%3Cg fill-opacity='0.5'%3E%3Cpolygon fill='url(%23b)' points='0 1 0 0 2 0'/%3E%3Cpolygon fill='url(%23c)' points='2 1 2 0 0 0'/%3E%3C/g%3E%3C/svg%3E");
-    background-attachment: fixed;
-    background-size: cover;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 0 6px 20px rgba(0, 0, 0, 0.1);
+  position: relative;
+  border-radius: 15px;
+  padding: 20px;
+  color: #999;
+  overflow: hidden;
+  background-color: #c73333;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='100%25' viewBox='0 0 2 1'%3E%3Cdefs%3E%3ClinearGradient id='a' gradientUnits='userSpaceOnUse' x1='0' x2='0' y1='0' y2='1'%3E%3Cstop offset='0' stop-color='%23C73333'/%3E%3Cstop offset='1' stop-color='%23AC2A21'/%3E%3C/linearGradient%3E%3ClinearGradient id='b' gradientUnits='userSpaceOnUse' x1='0' y1='0' x2='0' y2='1'%3E%3Cstop offset='0' stop-color='%23333333' stop-opacity='0'/%3E%3Cstop offset='1' stop-color='%23333333' stop-opacity='1'/%3E%3C/linearGradient%3E%3ClinearGradient id='c' gradientUnits='userSpaceOnUse' x1='0' y1='0' x2='2' y2='2'%3E%3Cstop offset='0' stop-color='%23333333' stop-opacity='0'/%3E%3Cstop offset='1' stop-color='%23333333' stop-opacity='1'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect x='0' y='0' fill='url(%23a)' width='2' height='1'/%3E%3Cg fill-opacity='0.5'%3E%3Cpolygon fill='url(%23b)' points='0 1 0 0 2 0'/%3E%3Cpolygon fill='url(%23c)' points='2 1 2 0 0 0'/%3E%3C/g%3E%3C/svg%3E");
+  background-attachment: fixed;
+  background-size: cover;
+  box-shadow:
+    0 4px 8px rgba(0, 0, 0, 0.1),
+    0 6px 20px rgba(0, 0, 0, 0.1);
 }
 
 .bg-primary-gradient h2 {
-    display: inline-block;
-    background: rgba(255, 255, 255, 0.2);
-    border-radius: 16px;
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(5px);
-    -webkit-backdrop-filter: blur(5px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    padding: 10px 20px;
-    margin: 0 auto;
-    width: auto;
+  display: inline-block;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 10px 20px;
+  margin: 0 auto;
+  width: auto;
 }
 
 .numbers-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    margin-top: 20px;
-    gap: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  margin-top: 20px;
+  gap: 20px;
 }
 
 .counter {
-    position: relative;
-    flex: 1 1 220px;
-    text-align: center;
-    padding: 30px 0;
+  position: relative;
+  flex: 1 1 220px;
+  text-align: center;
+  padding: 30px 0;
 }
 
 /* Pseudo-element to add icon as a background */
 .counter::before {
-    content: "\f118"; /* Kod unicode ikony z Font Awesome (uśmiech) */
-    font-family: "Font Awesome 5 Free"; /* Font Awesome 5 */
-    font-weight: 900; /* Styl ikon */
-    font-size: 5em; /* Rozmiar ikony */
-    color: rgba(255, 255, 255, 0.1); /* Kolor i przezroczystość ikony */
-    position: absolute;
-    top: 50%;
-    left:0;
-    transform: translateY(-50%); /* Wyśrodkowanie ikony */
-    z-index: 0; /* Zapewnia, że ikona znajduje się za tekstem */
-    pointer-events: none; /* Wyłącza interakcję z ikoną */
+  content: "\f118"; /* Kod unicode ikony z Font Awesome (uśmiech) */
+  font-family: "Font Awesome 5 Free"; /* Font Awesome 5 */
+  font-weight: 900; /* Styl ikon */
+  font-size: 5em; /* Rozmiar ikony */
+  color: rgba(255, 255, 255, 0.1); /* Kolor i przezroczystość ikony */
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%); /* Wyśrodkowanie ikony */
+  z-index: 0; /* Zapewnia, że ikona znajduje się za tekstem */
+  pointer-events: none; /* Wyłącza interakcję z ikoną */
 }
 
 /* Different icons for each counter */
 .counter:nth-child(1)::before {
-    content: "\f118"; /* Uśmiech */
+  content: "\f118"; /* Uśmiech */
 }
 
 .counter:nth-child(2)::before {
-    content: "\f07a"; /* Koszyk */
+  content: "\f07a"; /* Koszyk */
 }
 
 .counter:nth-child(3)::before {
-    content: "\f0c0"; /* Użytkownicy */
+  content: "\f0c0"; /* Użytkownicy */
 }
 
 .counter:nth-child(4)::before {
-    content: "\f0f4"; /* Filiżanka kawy */
+  content: "\f0f4"; /* Filiżanka kawy */
 }
 
 .counter-icon {
-    font-size: 3em;
-    color: #fff;
-    margin-bottom: 10px;
+  font-size: 3em;
+  color: #fff;
+  margin-bottom: 10px;
 }
 
 .counter-content {
-    position: relative;
-    font-size: 1.5em;
-    color: #fff;
-    z-index: 1;
+  position: relative;
+  font-size: 1.5em;
+  color: #fff;
+  z-index: 1;
 }
 
 .counter-content .timer {
-    display: block;
-    font-size: 2em;
-    font-weight: bold;
+  display: block;
+  font-size: 2em;
+  font-weight: bold;
 }
 
 .counter-content label {
-    display: block;
-    color: #fff;
-    margin-top: 10px;
-    border-radius: 10px;
-    padding: 5px;
+  display: block;
+  color: #fff;
+  margin-top: 10px;
+  border-radius: 10px;
+  padding: 5px;
 }
 
 @media (max-width: 767.98px) {
-    .counter {
-        margin-bottom: 20px;
-    }
+  .counter {
+    margin-bottom: 20px;
+  }
 }
