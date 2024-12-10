@@ -25,12 +25,14 @@ enabled = true
   [analyzers.meta]
   environment = [
     "jquery",
-    "browser"
+    "browser",
+    "nodejs"
   ]
   module_system = "es-modules"
   dialect = "flow"
 
 [[analyzers]]
+
 name = "php"
 
 [[analyzers]]
