@@ -4,6 +4,7 @@ const { nodeProfilingIntegration } = require("@sentry/profiling-node");
 
 Sentry.init({
   environment: "development",
+  release: "dev",
   dsn: "https://63e2bb53c6fbdeb59c0b5430398260e9@o4507719861075968.ingest.de.sentry.io/4507719884144720",
   integrations: [
     nodeProfilingIntegration(),

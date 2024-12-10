@@ -20,6 +20,7 @@ exclude_patterns = [
 
 [[analyzers]]
 name = "javascript"
+enabled = true
 
   [analyzers.meta]
   environment = [
@@ -27,6 +28,13 @@ name = "javascript"
     "browser",
     "nodejs"
   ]
+  module_system = "es-modules"
+  dialect = "flow"
 
 [[analyzers]]
+
 name = "php"
+
+[[analyzers]]
+name = "test-coverage"
+enabled = true

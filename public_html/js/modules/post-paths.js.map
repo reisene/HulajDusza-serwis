@@ -1,0 +1,1 @@
+{"version":3,"file":"post-paths.js","sources":["modules/post-paths.js"],"sourcesContent":["export default [\n  '/posts/post1.html',\n  '/posts/post2.html'\n];"],"names":[],"mappings":"cAAe,CACb,oBACA"}
