@@ -60,7 +60,7 @@
     "jsdom": "^20.0.3",
 
     "postcss": "^8.4.49",
-    "postcss-preset-env": "^10.0.8"
+    "postcss-preset-env": "^10.1.2"
 
   },
   "dependencies": {
