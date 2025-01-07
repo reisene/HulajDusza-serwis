@@ -10,9 +10,13 @@ class StickyHeader {
   makeSticky() {
     const sticky = this.stickyHeader.offset().top;
     const scrollTop = $(window).scrollTop();
-    const stickyClass = scrollTop > sticky ? 'sticky' : '';
-    this.stickyHeader.addClass(stickyClass);
-    this.stickyMenu.addClass(stickyClass);
+    if (scrollTop > sticky) {
+      this.stickyHeader.addClass('sticky');
+      this.stickyMenu.addClass('sticky');
+    } else {
+      this.stickyHeader.removeClass('sticky');
+      this.stickyMenu.removeClass('sticky');
+    }
 
     // Logo and header scaling
     const maxLogoScale = 150; // Original width
