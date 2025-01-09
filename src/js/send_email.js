@@ -107,6 +107,9 @@ async function handleSubmit(event, token) {
   const submitButton = form.querySelector('button[type="submit"]');
   if (submitButton) {
       submitButton.disabled = true;
+  } else {
+    console.error("Submit button not found.");
+    return; // Zatrzymaj dalsze przetwarzanie, jeśli przycisk nie został znaleziony
   }
 
   try {
