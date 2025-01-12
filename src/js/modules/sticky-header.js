@@ -13,7 +13,7 @@ class StickyHeader {
     if (scrollTop > sticky) {
       this.stickyHeader.addClass('sticky');
       this.stickyMenu.addClass('sticky');
-    } else {
+    } else if (scrollTop === 0) {
       this.stickyHeader.removeClass('sticky');
       this.stickyMenu.removeClass('sticky');
     }
