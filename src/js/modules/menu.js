@@ -3,7 +3,7 @@
  * handling outside clicks, window resizing, and adding an 'active' class to the
  * current menu item based on the URL.
  */
-class Menu {
+class Menu { 
   /**
    * @description Initializes the object's properties by selecting and storing DOM
    * elements using jQuery. The properties are:
