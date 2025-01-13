@@ -62,12 +62,19 @@
     <!-- HoneyBadger -->
     <script src="//js.honeybadger.io/v6.10/honeybadger.min.js" type="text/javascript"></script>
     <script type="text/javascript">
-        Honeybadger.configure({
-            apiKey: "hbp_fO2KB3cXeEz5AWnmKzXohxcBhevTxq0O8n0K",
-            environment: "production",
-            reportData: true
+        fetch('../config.json')
+        .then(response => response.json())
+        .then(config => {
+            Honeybadger.configure({
+                apiKey: config.honeybadger.apiKey,
+                environment: config.honeybadger.environment,
+                reportData: config.honeybadger.reportData
+            });
+            Honeybadger.notify("Testing Honeybadger!");
+        })
+        .catch(error => {
+            console.error('Error loading config:', error);
         });
-        Honeybadger.notify("Testing Honeybadger!");
     </script>
 
     <!-- Sentry -->
