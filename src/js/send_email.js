@@ -132,17 +132,34 @@ function getFormData() {
   };
 }
 
+/**
+ * Prepares form data to be sent to the server.
+ *
+ * @param {Object} formData - Form data obtained from the user.
+ * @param {string} token - reCAPTCHA token obtained after successful verification.
+ * @returns {FormData} Prepared form data to be sent to the server.
+ */
 function prepareData(formData, token) {
+  // Generate a unique ID for the form submission
   const uniqueID = `${Date.now()}${Math.floor(Math.random() * 1000000).toString(36)}`;
+
+  // Get the CSRF token from the hidden input field
   const csrfToken = document.getElementById('csrf-token').value;
 
+  // Create a new FormData object to store the form data
   const data = new FormData();
+
+  // Append the form data to the FormData object
   data.append('name', formData.name);
   data.append('email', formData.email);
   data.append('phone', formData.phone);
   data.append('message', formData.message);
+
+  // Append the reCAPTCHA token and unique ID to the FormData object
   data.append('g-recaptcha-response', token);
   data.append('uniqueID', uniqueID);
+
+  // Append the CSRF token to the FormData object
   data.append('csrf_token', csrfToken);
 
   return data;
