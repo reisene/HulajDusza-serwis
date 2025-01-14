@@ -124,4 +124,97 @@ describe("Form Submission Handler", () => {
     );
     expect(mockSubmitButton.disabled).toBe(false);
   });
+
+  describe("getFormData", () => {
+    test("returns correctly formatted form data", () => {
+      const formData = getFormData();
+      expect(formData).toEqual({
+        email: "test-email",
+        phone: "test-phone",
+        name: "test-name",
+        message: "test-message",
+      });
+    });
+
+    test("strips non-digits from phone number", () => {
+      document.getElementById("phone").value = "+1 (234) 567-8900";
+      const formData = getFormData();
+      expect(formData.phone).toBe("12345678900");
+    });
+  });
+
+  describe("prepareData", () => {
+    test("creates FormData with all required fields", () => {
+      const formData = {
+        email: "test@example.com",
+        phone: "123456789",
+        name: "Test User",
+        message: "Test message",
+      };
+      const token = "test-token";
+
+      const result = prepareData(formData, token);
+
+      expect(result instanceof FormData).toBe(true);
+      expect(result.get("email")).toBe(formData.email);
+      expect(result.get("phone")).toBe(formData.phone);
+      expect(result.get("name")).toBe(formData.name);
+      expect(result.get("message")).toBe(formData.message);
+      expect(result.get("g-recaptcha-response")).toBe(token);
+      expect(result.get("csrf_token")).toBeDefined();
+      expect(result.get("uniqueID")).toBeDefined();
+    });
+  });
+
+  describe("handleError", () => {
+    beforeEach(() => {
+      global.Sentry = {
+        captureException: jest.fn(),
+      };
+    });
+
+    test("captures exception with correct data", () => {
+      const mockFile = new File(["{}"], "test.txt");
+      const mockError = new Error("Test error");
+
+      handleError(mockFile, mockError);
+
+      expect(Sentry.captureException).toHaveBeenCalledWith(
+        mockError,
+        expect.objectContaining({
+          tags: { "form-name": "kontakt" },
+          attachments: expect.arrayContaining([
+            expect.objectContaining({
+              filename: "form_data.txt",
+              contentType: "text/plain",
+            }),
+          ]),
+        }),
+      );
+    });
+
+    test("displays correct error message for known errors", () => {
+      const mockFile = new File(["{}"], "test.txt");
+      const mockError = new Error("Błąd 404");
+
+      handleError(mockFile, mockError);
+
+      expect(displayNotification).toHaveBeenCalledWith(
+        "Wystąpił błąd. Proszę spróbować ponownie.",
+        "error",
+      );
+    });
+
+    test("displays generic error message for unknown errors", () => {
+      const mockFile = new File(["{}"], "test.txt");
+      const mockError = new Error("Unknown error");
+
+      handleError(mockFile, mockError);
+
+      expect(displayNotification).toHaveBeenCalledWith(
+        "Wystąpił nieoczekiwany błąd. Proszę skontaktować się z administratorem.",
+        "error",
+      );
+    });
+  });
 });
