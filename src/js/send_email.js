@@ -97,12 +97,7 @@ async function handleSubmit(event, token) {
   }
   
   // Get form data
-  const formData = {
-    email: document.getElementById("email").value,
-    phone: document.getElementById("phone").value.replace(/\D/g, ''),
-    name: document.getElementById("name").value,
-    message: document.getElementById("message").value
-  };
+  const formData = getFormData();
 
   const submitButton = form.querySelector('button[type="submit"]');
   if (submitButton) {
@@ -119,11 +114,28 @@ async function handleSubmit(event, token) {
     return;
   }
 
-  const uniqueID = `${Date.now()}${Math.floor(Math.random() * 1000000).toString(36)}`;
+  const data = prepareData(formData, token);
 
+  const file = new File([JSON.stringify(formData)], 'form_data.txt', {
+    type: 'text/plain',
+  });
+
+  await sendDataToServer(submitButton, data, file);
+}
+
+function getFormData() {
+  return {
+      email: document.getElementById("email").value,
+      phone: document.getElementById("phone").value.replace(/\D/g, ''),
+      name: document.getElementById("name").value,
+      message: document.getElementById("message").value
+  };
+}
+
+function prepareData(formData, token) {
+  const uniqueID = `${Date.now()}${Math.floor(Math.random() * 1000000).toString(36)}`;
   const csrfToken = document.getElementById('csrf-token').value;
 
-  // Prepare data for sending
   const data = new FormData();
   data.append('name', formData.name);
   data.append('email', formData.email);
@@ -133,11 +145,7 @@ async function handleSubmit(event, token) {
   data.append('uniqueID', uniqueID);
   data.append('csrf_token', csrfToken);
 
-  const file = new File([JSON.stringify(formData)], 'form_data.txt', {
-    type: 'text/plain',
-  });
-
-  await sendDataToServer(submitButton, data, file);
+  return data;
 }
 
 /**
