@@ -1,76 +1,83 @@
-    /**
-     * @description Initializes animations for a form submission button. It animates the
-     * button's state when clicked, submits a request, and resets to its original state
-     * upon completion or error.
-     *
-     * @returns {any} An object containing two properties: animateButton and resetButton.
-     */
-    function initButtonAnimation() {
-        const formButton = document.getElementById('my-form-button');
+// Stałe dla często używanych wartości, co zmniejsza ryzyko literówek
+const STATES = {
+    SUBMIT: 'submit',
+    LOADING: 'loading',
+    SUCCESS: 'success',
+    ERROR: 'error'
+};
 
-        /**
-         * @description Modifies a UI element's appearance to indicate loading state,
-         * specifically a button and its icon. It hides a plane icon, adds a spinner icon,
-         * and applies a 'loading' class to change the button's style, effectively animating
-         * it into a loading state.
-         */
-        function animateLoading() {
-            formButton.classList.remove('submit')
-            formButton.classList.add('loading');
-            formButton.querySelector('.fa-paper-plane').classList.add('hidden');
-            formButton.querySelector('.fa-spinner').classList.remove('hidden');
-        }
+const ICONS = {
+    PAPER_PLANE: '.fa-paper-plane',
+    SPINNER: '.fa-spinner',
+    CHECK: '.fa-check',
+    TIMES: '.fa-times'
+};
 
-        /**
-         * @description Animates a button based on its type, adding a CSS class to change its
-         * appearance and removing hidden classes from specific icons. It handles two types:
-         * 'success' and 'error', changing the visible icon accordingly.
-         *
-         * @param {string | 'success' | 'error'} type - Used to specify animation types.
-         */
-        function animateButton(type) {
-            if (type === 'success' || type === 'error') {
-                formButton.classList.add(type);
+/**
+ * Pokazuje wybraną ikonę w przycisku
+ */
+function showIcon(button, iconSelector) {
+    const icon = button.querySelector(iconSelector);
+    if (icon) icon.classList.remove('hidden');
+}
 
-                // Resetowanie animacji
-                formButton.style.animation = 'none'; // Resetuj animację
-                formButton.offsetHeight; // Wymuś reflow
-                formButton.style.animation = ''; // Przywróć animację
+/**
+ * Ukrywa wybraną ikonę w przycisku
+ */
+function hideIcon(button, iconSelector) {
+    const icon = button.querySelector(iconSelector);
+    if (icon) icon.classList.add('hidden');
+}
 
-                if (type === 'success') {
-                    formButton.querySelector('.fa-check').classList.remove('hidden');
-                } else {
-                    formButton.querySelector('.fa-times').classList.remove('hidden');
-                }
-                formButton.querySelector('.fa-spinner').classList.add('hidden');
-            } 
-        }
-        
-        /**
-         * @description Resets a form button to its default state, removing any loading or
-         * status indicators and restoring the initial appearance. It also hides associated
-         * icon elements when applicable.
-         */
-        function resetButton() {
-            if (formButton) {
-                formButton.classList.remove('loading', 'success', 'error');
-                formButton.classList.add('submit');
-                const faCheck = formButton.querySelector('.fa-check');
-                const faTimes = formButton.querySelector('.fa-times');
-                const faSpinner = formButton.querySelector('.fa-spinner');
-                if (faCheck) {
-                    faCheck.classList.add('hidden');
-                }
-                if (faTimes) {
-                    faTimes.classList.add('hidden');
-                }
-                if (faSpinner) {
-                    faSpinner.classList.add('hidden');
-                }
-                const faPaperPlane = formButton.querySelector('.fa-paper-plane');
-                faPaperPlane.setAttribute('class', 'svg-inline--fa fa-paper-plane');
-            } else {
-        Sentry.captureException(new Error('formButton is null'), {
+/**
+ * Resetuje animację przycisku przez wymuszenie reflow
+ */
+function resetButtonAnimation(button) {
+    button.style.animation = 'none';
+    button.offsetHeight; // Wymuszenie reflow
+    button.style.animation = '';
+}
+
+/**
+ * Obsługuje stan ładowania przycisku
+ */
+function handleLoadingState(button) {
+    button.classList.remove(STATES.SUBMIT);
+    button.classList.add(STATES.LOADING);
+    hideIcon(button, ICONS.PAPER_PLANE);
+    showIcon(button, ICONS.SPINNER);
+}
+
+/**
+ * Obsługuje stan sukcesu lub błędu
+ */
+function handleStatusState(button, type) {
+    if (type !== STATES.SUCCESS && type !== STATES.ERROR) return;
+    
+    button.classList.add(type);
+    resetButtonAnimation(button);
+    hideIcon(button, ICONS.SPINNER);
+    
+    const iconToShow = type === STATES.SUCCESS ? ICONS.CHECK : ICONS.TIMES;
+    showIcon(button, iconToShow);
+}
+
+/**
+ * Resetuje wszystkie ikony w przycisku
+ */
+function resetIcons(button) {
+    Object.values(ICONS).forEach(icon => hideIcon(button, icon));
+    const paperPlane = button.querySelector(ICONS.PAPER_PLANE);
+    if (paperPlane) {
+        paperPlane.setAttribute('class', 'svg-inline--fa fa-paper-plane');
+    }
+}
+
+/**
+ * Zgłasza błąd do Sentry gdy przycisk nie istnieje
+ */
+function reportButtonError() {
+    Sentry.captureException(new Error('formButton is null'), {
         extra: {
             url: window.location.href,
             referrer: document.referrer,
@@ -79,22 +86,35 @@
             formAction: window.location.href,
             formMethod: 'POST',
         },
-        });
+    });
+}
+
+/**
+ * Inicjalizuje animacje dla przycisku formularza
+ */
+function initButtonAnimation() {
+    const formButton = document.getElementById('my-form-button');
+    if (!formButton) {
+        reportButtonError();
+        return { animateButton: () => {}, resetButton: () => {} };
     }
+
+    // Nasłuchiwanie zdarzeń
+    formButton.addEventListener('click', () => handleLoadingState(formButton));
+    formButton.addEventListener('transitionend', () => {
+        if (formButton.classList.contains(STATES.LOADING)) {
+            formButton.classList.remove(STATES.LOADING);
         }
+    });
 
-        // Dodaj klasę loading po kliknięciu przycisku
-        formButton.addEventListener('click', animateLoading);
+    return {
+        animateButton: (type) => handleStatusState(formButton, type),
+        resetButton: () => {
+            formButton.classList.remove(STATES.LOADING, STATES.SUCCESS, STATES.ERROR);
+            formButton.classList.add(STATES.SUBMIT);
+            resetIcons(formButton);
+        }
+    };
+}
 
-        // Usuń klasę loading po zakończeniu animacji
-        formButton.addEventListener('transitionend', () => {
-            // Handles form button transitions when they end.
-            if (formButton.classList.contains('loading')) {
-                formButton.classList.remove('loading');
-            }
-        });
-
-        return { animateButton, resetButton };
-    }
-
-    export default initButtonAnimation; // Export the initButtonAnimation function
+export default initButtonAnimation;

@@ -172,7 +172,7 @@ class App {
   }
 }
 
-$(document).ready(() => {
+$(document).on('DOMContentLoaded',() => {
   // Immediately executes when encountered.
   new App();
 });

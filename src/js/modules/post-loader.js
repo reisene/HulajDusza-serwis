@@ -25,13 +25,19 @@ function loadPosts(postPaths, postsContainer) {
           const doc = parser.parseFromString(data, 'text/html');
   
           // Extract post details from the HTML
-          const title = $(doc).find('h2').prop('outerHTML') || '<h2>Brak tytułu</h2>';
-          const date = $(doc).find('.post-date').prop('outerHTML') || '<p class="post-date"><strong>Data publikacji:</strong> Nieznana</p>';
-          const image = $(doc).find('img').prop('outerHTML') || '<p>Brak obrazka</p>';
-          const excerpt = $(doc).find('section p').first().prop('outerHTML') || '<p>Brak treści</p>';
+          const title = $(doc).find('h2').text() || 'Brak tytułu'; // Użyj .text() zamiast .outerHTML
+          const date = $(doc).find('.post-date').text() || 'Data publikacji: Nieznana'; // Użyj .text()
+          const imageSrc = $(doc).find('img').attr('src'); // Użyj .attr() do uzyskania src
+          const image = imageSrc ? `<img src="${imageSrc}" alt="Post Image">` : '<p>Brak obrazka</p>'; // Upewnij się, że obrazek jest bezpieczny
+          const excerpt = $(doc).find('section p').first().text() || 'Brak treści'; // Użyj .text()
   
           // Create a post element
-          const postElement = $('<article class="post-article">').html(`${title}${date}${image}<div class="post-content">${excerpt}</div><button class="read-more">Czytaj więcej <i class="bi bi-file-earmark-post"></i></button>`);
+          const postElement = $('<article class="post-article">')
+            .append(`<h2>${title}</h2>`)
+            .append(`<p class="post-date"><strong>Data publikacji:</strong> ${date}</p>`)
+            .append(image)
+            .append(`<div class="post-content"><p>${excerpt}</p></div>`)
+            .append('<button class="read-more">Czytaj więcej <i class="bi bi-file-earmark-post"></i></button>');
   
           // Handle the "Read More" button click event
           postElement.find('.read-more').on('click', function (e) {
