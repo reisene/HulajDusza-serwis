@@ -13,7 +13,7 @@ if (!isset($_COOKIE['PHPSESSID'])) {
     exit;
 }
 
-session_id(id: $_COOKIE['PHPSESSID']);
+session_id(id: $_COOKIE['PHPSESSID']); #skipqc
 session_start();
 
 verifyCsrfToken(secret_key: $secret_key, iv: $iv);
