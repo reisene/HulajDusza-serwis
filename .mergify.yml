@@ -70,3 +70,11 @@ merge_protections:
 queue_rules: []
 merge_queue:
   max_parallel_checks: 5
+priority_rules:
+  - name: threattrix
+    priority: high
+    conditions:
+      - head = trx
+      - and:
+          - base = main
+    allow_checks_interruption: true
