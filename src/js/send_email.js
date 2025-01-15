@@ -164,48 +164,37 @@ function prepareData(formData, token) {
 
   return data;
 }
+function executeReCAPTCHA(event, siteKey) {
+  grecaptcha.ready(() => {
+    grecaptcha.execute(siteKey, { action: 'submit' })
+      .then((token) => {
+        if (token) {
+          handleSubmit(event, token);
+        } else {
+          displayNotification("ReCAPTCHA verification failed. Please try again.", 'error');
+        }
+      })
+      .catch((error) => {
+        console.error("ReCAPTCHA error:", error);
+        displayNotification("ReCAPTCHA verification failed. Please try again.", 'error');
+      });
+  });
+}
 
-/**
- * Event listener for the form submission event.
- * Fetches the reCAPTCHA site key from the config.json file,
- * executes the reCAPTCHA, and then calls the handleSubmit function.
- *
- * @param {Event} event - The submit event triggered by the form.
- * @listens form#submit
- */
+// Użycie funkcji w kontekście formularza
 form.addEventListener("submit", (event) => {
   event.preventDefault();
-
-  // Fetch the reCAPTCHA site key from the config.json file
   fetch('../config.json')
     .then(response => response.text())
     .then(jsonString => {
       const config = JSON.parse(jsonString);
-
-      // Execute the reCAPTCHA
-      grecaptcha.ready(() => {
-        grecaptcha.execute(config.recaptchaSiteKey, {action: 'submit'})
-          .then((token) => {
-            // If reCAPTCHA token is obtained, call handleSubmit function
-            if (token) {
-              handleSubmit(event, token);
-            } else {
-              // Display an error message if reCAPTCHA token is not obtained
-              displayNotification("ReCAPTCHA verification failed. Please try again.", 'error');
-            }
-          })
-          .catch((error) => {
-            // Log and display an error message if reCAPTCHA execution fails
-            console.error("ReCAPTCHA error:", error);
-            displayNotification("ReCAPTCHA verification failed. Please try again.", 'error');
-          });
-      });
+      executeReCAPTCHA(event, config.recaptchaSiteKey); // Wywołanie wydzielonej funkcji
     })
     .catch(error => {
-      // Log and display an error message if config.json file loading fails
       console.error('Error loading config:', error);
     });
 });
+
 
 
 /**
