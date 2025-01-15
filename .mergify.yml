@@ -1,4 +1,12 @@
 pull_request_rules:
+  - name: Label Mergify Stacks PRs
+    description: Pull requests that are part of a Mergify stack should be labeled as such
+    conditions:
+      - "commits[0].commit_message ~= (?m)Change-Id:"
+    actions:
+      label:
+        toggle:
+          - stack
   - name: Automatic merge
     description: Merge when PR passes all branch protection and has label automerge
     conditions:
@@ -70,11 +78,3 @@ merge_protections:
 queue_rules: []
 merge_queue:
   max_parallel_checks: 5
-priority_rules:
-  - name: threattrix
-    priority: high
-    conditions:
-      - head = trx
-      - and:
-          - base = main
-    allow_checks_interruption: true
