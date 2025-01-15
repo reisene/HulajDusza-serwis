@@ -1,4 +1,8 @@
 <?php
+/**
+ * Generates Open Graph meta tags based on the metadata stored in metadata.json
+ * @return string HTML code for Open Graph meta tags
+ */
 function generateOpenGraphMetaTags() {
   $metadata_file = 'metadata.json';
   $metadata = json_decode(file_get_contents($metadata_file), true);
