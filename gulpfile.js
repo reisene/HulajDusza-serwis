@@ -1,6 +1,14 @@
 require ('./instruments.js');
 
 const Sentry = require('@sentry/node');
+// include and initialize the rollbar library with your access token
+var Rollbar = require('rollbar');
+var rollbar = new Rollbar({
+  accessToken: '7fb550110b334cd0a5e9eb68eddb95f7',
+  captureUncaught: true,
+  captureUnhandledRejections: true,
+});
+
 
 const gulp = require('gulp');
 const fileInclude = require('gulp-file-include');

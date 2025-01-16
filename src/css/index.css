@@ -123,10 +123,6 @@
     width: 100%;
 }
 
-/*.reason-content.reverse {
-    flex-direction: row-reverse;
-}*/
-
 .reason .text {
     flex: 1;
     padding: 20px;

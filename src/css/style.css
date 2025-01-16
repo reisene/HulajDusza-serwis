@@ -356,9 +356,6 @@ footer div.social a:hover {
 
 footer div.copyright{
     background-color: #111;
-    /*-webkit-box-shadow: inset 0px 0px 24px 4px rgba(51, 51, 51, 1);
-    -moz-box-shadow: inset 0px 0px 24px 4px rgba(51, 51, 51, 1);
-    box-shadow: inset 0px 0px 24px 4px rgba(51, 51, 51, 1);*/
 }
 
 .privacy a:hover {
@@ -577,7 +574,7 @@ button {
 button:hover {
     transform: translateY(-2px);
     box-shadow: 0 8px 10px rgba(0, 0, 0, 0.2);
-    background-color: #555;/*Darken background color on hover*/;
+    background-color: #555;/*Darken background color on hover*/
 }
 
 button:before {
