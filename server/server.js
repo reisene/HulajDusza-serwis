@@ -2,6 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const mysql = require('mysql2');
+const RateLimit = require('express-rate-limit');
 const app = express();
 const port = 3000;
 
@@ -22,9 +23,22 @@ db.connect((err) => {
 app.use(bodyParser.json());
 app.use(cookieParser());
 app.use(express.static('public_html'));
+// Set up rate limiter: maximum of 100 requests per 15 minutes
+const limiter = RateLimit({
+    windowMs: 15 * 60 * 1000, // 15 minutes
+    max: 100, // max 100 requests per windowMs
+    trustProxy: true, // zaufaj nagłówkom X-Forwarded-For
+    skipFailedRequests: true, // nie licz nieudanych żądań
+    message: {
+        status: 429,
+        message: 'Zbyt wiele żądań. Spróbuj ponownie później.'
+    },
+    standardHeaders: true, // zwraca `RateLimit-*` nagłówki
+    legacyHeaders: false, // wyłącz nagłówki `X-RateLimit-*`
+});
 
 // Obsługa ciasteczek
-app.post('/set-cookies', (req, res) => {
+app.post('/set-cookies', limiter, (req, res) => {
     // Handles HTTP POST request to set cookies and insert data into database table.
     const { necessary, analytics, marketing } = req.body;
     res.cookie('necessary', necessary, { maxAge: 1000 * 60 * 60 * 24 * 30 });
