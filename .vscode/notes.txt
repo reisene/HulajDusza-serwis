@@ -1,0 +1,27 @@
+rollbar sheet
+// Caught errors
+try {
+  doSomething();
+} catch (e) {
+  Rollbar.error("Something went wrong", e);
+}
+
+// Arbitrary log messages. 'critical' is most severe; 'debug' is least.
+Rollbar.critical("Connection error from remote Payments API");
+Rollbar.error("Some unexpected condition");
+Rollbar.warning("Connection error from Twitter API");
+Rollbar.info("User opened the purchase dialog");
+Rollbar.debug("Purchase dialog finished rendering");
+
+// Can include custom data with any of the above.
+// It will appear as `message.extra.postId` in the Occurrences tab
+Rollbar.info("Post published", {postId: 123});
+
+// Callback functions
+Rollbar.error(e, function(err, data) {
+  if (err) {
+    console.log("Error while reporting error to Rollbar: ", e);
+  } else {
+    console.log("Error successfully reported to Rollbar. UUID:", data.result.uuid);
+  }
+});

@@ -74,6 +74,7 @@ gulp.task('watchPosts', async function() {
 gulp.task('js', () => {
   try {
     return gulp.src(paths.js)
+      .pipe(ignore.exclude('js/_tests_/**/*'))
       .pipe(sourcemaps.init())
       .pipe(uglify())
       .pipe(sourcemaps.write('.'))
