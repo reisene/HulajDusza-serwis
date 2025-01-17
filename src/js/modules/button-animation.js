@@ -14,19 +14,28 @@ const ICONS = {
 };
 
 /**
- * Pokazuje wybraną ikonę w przycisku
+ * Shows the specified icon within the button
+ * @param {HTMLElement} button - The button element containing the icon
+ * @param {string} iconSelector - The CSS selector of the icon to show
  */
 function showIcon(button, iconSelector) {
     const icon = button.querySelector(iconSelector);
-    if (icon) icon.classList.remove('hidden');
+    if (icon) {
+        icon.classList.remove('hidden');
+    }
 }
 
 /**
+ * Hides the specified icon within the button
+ * @param {HTMLElement} button - The button element containing the icon
+ * @param {string} iconClass - The CSS class of the icon to hide
  * Ukrywa wybraną ikonę w przycisku
  */
-function hideIcon(button, iconSelector) {
-    const icon = button.querySelector(iconSelector);
-    if (icon) icon.classList.add('hidden');
+function hideIcon(button, iconClass) {
+    const icon = button.querySelector(iconClass);
+    if (icon) {
+        icon.classList.add('hidden');
+    }
 }
 
 /**
@@ -34,7 +43,7 @@ function hideIcon(button, iconSelector) {
  */
 function resetButtonAnimation(button) {
     button.style.animation = 'none';
-    button.offsetHeight; // Wymuszenie reflow
+    void button.offsetHeight; // Wymuszenie reflow
     button.style.animation = '';
 }
 
