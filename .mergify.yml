@@ -1,4 +1,30 @@
 pull_request_rules:
+  - name: Label first PR of Mergify Stacks PRs
+    description: The first PR of a Mergify stack should be labeled as such
+    conditions:
+      - "commits[0].commit_message ~= (?m)Change-Id:"
+      - -base ~= ^mergify_cli/
+    actions:
+      label:
+        toggle:
+          - top of the stack
+  - name: Automatic merge during office hours + hotfix support
+    description: Merge when PR passes all branch protection during office hours,
+      except for hotfix
+    conditions:
+      - or:
+          - schedule = Mon-Fri 09:00-17:00[Europe/Warsaw]
+          - label = hotfix
+    actions:
+      merge:
+  - name: Add a queue label when PR is queued
+    description: Toggle the queue label when a pull request is (un)queued.
+    conditions:
+      - queue-position > 0
+    actions:
+      label:
+        toggle:
+          - merge-queued
   - name: Label Mergify Stacks PRs
     description: Pull requests that are part of a Mergify stack should be labeled as such
     conditions:
