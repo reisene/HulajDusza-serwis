@@ -27,8 +27,13 @@ const init = initButtonAnimation();
  */
 function generateCsfrToken() {
   // Pobierz token z serwera
-  fetch('/php/generate-token.php')
-    .then(response => response.text())
+  return fetch('/php/generate-token.php')
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      return response.text();
+    })
     .then(csrfToken => {
       // Zapisz token w lokalnym storage
       localStorage.setItem('csrf_token', csrfToken);
@@ -44,8 +49,33 @@ function generateCsfrToken() {
       Sentry.captureException(new Error(errorData.message), {
         extra: errorData,
       });
-      console.error('Błąd pobierania tokena:', error)
+      Rollbar.error('Błąd pobierania tokena:', error)
     });
+}
+
+/**
+ * Verifies the CSRF token by comparing tokens stored in local storage and the form.
+ * 
+ * This function invokes `generateCsfrToken` to ensure a valid CSRF token is fetched
+ * and stored in local storage. It then compares the stored token with the token 
+ * present in the form's hidden input field. If the tokens do not match, it recursively 
+ * calls itself to retry the token verification process.
+ * 
+ * @function checkCsrfToken
+ * @returns {Promise<void>} A promise that resolves once the token verification is complete.
+ * @throws {Error} If the token generation or storage process fails.
+ */
+
+function checkCsrfToken() {
+  return generateCsfrToken().then(() => { // Czekaj na zakończenie generateCsfrToken
+      const storedToken = localStorage.getItem('csrf_token');
+      const formToken = document.getElementById('csrf-token').value;
+
+      if (storedToken !== formToken) {
+          // Tokeny są różne, wywołaj funkcję ponownie
+          return checkCsrfToken();
+      }
+  });
 }
 
 
@@ -63,7 +93,7 @@ function generateCsfrToken() {
 document.addEventListener('DOMContentLoaded', () => {
   const phoneInput = document.getElementById('phone');
   phoneInput.addEventListener('input', phoneFormatter);
-  generateCsfrToken();
+  checkCsrfToken();
   phoneFormatter();
 });
 
@@ -82,7 +112,7 @@ async function handleSubmit(event, token) {
   event.preventDefault();
   // Check if form exists before continuing
   if (!form) {
-    console.error("Form not found.");
+    Rollbar.error("Form not found.");
     Sentry.captureException(error, {
       extra: {
         url: window.location.href,
@@ -103,14 +133,14 @@ async function handleSubmit(event, token) {
   if (submitButton) {
       submitButton.disabled = true;
   } else {
-    console.error("Submit button not found.");
+    Rollbar.error("Submit button not found.");
     return; // Zatrzymaj dalsze przetwarzanie, jeśli przycisk nie został znaleziony
   }
 
   try {
     await validateFormData(submitButton, formData);
   } catch (error) {
-    console.error(error);
+    Rollbar.error(error);
     return;
   }
 
@@ -175,7 +205,7 @@ function executeReCAPTCHA(event, siteKey) {
         }
       })
       .catch((error) => {
-        console.error("ReCAPTCHA error:", error);
+        Rollbar.error("ReCAPTCHA error:", error);
         displayNotification("ReCAPTCHA verification failed. Please try again.", 'error');
       });
   });
@@ -191,7 +221,7 @@ form.addEventListener("submit", (event) => {
       executeReCAPTCHA(event, config.recaptchaSiteKey); // Wywołanie wydzielonej funkcji
     })
     .catch(error => {
-      console.error('Error loading config:', error);
+      Rollbar.error('Error loading config:', error);
     });
 });
 
@@ -275,7 +305,7 @@ async function sendDataToServer(submitButton, data, file) {
       }, 0);
     }
   } catch (error) {
-    console.error("Form submission error:", error.message, error.stack);
+    Rollbar.error("Form submission error:", error.message, error.stack);
     handleError(file, error);
   } finally {
     // Re-enable the submit button

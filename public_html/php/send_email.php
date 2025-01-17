@@ -20,13 +20,13 @@ verifyCsrfToken(secret_key: $secret_key, iv: $iv);
 
     /**
      * Verifies the CSRF token and session variables.
-     * 
+     *
      * This function verifies the CSRF token by decrypting it and comparing it with the token stored in the session.
      * It also verifies the User Agent and session ID.
-     * 
+     *
      * @param string $secret_key The secret key used for encryption and decryption.
      * @param string $iv The initialization vector used for encryption and decryption.
-     * 
+     *
      * @return void
      */
 function verifyCsrfToken($secret_key, $iv) {
