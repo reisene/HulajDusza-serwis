@@ -27,6 +27,14 @@ app.use(express.static('public_html'));
 const limiter = RateLimit({
     windowMs: 15 * 60 * 1000, // 15 minutes
     max: 100, // max 100 requests per windowMs
+    trustProxy: true, // zaufaj nagłówkom X-Forwarded-For
+    skipFailedRequests: true, // nie licz nieudanych żądań
+    message: {
+        status: 429,
+        message: 'Zbyt wiele żądań. Spróbuj ponownie później.'
+    },
+    standardHeaders: true, // zwraca `RateLimit-*` nagłówki
+    legacyHeaders: false, // wyłącz nagłówki `X-RateLimit-*`
 });
 
 // Obsługa ciasteczek
