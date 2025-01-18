@@ -1,13 +1,4 @@
 pull_request_rules:
-  - name: Automatic merge during office hours + hotfix support
-    description: Merge when PR passes all branch protection during office hours,
-      except for hotfix
-    conditions:
-      - or:
-          - schedule = Mon-Fri 09:00-17:00[Europe/Warsaw]
-          - label = hotfix
-    actions:
-      merge:
   - name: Label first PR of Mergify Stacks PRs
     description: The first PR of a Mergify stack should be labeled as such
     conditions:
@@ -22,7 +13,7 @@ pull_request_rules:
       except for hotfix
     conditions:
       - or:
-          - schedule = Mon-Fri 09:00-17:00[Europe/Warsaw]
+          - schedule = Mon-Fri 09:00-21:00[Europe/Warsaw]
           - label = hotfix
     actions:
       merge:
