@@ -4,7 +4,7 @@ const Sentry = require('@sentry/node');
 // include and initialize the rollbar library with your access token
 var Rollbar = require('rollbar');
 var rollbar = new Rollbar({
-  accessToken: '7fb550110b334cd0a5e9eb68eddb95f7',
+  accessToken: process.env.ROLLBAR_ACCESS_TOKEN,
   captureUncaught: true,
   captureUnhandledRejections: true,
 });
