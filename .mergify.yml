@@ -4,7 +4,7 @@ pull_request_rules:
       except for hotfix
     conditions:
       - or:
-          - schedule = Mon-Fri 08:00-21:00[Europe/Warsaw]
+          - schedule = Mon-Sat 08:00-21:00[Europe/Warsaw]
           - label = hotfix
     actions:
       merge:
