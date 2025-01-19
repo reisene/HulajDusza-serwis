@@ -6,7 +6,6 @@ import searchPosts from './modules/post-searcher.js';
 $(document).ready(function () {
 
   const postsContainer = $('#posts-container');
-
   try {
     loadPosts(postPaths, postsContainer).then(postElements => {
       // Handle post sorting
