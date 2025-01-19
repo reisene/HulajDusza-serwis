@@ -1,4 +1,13 @@
 pull_request_rules:
+  - name: Automatic merge during office hours + hotfix support
+    description: Merge when PR passes all branch protection during office hours,
+      except for hotfix
+    conditions:
+      - or:
+          - schedule = Mon-Fri 08:00-21:00[Europe/Warsaw]
+          - label = hotfix
+    actions:
+      merge:
   - name: Add a queue label when PR is queued
     description: Toggle the queue label when a pull request is (un)queued.
     conditions:
