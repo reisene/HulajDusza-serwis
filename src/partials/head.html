@@ -96,7 +96,6 @@
                 environment: config.honeybadger.environment,
                 reportData: config.honeybadger.reportData
             });
-            Honeybadger.notify("Testing Honeybadger!");
         })
         .catch(error => {
             console.error('Error loading config:', error);
