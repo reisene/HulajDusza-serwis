@@ -3,7 +3,7 @@ import loadPosts from './modules/post-loader.js';
 import sortPosts from './modules/post-sorter.js';
 import searchPosts from './modules/post-searcher.js';
 
-$(document).ready(function () {
+$(document).on('DOMContentLoaded', function () {
 
   const postsContainer = $('#posts-container');
   try {
