@@ -93,7 +93,7 @@
     "uglify-es": "^3.3.10",
     "uglify-js": "^3.19.3",
     "webpack": "^5.96.1",
-    "webpack-cli": "^5.1.4",
+    "webpack-cli": "^6.0.1",
     "express-rate-limit": "^7.5.0"
   },
   "description": ""
