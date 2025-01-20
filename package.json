@@ -64,7 +64,7 @@
     "@jest/globals": "^29.7.0",
     "@ngrok/ngrok": "^1.4.1",
     "@sentry/browser": "^8.47.0",
-    "@sentry/cli": "^2.37.0",
+    "@sentry/cli": "^2.40.0",
     "@sentry/node": "^8.35.0",
     "@sentry/profiling-node": "^8.33.1",
     "@testing-library/dom": "^10.4.0",
