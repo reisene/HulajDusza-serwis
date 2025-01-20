@@ -60,12 +60,14 @@
   "dependencies": {
     "@flaticon/flaticon-uicons": "^3.3.1",
     "@fortawesome/fontawesome-free": "^6.7.1",
-    "@fortawesome/fontawesome-svg-core": "^6.6.0",
+    "@fortawesome/fontawesome-svg-core": "^6.7.2",
     "@jest/globals": "^29.7.0",
     "@ngrok/ngrok": "^1.4.1",
     "@sentry/browser": "^8.47.0",
+
     "@sentry/cli": "^2.40.0",
     "@sentry/node": "^8.35.0",
+
     "@sentry/profiling-node": "^8.33.1",
     "@testing-library/dom": "^10.4.0",
     "aos": "^3.0.0-beta.6",
@@ -93,7 +95,7 @@
     "uglify-es": "^3.3.10",
     "uglify-js": "^3.19.3",
     "webpack": "^5.96.1",
-    "webpack-cli": "^5.1.4",
+    "webpack-cli": "^6.0.1",
     "express-rate-limit": "^7.5.0"
   },
   "description": ""
