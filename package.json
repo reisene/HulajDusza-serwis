@@ -71,7 +71,7 @@
     "@sentry/profiling-node": "^8.47.0",
     "@testing-library/dom": "^10.4.0",
     "aos": "^3.0.0-beta.6",
-    "body-parser": "^1.20.3",
+    "body-parser": "^2.0.1",
     "bootstrap": "^5.3.3",
     "bootstrap-icons": "^1.11.3",
     "caniuse-lite": "^1.0.30001690",
