@@ -74,7 +74,7 @@
     "body-parser": "^2.0.2",
     "bootstrap": "^5.3.3",
     "bootstrap-icons": "^1.11.3",
-    "caniuse-lite": "^1.0.30001690",
+    "caniuse-lite": "^1.0.30001692",
     "composer": "^4.1.0",
     "cookie-parser": "^1.4.7",
     "express": "^4.21.2",
