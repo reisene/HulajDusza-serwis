@@ -90,7 +90,7 @@
     "node-fetch": "^3.3.2",
     "rename": "^1.0.4",
     "rollbar": "^2.26.4",
-    "selenium-webdriver": "^4.28.1",
+    "selenium-webdriver": "^4.29.0",
     "uglify": "^0.1.5",
     "uglify-es": "^3.3.10",
     "uglify-js": "^3.19.3",
