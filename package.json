@@ -68,7 +68,7 @@
     "@sentry/cli": "^2.42.2",
     "@sentry/node": "^9.0.1",
 
-    "@sentry/profiling-node": "^9.1.0",
+    "@sentry/profiling-node": "^9.5.0",
     "@testing-library/dom": "^10.4.0",
     "aos": "^3.0.0-beta.6",
     "body-parser": "^2.1.0",
