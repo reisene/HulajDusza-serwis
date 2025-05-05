@@ -34,7 +34,7 @@
   "license": "ISC",
   "devDependencies": {
     "@babel/core": "^7.26.7",
-    "@babel/preset-env": "^7.26.9",
+    "@babel/preset-env": "^7.27.1",
     "@testing-library/jest-dom": "^6.6.2",
     "autoprefixer": "^10.4.21",
     "babel-jest": "^29.7.0",
@@ -73,7 +73,7 @@
     "aos": "^3.0.0-beta.6",
     "body-parser": "^2.2.0",
     "bootstrap": "^5.3.5",
-    "bootstrap-icons": "^1.11.3",
+    "bootstrap-icons": "^1.12.1",
     "caniuse-lite": "^1.0.30001715",
     "composer": "^4.1.0",
     "cookie-parser": "^1.4.7",
