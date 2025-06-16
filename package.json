@@ -55,7 +55,7 @@
     "jest": "^30.0.0",
     "jsdom": "^26.1.0",
     "postcss": "^8.5.5",
-    "postcss-preset-env": "^10.2.1"
+    "postcss-preset-env": "^10.2.3"
   },
   "dependencies": {
     "@flaticon/flaticon-uicons": "^3.3.1",
