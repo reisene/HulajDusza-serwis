@@ -52,9 +52,9 @@
     "gulp-sourcemaps": "^3.0.0",
     "gulp-uglify": "^3.0.2",
     "gulp-watch": "^5.0.1",
-    "jest": "^30.0.0",
+    "jest": "^30.0.2",
     "jsdom": "^26.1.0",
-    "postcss": "^8.5.5",
+    "postcss": "^8.5.6",
     "postcss-preset-env": "^10.2.3"
   },
   "dependencies": {
@@ -72,7 +72,7 @@
     "@testing-library/dom": "^10.4.0",
     "aos": "^3.0.0-beta.6",
     "body-parser": "^2.2.0",
-    "bootstrap": "^5.3.6",
+    "bootstrap": "^5.3.7",
     "bootstrap-icons": "^1.13.1",
     "caniuse-lite": "^1.0.30001724",
     "composer": "^4.1.0",
@@ -83,7 +83,7 @@
     "gulp-uglify-js": "^0.0.4",
     "jest-environment-jsdom": "^29.7.0",
     "jquery": "^3.7.1",
-    "mongoose": "^8.15.2",
+    "mongoose": "^8.16.0",
     "mysql": "^2.18.1",
     "mysql2": "^3.14.1",
     "ngrok": "^5.0.0-beta.2",
@@ -96,7 +96,7 @@
     "uglify-js": "^3.19.3",
     "webpack": "^5.99.9",
     "webpack-cli": "^6.0.1",
-    "express-rate-limit": "^7.5.0"
+    "express-rate-limit": "^7.5.1"
   },
   "description": ""
 }
