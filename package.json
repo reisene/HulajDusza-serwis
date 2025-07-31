@@ -81,7 +81,7 @@
     "fontawesome": "^5.6.3",
     "gulp-babel": "^8.0.0",
     "gulp-uglify-js": "^0.0.4",
-    "jest-environment-jsdom": "^30.0.2",
+    "jest-environment-jsdom": "^30.0.4",
     "jquery": "^3.7.1",
     "mongoose": "^8.16.1",
     "mysql": "^2.18.1",
