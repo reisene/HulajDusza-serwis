@@ -59,13 +59,13 @@
   },
   "dependencies": {
     "@flaticon/flaticon-uicons": "^3.3.1",
-    "@fortawesome/fontawesome-free": "^6.7.2",
+    "@fortawesome/fontawesome-free": "^7.0.0",
     "@fortawesome/fontawesome-svg-core": "^7.0.0",
     "@jest/globals": "^30.0.4",
-    "@ngrok/ngrok": "^1.5.1",
+    "@ngrok/ngrok": "^1.5.2",
     "@sentry/browser": "^9.28.1",
 
-    "@sentry/cli": "^2.46.0",
+    "@sentry/cli": "^2.47.1",
     "@sentry/node": "^9.0.1",
 
     "@sentry/profiling-node": "^10.1.0",
@@ -83,7 +83,7 @@
     "gulp-uglify-js": "^0.0.4",
     "jest-environment-jsdom": "^30.0.4",
     "jquery": "^3.7.1",
-    "mongoose": "^8.16.1",
+    "mongoose": "^8.16.4",
     "mysql": "^2.18.1",
     "mysql2": "^3.14.1",
     "ngrok": "^5.0.0-beta.2",
@@ -94,7 +94,7 @@
     "uglify": "^0.1.5",
     "uglify-es": "^3.3.10",
     "uglify-js": "^3.19.3",
-    "webpack": "^5.99.9",
+    "webpack": "^5.100.2",
     "webpack-cli": "^6.0.1",
     "express-rate-limit": "^8.0.1"
   },
