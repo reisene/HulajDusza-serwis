@@ -65,7 +65,7 @@
     "@ngrok/ngrok": "^1.5.2",
     "@sentry/browser": "^9.28.1",
 
-    "@sentry/cli": "^2.47.1",
+    "@sentry/cli": "^2.52.0",
     "@sentry/node": "^9.0.1",
 
     "@sentry/profiling-node": "^10.1.0",
