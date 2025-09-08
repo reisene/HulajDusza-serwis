@@ -85,7 +85,7 @@
     "jquery": "^3.7.1",
     "mongoose": "^8.18.0",
     "mysql": "^2.18.1",
-    "mysql2": "^3.14.2",
+    "mysql2": "^3.14.5",
     "ngrok": "^5.0.0-beta.2",
     "node-fetch": "^3.3.2",
     "rename": "^1.0.4",
