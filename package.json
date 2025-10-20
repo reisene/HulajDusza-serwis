@@ -89,7 +89,7 @@
     "ngrok": "^5.0.0-beta.2",
     "node-fetch": "^3.3.2",
     "rename": "^1.0.4",
-    "rollbar": "^2.26.4",
+    "rollbar": "^2.26.5",
     "selenium-webdriver": "^4.36.0",
     "uglify": "^0.1.5",
     "uglify-es": "^3.3.10",
