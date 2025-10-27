@@ -33,7 +33,7 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@babel/core": "^7.28.3",
+    "@babel/core": "^7.28.5",
     "@babel/preset-env": "^7.28.3",
     "@testing-library/jest-dom": "^6.9.1",
     "autoprefixer": "^10.4.21",
